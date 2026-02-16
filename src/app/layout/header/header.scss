@@ -1,0 +1,28 @@
+@use 'styles/variables' as *;
+
+header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 6rem;
+  background-color: $white;
+  width: 100%;
+  filter: $sh-header;
+}
+
+.slogan{
+  color: $blue-dark;
+}
+
+.header-right{
+  display: flex;
+  gap: 1rem;
+}
+
+.userProfile{
+  height: 3.5rem;
+  width: 3.5rem;
+  border: 3px solid $black;
+  color: $blue-light;
+}
