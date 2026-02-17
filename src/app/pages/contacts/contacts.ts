@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ContactsDb } from '../../core/db/contacts.db';
 import { Contact, ContactWithInitials, GroupedContacts } from './../../core/db/contacts.db';
 
@@ -10,14 +10,14 @@ import { Contact, ContactWithInitials, GroupedContacts } from './../../core/db/c
   styleUrl: './contacts.scss',
 })
 export class Contacts implements OnInit {
-  groupedContacts: GroupedContacts[] = [];
+  groupedContacts = signal<GroupedContacts[]>([]);
   selected: ContactWithInitials | null = null;
 
   constructor(private contactsDb: ContactsDb) { }
 
   async ngOnInit() {
     await this.contactsDb.getContacts();
-    this.groupedContacts = this.sortAndGroup(this.contactsDb.contacts());
+    this.groupedContacts.set(this.sortAndGroup(this.contactsDb.contacts()));
   }
 
   private getInitials(name: string): string {
