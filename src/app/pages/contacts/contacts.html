@@ -1,4 +1,29 @@
-<div class="page-container">
-    <h1>Contacts</h1>
-    <p>Hier sind alle Kontakte aufgelistet.</p>
-</div>
+<section class="contactsContainer">
+
+  <section class="contactsList"></section>
+  @for (group of groupedContacts; track group.letter) {
+  <div class="contactGroup">
+
+    <div class="groupLetter">
+      {{ group.letter }}
+    </div>
+
+    @for (contact of group.contacts; track contact.id) {
+    <div class="contactItem">
+
+      <div class="initials" [style.background]="contact.color">
+        {{ contact.initials }}
+      </div>
+
+      <div class="contactInfo">
+        <div class="contactName">{{ contact.name }}</div>
+        <div class="contactEmail">{{ contact.email }}</div>
+      </div>
+
+    </div>
+    }
+
+  </div>
+  }
+
+</section>
