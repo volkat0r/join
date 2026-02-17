@@ -1,12 +1,12 @@
 # Join – Kanban Board Application
 
-A collaborative task management system built with Angular 20 and Supabase, featuring drag-and-drop functionality and real-time updates.
+A collaborative task management system built with Angular 21 and Supabase, featuring drag-and-drop functionality and real-time updates.
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
-| Frontend | Angular 20, TypeScript, SCSS |
+| Frontend | Angular 21, TypeScript, SCSS |
 | UI Framework | Bootstrap 5 |
 | Backend | Supabase (BaaS) |
 | State Management | Angular Signals |
@@ -26,7 +26,7 @@ npm install
 npm install bootstrap@5 @popperjs/core
 
 # Start development server
-ng serve
+npm start
 ```
 
 ### Bootstrap Integration
@@ -46,16 +46,20 @@ Add to `angular.json`:
 ## Project Architecture
 
 ```
-src/
-├── app/
-│   ├── components/     # Reusable UI components
-│   ├── pages/          # Route-level components
-│   ├── services/       # Supabase & business logic
-│   ├── models/         # TypeScript interfaces
-│   └── shared/         # Directives, pipes, utilities
-├── assets/
-│   └── img/
-└── styles.scss
+join/
+├── public/
+│   └── assets/
+│       ├── fonts/
+│       ├── icons/
+│       └── styles/
+├── src/
+│   ├── app/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── pages/          # Route-level components
+│   │   ├── services/       # Supabase & business logic
+│   │   ├── models/         # TypeScript interfaces
+│   │   └── shared/         # Directives, pipes, utilities
+│   └── styles.scss
 ```
 
 ## Development Workflow
@@ -80,7 +84,7 @@ UI components follow Figma specifications. Interactive elements include hover st
 
 ## Environment
 
-Create `src/environments/environment.ts`:
+Create `src/environments/env.ts`:
 
 ```typescript
 export const environment = {
