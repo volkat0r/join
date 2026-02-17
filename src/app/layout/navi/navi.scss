@@ -17,7 +17,30 @@
     width: 100%;
     padding: 0;
   }
+  li{
 
+    img{
+        &.active{
+          display: none;
+        }
+        &.default{
+          display: flex;
+        }
+      }
+    &.active{
+      a{
+        color: $white;
+      }
+      img{
+        &.active{
+          display: flex;
+        }
+        &.default{
+          display: none;
+        }
+      }
+    }
+  }
   a{
     cursor: pointer;
     color: $grey-light2;

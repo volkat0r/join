@@ -4,32 +4,52 @@
   </div>
   <nav id="main-nav">
     <ul>
-      <li>
-        <a routerLink="/summary" routerLinkActive="active" class="d-flex gap-2 align-items-center"
-          ><img src="/assets/icons/nav-summary-30px.svg" alt="Summary Icon" />Summary</a
+      <li routerLinkActive="active">
+        <a routerLink="/summary" class="d-flex gap-2 align-items-center"
+          ><img class="default" src="/assets/icons/nav-summary-30px.svg" alt="Summary Icon" /><img
+            class="active"
+            src="/assets/icons/nav-summary-white-30px.svg"
+            alt="Summary Icon"
+          />Summary</a
         >
       </li>
-      <li>
-        <a routerLink="/add-task" routerLinkActive="active" class="d-flex gap-2 align-items-center"
-          ><img src="/assets/icons/nav-add-tasks-30px.svg" alt="Add Task Icon" />Add Task</a
+      <li routerLinkActive="active">
+        <a routerLink="/add-task" class="d-flex gap-2 align-items-center"
+          ><img
+            class="default"
+            src="/assets/icons/nav-add-tasks-30px.svg"
+            alt="Add Task Icon"
+          /><img
+            class="active"
+            src="/assets/icons/nav-add-tasks-white-30px.svg"
+            alt="Add Task Icon"
+          />Add Task</a
         >
       </li>
-      <li>
-        <a routerLink="/board" routerLinkActive="active" class="d-flex gap-2 align-items-center"
-          ><img src="/assets/icons/nav-board-30px.svg" alt="Board Icon" />Board</a
+      <li routerLinkActive="active">
+        <a routerLink="/board" class="d-flex gap-2 align-items-center"
+          ><img class="default" src="/assets/icons/nav-board-30px.svg" alt="Board Icon" /><img
+            class="active"
+            src="/assets/icons/nav-board-white-30px.svg"
+            alt="Board Icon"
+          />Board</a
         >
       </li>
-      <li>
-        <a routerLink="/contacts" routerLinkActive="active" class="d-flex gap-2 align-items-center"
-          ><img src="/assets/icons/nav-contact-30px.svg" alt="Contacts Icon" />Contacts</a
+      <li routerLinkActive="active">
+        <a routerLink="/contacts" class="d-flex gap-2 align-items-center"
+          ><img class="default" src="/assets/icons/nav-contact-30px.svg" alt="Contacts Icon" /><img
+            class="active"
+            src="/assets/icons/nav-contacts-white-30px.svg"
+            alt="Contacts Icon"
+          />Contacts</a
         >
       </li>
     </ul>
   </nav>
   <nav id="footer-nav">
     <ul>
-      <li><a routerLink="/privacy-policy" routerLinkActive="active">Privacy Policy</a></li>
-      <li><a routerLink="/legal-notice" routerLinkActive="active">Legal Notice</a></li>
+      <li routerLinkActive="active"><a routerLink="/privacy-policy">Privacy Policy</a></li>
+      <li routerLinkActive="active"><a routerLink="/legal-notice">Legal Notice</a></li>
     </ul>
   </nav>
 </div>
