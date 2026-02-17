@@ -12,9 +12,18 @@ header{
   padding-left: 7.25rem;
 }
 
+#header-right{
+  padding-right: 2.5rem;
+}
+
 .userProfile{
   height: 3.5rem;
   width: 3.5rem;
   border: 3px solid $black;
   color: $blue-light;
+  border-radius: 100%;
+  cursor: pointer;
+  &:hover{
+    background-color: $grey-light;
+  }
 }
