@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ContactsDb } from '../../core/db/contacts.db';
 
 @Component({
   selector: 'app-contacts',
@@ -7,6 +8,11 @@ import { Component } from '@angular/core';
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })
-export class Contacts {
+export class Contacts implements OnInit {
 
+  constructor(private contactsDb: ContactsDb) {}
+
+  async ngOnInit() {
+    await this.contactsDb.getContacts();
+  }
 }

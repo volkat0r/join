@@ -26,6 +26,7 @@ export class ContactsDb {
       return;
     }
 
+    console.log('[Supabase] Contacts response:', contacts);
     if (!contacts) return;
     this.contacts.set(contacts || []);
   }
