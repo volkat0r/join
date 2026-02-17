@@ -25,6 +25,9 @@ npm install
 # Install Bootstrap 5
 npm install bootstrap@5 @popperjs/core
 
+# Install Supabase client
+npm install @supabase/supabase-js
+
 # Start development server
 npm start
 ```
