@@ -9,10 +9,20 @@ export interface Contact {
   color: string;
 }
 
+export interface ContactWithInitials extends Contact {
+  initials: string;
+}
+
+export interface GroupedContacts {
+  letter: string;
+  contacts: ContactWithInitials[];
+}
+
 @Injectable({ providedIn: 'root' })
 export class ContactsDb {
 
   contacts = signal<Contact[]>([]);
+  groupedContacts = signal<GroupedContacts[]>([]);
 
   constructor(private supa: SupabaseClientService) { }
 

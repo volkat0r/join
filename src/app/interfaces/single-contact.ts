@@ -5,3 +5,14 @@ export interface SingleContact {
     phone: string;
     color?: string;
 }
+
+
+export interface ContactWithInitials extends SingleContact {
+  initials: string;
+}
+
+
+export interface GroupedContacts {
+  letter: string;
+  contacts: ContactWithInitials[];
+}
