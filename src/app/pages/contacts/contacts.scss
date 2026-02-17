@@ -25,3 +25,19 @@
         margin-left: 20px;
     }
 }
+
+.ContactsLayout {
+  display: flex;
+  height: 100%;
+  gap: 40px;
+}
+
+/* LINKE SEITE (Kontaktliste) */
+.ContactsList {
+  width: 40%;
+}
+
+/* RECHTE SEITE (Detailansicht) */
+.ContactDetails {
+  width: 60%;
+}

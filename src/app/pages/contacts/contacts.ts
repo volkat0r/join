@@ -11,15 +11,14 @@ import { Contact, ContactWithInitials, GroupedContacts } from './../../core/db/c
 })
 export class Contacts implements OnInit {
   groupedContacts: GroupedContacts[] = [];
+  selected: ContactWithInitials | null = null;
 
-  constructor(private contactsDb: ContactsDb) {}
+  constructor(private contactsDb: ContactsDb) { }
 
   async ngOnInit() {
     await this.contactsDb.getContacts();
     this.groupedContacts = this.sortAndGroup(this.contactsDb.contacts());
-    console.log('[Contacts] Grouped:', this.groupedContacts);
   }
-
 
   private getInitials(name: string): string {
     const [firstName, lastName] = name.split(' ');
@@ -42,5 +41,19 @@ export class Contacts implements OnInit {
     }
 
     return groups;
+  }
+
+  selectContact(c: ContactWithInitials) {
+    this.selected = c;
+  }
+
+  editSelected() {
+    console.log('Edit:', this.selected);
+    // später: Overlay oder Edit-Form öffnen
+  }
+
+  deleteSelected() {
+    console.log('Delete:', this.selected);
+    // später: delete logic
   }
 }

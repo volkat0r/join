@@ -1,29 +1,77 @@
-<section class="contactsContainer">
+<div class="ContactsLayout">
 
-  <section class="contactsList"></section>
-  @for (group of groupedContacts; track group.letter) {
-  <div class="contactGroup">
+  <!-- LINKSE SEITE (Kontaktliste) -->
+  <div class="ContactsList">
 
-    <div class="groupLetter">
-      {{ group.letter }}
-    </div>
+    @for (group of groupedContacts; track group.letter) {
+    <div>
 
-    @for (contact of group.contacts; track contact.id) {
-    <div class="contactItem">
-
-      <div class="initials" [style.background]="contact.color">
-        {{ contact.initials }}
+      <div>
+        {{ group.letter }}
       </div>
 
-      <div class="contactInfo">
-        <div class="contactName">{{ contact.name }}</div>
-        <div class="contactEmail">{{ contact.email }}</div>
+      @for (c of group.contacts; track c.id) {
+      <div (click)="selectContact(c)" [class.Active]="selected?.id === c.id">
+        <div [style.background]="c.color">
+          {{ c.initials }}
+        </div>
+
+        <div>
+          <div>{{ c.name }}</div>
+          <div>{{ c.email }}</div>
+        </div>
+      </div>
+      }
+
+    </div>
+    }
+
+  </div>
+
+  <!-- RECHTE SEITE (Detailansicht) -->
+  <div class="ContactDetails">
+
+    @if (!selected) {
+    <div>
+      Select a contact to view details
+    </div>
+    }
+
+    @if (selected) {
+    <div>
+
+      <div>
+        <div [style.background]="selected.color">
+          {{ selected.initials }}
+        </div>
+
+        <div>
+          {{ selected.name }}
+        </div>
+
+        <div>
+          <button (click)="editSelected()">Edit</button>
+          <button (click)="deleteSelected()">Delete</button>
+        </div>
+      </div>
+
+      <div>
+        <h4>Contact Information</h4>
+
+        <div>
+          <label>Email</label>
+          <div>{{ selected.email }}</div>
+        </div>
+
+        <div>
+          <label>Phone</label>
+          <div>{{ selected.phone }}</div>
+        </div>
       </div>
 
     </div>
     }
 
   </div>
-  }
 
-</section>
+</div>
