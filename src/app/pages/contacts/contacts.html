@@ -1,7 +1,12 @@
 <div class="ContactsLayout">
 
   <!-- LINKSE SEITE (Kontaktliste) -->
-  <div class="ContactsList">
+  <aside class="ContactsList">
+
+    <label class="SearchInput">
+      <input type="search" placeholder="Search contact..." aria-label="Search contacts" />
+      <img src="assets/icons/search-32px.svg" alt="" />
+    </label>
 
     @for (group of groupedContacts(); track group.letter) {
     <div>
@@ -26,7 +31,7 @@
     </div>
     }
 
-  </div>
+  </aside>
 
   <!-- RECHTE SEITE (Detailansicht) -->
   <div class="ContactDetails">
