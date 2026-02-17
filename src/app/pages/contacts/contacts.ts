@@ -21,8 +21,9 @@ export class Contacts implements OnInit {
   }
 
   private getInitials(name: string): string {
-    const [firstName, lastName] = name.split(' ');
-    return (firstName?.[0] ?? '') + (lastName?.[0] ?? '');
+    const parts = name.split(' ');
+    const [first, last] = [parts[0], parts.at(-1)];
+    return (first?.[0] ?? '') + (last?.[0] ?? '');
   }
 
   private sortAndGroup(contacts: Contact[]): GroupedContacts[] {
