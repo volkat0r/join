@@ -1,59 +1,106 @@
-# Join
+# Join – Kanban Board Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+A collaborative task management system built with Angular 21 and Supabase, featuring drag-and-drop functionality and real-time updates.
 
-## Development server
+## Tech Stack
 
-To start a local development server, run:
+| Layer | Technology |
+|-------|------------|
+| Frontend | Angular 21, TypeScript, SCSS |
+| UI Framework | Bootstrap 5 |
+| Backend | Supabase (BaaS) |
+| State Management | Angular Signals |
+| Version Control | Git (single main branch) |
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Quick Start
 
 ```bash
-ng generate component component-name
+# Clone repository
+git clone <repository-url>
+cd join
+
+# Install dependencies
+npm install
+
+# Install Bootstrap 5
+npm install bootstrap@5 @popperjs/core
+
+# Install Supabase client
+npm install @supabase/supabase-js
+
+# Start development server
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Bootstrap Integration
 
-```bash
-ng generate --help
+Add to `angular.json`:
+
+```json
+"styles": [
+  "node_modules/bootstrap/scss/bootstrap.scss",
+  "src/styles.scss"
+],
+"scripts": [
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+]
 ```
 
-## Building
+## Project Architecture
 
-To build the project run:
-
-```bash
-ng build
+```
+join/
+├── public/
+│   └── assets/
+│       ├── fonts/
+│       ├── icons/
+│       └── styles/
+├── src/
+│   ├── app/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── pages/          # Route-level components
+│   │   ├── services/       # Supabase & business logic
+│   │   ├── models/         # TypeScript interfaces
+│   │   └── shared/         # Directives, pipes, utilities
+│   └── styles.scss
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Development Workflow
 
-## Running unit tests
+- **Task Management:** Trello (Kanban)
+- **Collaboration:** Daily standups
+- **Commits:** Descriptive messages, one commit per work session minimum
+- **Code Standard:** JSDoc documentation, camelCase, max 14 lines per function
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Features
 
-```bash
-ng test
+- Single Page Application (SPA)
+- Drag & drop task cards
+- Responsive design (320px – 1440px)
+- Accessible HTML (WCAG compliant)
+- Contact management with form validation
+- Real-time updates via Signals
+
+## Design
+
+UI components follow Figma specifications. Interactive elements include hover states and toast notifications with 75–125ms transitions.
+
+## Environment
+
+Create `src/environments/env.ts`:
+
+```typescript
+export const environment = {
+  production: false,
+  supabaseUrl: 'YOUR_SUPABASE_URL',
+  supabaseKey: 'YOUR_SUPABASE_ANON_KEY'
+};
 ```
 
-## Running end-to-end tests
+## Browser Support
 
-For end-to-end (e2e) testing, run:
+Chrome, Firefox, Edge, Safari (latest versions)
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Team Project** · DA Web Development Frontend
