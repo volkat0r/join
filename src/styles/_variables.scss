@@ -8,6 +8,7 @@ $grey-light: #D1D1D1;
 $grey-light2: #CDCDCD;
 
 $blue-light: #29ABE2;
+$blue-darker: #091931;
 $blue-dark: #2A3647;
 $blue-dark-hover: #2A3D59;
 
@@ -17,12 +18,13 @@ $green: #7AE229;
 
 // Drop-Shadow
 $sh-nuevo: drop-shadow(0px 0px 4px rgba(0,0,0,0.1));
-$sh-box: drop-shadow(0px 0px 10px rgba(0,0,0,0.08));
+$sh-card: drop-shadow(0px 0px 10px rgba(0,0,0,0.08));
 $sh-header: drop-shadow(0px 4px 4px rgba(0,0,0,0.1));
 $sh-contact-bg: drop-shadow(4px 0px 6px rgba(0,0,0,0.08));
 
 //Border-Radius
-$base-border-radius: 1,875rem;
+$base-border-radius: 0.625rem;
+$card-border-radius: 1.875rem;
 
 //Spacing
 $space-sm: 0.5rem;

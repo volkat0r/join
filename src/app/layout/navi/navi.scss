@@ -15,10 +15,10 @@
   width: 100%;
   ul{
     width: 100%;
-    padding: 0;
+    display: flex;
+    gap: 1rem;
   }
   li{
-
     img{
         &.active{
           display: none;
@@ -28,8 +28,12 @@
         }
       }
     &.active{
+      background: $blue-darker;
       a{
         color: $white;
+        &:hover{
+          background: $blue-darker;
+        }
       }
       img{
         &.active{
@@ -42,6 +46,9 @@
     }
   }
   a{
+    display:flex;
+    align-items: center;
+    gap: 1rem;
     cursor: pointer;
     color: $grey-light2;
     padding: $space-sm 0 $space-sm 3.5rem;
@@ -51,6 +58,17 @@
   }
 }
 
-a{
-  text-decoration: none;
+#footer-nav{
+  ul{
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+  }
+  a{
+    color: $grey;
+    &:hover{
+      color: $blue-light;
+      font-weight: 700;
+    }
+  }
 }

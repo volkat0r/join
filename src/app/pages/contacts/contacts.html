@@ -1,82 +1,70 @@
 <div class="ContactsLayout">
-
   <!-- LINKSE SEITE (Kontaktliste) -->
   <aside class="ContactsList">
-
     <label class="SearchInput">
       <input type="search" placeholder="Search contact..." aria-label="Search contacts" />
       <img src="assets/icons/search-32px.svg" alt="" />
     </label>
 
     @for (group of groupedContacts(); track group.letter) {
-    <div>
-
       <div>
-        {{ group.letter }}
-      </div>
-
-      @for (c of group.contacts; track c.id) {
-      <div (click)="selectContact(c)" [class.Active]="selected?.id === c.id">
-        <div [style.background]="c.color">
-          {{ c.initials }}
-        </div>
-
         <div>
-          <div>{{ c.name }}</div>
-          <div>{{ c.email }}</div>
+          {{ group.letter }}
         </div>
+
+        @for (c of group.contacts; track c.id) {
+          <div (click)="selectContact(c)" [class.Active]="selected?.id === c.id">
+            <div [style.background]="c.color">
+              {{ c.initials }}
+            </div>
+
+            <div>
+              <div>{{ c.name }}</div>
+              <div>{{ c.email }}</div>
+            </div>
+          </div>
+        }
       </div>
-      }
-
-    </div>
     }
-
   </aside>
 
   <!-- RECHTE SEITE (Detailansicht) -->
   <div class="ContactDetails">
-
     @if (!selected) {
-    <div>
-      Select a contact to view details
-    </div>
+      <div>Select a contact to view details</div>
     }
 
     @if (selected) {
-    <div>
-
       <div>
-        <div [style.background]="selected.color">
-          {{ selected.initials }}
+        <div>
+          <div [style.background]="selected.color">
+            {{ selected.initials }}
+          </div>
+
+          <div>
+            {{ selected.name }}
+          </div>
+
+          <div>
+            <button (click)="editSelected()">Edit</button>
+            <button (click)="deleteSelected()">Delete</button>
+          </div>
         </div>
 
         <div>
-          {{ selected.name }}
-        </div>
+          <h4>Contact Information</h4>
 
-        <div>
-          <button (click)="editSelected()">Edit</button>
-          <button (click)="deleteSelected()">Delete</button>
+          <div>
+            <label>Email</label>
+            <div>{{ selected.email }}</div>
+          </div>
+
+          <div>
+            <label>Phone</label>
+            <div>{{ selected.phone }}</div>
+          </div>
         </div>
       </div>
-
-      <div>
-        <h4>Contact Information</h4>
-
-        <div>
-          <label>Email</label>
-          <div>{{ selected.email }}</div>
-        </div>
-
-        <div>
-          <label>Phone</label>
-          <div>{{ selected.phone }}</div>
-        </div>
-      </div>
-
-    </div>
     }
-
   </div>
-
 </div>
