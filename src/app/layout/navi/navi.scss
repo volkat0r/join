@@ -1,0 +1,12 @@
+@use 'styles/variables' as *;
+
+#sideNav{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 14.5rem;
+  background:$blue-dark;
+  height: 100vh;
+  padding: 4rem 0;
+}
