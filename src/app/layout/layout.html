@@ -1,4 +1,11 @@
-<app-navi></app-navi>
-<app-header></app-header>
-
-<router-outlet></router-outlet>
+<div id="main-container" class="d-flex vh-100">
+  <div id="navigation">
+    <app-navi></app-navi>
+  </div>
+  <div id="content" class="d-flex flex-column flex-grow-1 overflow-hidden">
+    <app-header></app-header>
+    <main class="flex-grow-1 overflow-auto">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

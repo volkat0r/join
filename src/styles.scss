@@ -1,6 +1,7 @@
+@use './styles/reset';
 @use './styles/variables';
 @use './styles/mixins';
-@use './styles/reset';
 @use './styles/fonts';
 @use './styles/typography';
 @use './styles/base';
+@use 'bootstrap' as *;
