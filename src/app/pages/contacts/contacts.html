@@ -2,11 +2,17 @@
   <!-- LINKSE SEITE (Kontaktliste) -->
   <aside class="ContactsList">
     <label class="SearchInput">
-      <input type="search" placeholder="Search contact..." aria-label="Search contacts" />
+      <input
+        id="search-contact"
+        type="search"
+        placeholder="Search contact..."
+        aria-label="Search contacts"
+        (input)="onSearch($event)"
+      />
       <img src="assets/icons/search-32px.svg" alt="" />
     </label>
 
-    @for (group of groupedContacts(); track group.letter) {
+    @for (group of filteredContacts(); track group.letter) {
       <div>
         <div>
           {{ group.letter }}
