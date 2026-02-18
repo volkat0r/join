@@ -1,16 +1,19 @@
+/* contact.scss */
+@use 'styles/variables' as *;
 
-.ContactsLayout {
+.contacts-container {
   display: flex;
   height: 100%;
   gap: 40px;
 }
 
-/* LINKE SEITE (Kontaktliste) */
-.ContactsList {
+.contact-list {
   width: 40%;
+  padding: 1.5rem 2rem;
+
 }
 
-.SearchInput {
+.input-search {
   display: flex;
   align-items: center;
   padding: 12px 16px;
@@ -41,7 +44,59 @@
   }
 }
 
-/* RECHTE SEITE (Detailansicht) */
-.ContactDetails {
-  width: 60%;
+.contacts {
+  header {
+    height: 3.625rem;
+  }
+
+  .letter {
+    font-size: 1.25rem;
+    color: $black;
+  }
+
+  hr {
+    margin: 0.25rem 0rem;
+    padding-left: 0;
+    padding-right:0;
+  }
+
+  /* avatar */
+  abbr {
+    width: 42px;
+    height: 42px;
+    text-decoration: none;
+  }
+
+  &__item {
+    gap: 2.25rem;
+  }
+
+  &__name {
+    font-size: 1.25rem;
+  }
+
+  &__email {
+    color: $blue-link;
+  }
+
 }
+
+
+
+/*
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 15px 24px;
+gap: 35px;
+
+width: 352px;
+height: 78px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+flex: none;
+order: 3;
+flex-grow: 0;
+*/

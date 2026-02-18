@@ -1,7 +1,7 @@
-<div class="ContactsLayout">
-  <!-- Left side: contact list -->
-  <aside class="ContactsList">
-    <label class="SearchInput">
+<div class="contacts-container">
+  <!-- Left side: contact list ------------------------------------------------------------------->
+  <aside class="contact-list">
+    <label class="input-search">
       <input
         id="search-contact"
         type="search"
@@ -12,25 +12,34 @@
       <img src="assets/icons/search-32px.svg" alt="" />
     </label>
 
+    <button></button>
+
+    <!-- Dynamic template for contacts ----------------------------------------------------------->
     @for (group of filteredContacts(); track group.letter) {
-      <div>
-        <div>
-          {{ group.letter }}
-        </div>
+      <section class="contacts py-3">
+        <header class="py-3">
+          <abbr class="letter">{{ group.letter }}</abbr>
+        </header>
 
-        @for (c of group.contacts; track c.id) {
-          <div (click)="selectContact(c)" [class.Active]="selected?.id === c.id">
-            <div [style.background]="c.color">
-              {{ c.initials }}
-            </div>
+        <hr />
 
-            <div>
-              <div>{{ c.name }}</div>
-              <div>{{ c.email }}</div>
-            </div>
-          </div>
-        }
-      </div>
+        <ul>
+          @for (c of group.contacts; track c.id) {
+            <li class="contacts__item d-flex px-4 py-3" (click)="selectContact(c)" [class.Active]="selected?.id === c.id">
+              <abbr class="initialism d-flex d-inline-flex align-items-center justify-content-center rounded-circle text-white"
+                 [title]="c.name"
+                 [style.background]="c.color">
+                {{ c.initials }}
+              </abbr>
+
+              <dl>
+                <dt class="contacts__name">{{ c.name }}</dt>
+                <dd class="contacts__email fs-6">{{ c.email }}</dd>
+              </dl>
+            </li>
+          }
+        </ul>
+      </section>
     }
   </aside>
 
