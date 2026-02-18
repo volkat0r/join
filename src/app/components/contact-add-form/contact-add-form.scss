@@ -1,0 +1,117 @@
+@use 'styles/variables' as *;
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .form-control::placeholder {
+    color: $grey-light;
+    opacity: 1;
+  }
+}
+
+.inputRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid $grey-light;
+  border-radius: 0.375rem;
+  padding-right: 0.75rem;
+  background: white;
+  transition: border-color 0.2s ease;
+
+  .form-control {
+    border: none;
+    box-shadow: none;
+    flex: 1;
+    padding-right: 0;
+  }
+
+  .form-control:focus {
+    box-shadow: none;
+  }
+
+  .inputIcon {
+    opacity: 0.6;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+  }
+
+  &:hover .inputIcon {
+    opacity: 1;
+  }
+
+  &.hasError {
+    border-color: $red;
+
+    .inputIcon {
+      opacity: 1;
+      filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(7480%) hue-rotate(356deg) brightness(92%) contrast(102%);
+    }
+  }
+}
+
+.errorMessage {
+  min-height: 22px;
+}
+
+.iconWrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+
+  .icon {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .hoverIcon {
+    opacity: 0;
+  }
+}
+
+.closeBtn {
+  background-color: transparent;
+  color: $blue-darker;
+  border: 1px solid $blue-darker;
+  padding: 0.5rem 1rem;
+  transition: $trans-default;
+
+  &:hover {
+    color: $blue-light;
+    border-color: $blue-light;
+
+    .hoverIcon {
+      opacity: 1;
+    }
+
+    .defaultIcon {
+      opacity: 0;
+    }
+  }
+}
+
+.addBtn {
+  background-color: $blue-darker;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: none;
+  transition: $trans-default;
+
+  &:hover {
+    background-color: $blue-light;
+  }
+
+  &:disabled {
+    background-color: lighten($blue-darker, 25%);
+    cursor: not-allowed;
+  }
+}
