@@ -3,16 +3,16 @@ import { ContactsDb, Contact } from './../../core/db/contacts.db';
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { isValidName, isValidEmail, isValidPhone } from '../../core/utils/validation';
+import { ModalWrapper } from '../../shared/ui/modal-wrapper/modal-wrapper';
 
 @Component({
   selector: 'app-contact-add-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ModalWrapper],
   templateUrl: './contact-add-form.html',
   styleUrls: ['./contact-add-form.scss'],
 })
 export class ContactAddFormComponent {
-
   db = inject(ContactsDb);
 
   @Output() added = new EventEmitter<void>();
@@ -20,19 +20,19 @@ export class ContactAddFormComponent {
   form: Omit<Contact, 'id' | 'color'> = {
     name: '',
     email: '',
-    phone: ''
+    phone: '',
   };
 
   errors = {
     name: '',
     email: '',
-    phone: ''
+    phone: '',
   };
 
   dirty = {
     name: false,
     email: false,
-    phone: false
+    phone: false,
   };
 
   private getRandomColor() {
@@ -56,15 +56,11 @@ export class ContactAddFormComponent {
 
     switch (field) {
       case 'name':
-        this.errors.name = isValidName(value)
-          ? ''
-          : 'Name may only contain letters.';
+        this.errors.name = isValidName(value) ? '' : 'Name may only contain letters.';
         break;
 
       case 'email':
-        this.errors.email = isValidEmail(value)
-          ? ''
-          : 'Please enter a valid email address.';
+        this.errors.email = isValidEmail(value) ? '' : 'Please enter a valid email address.';
         break;
 
       case 'phone':
@@ -97,9 +93,15 @@ export class ContactAddFormComponent {
 
     await this.db.setContact({
       ...this.form,
-      color: this.getRandomColor()
+      color: this.getRandomColor(),
     });
 
     this.added.emit();
+  }
+
+  @Output() closed = new EventEmitter<void>();
+
+  onCancel() {
+    this.closed.emit();
   }
 }

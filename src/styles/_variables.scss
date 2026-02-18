@@ -34,3 +34,14 @@ $space-xl: 4rem;
 
 //transition:
 $trans-default: all 0.125s ease-in-out;
+
+// Join - Style-Elements
+div.blue-divider{
+  height: 3px;
+  width: 5.625rem;
+  background: $blue-light;
+}
+
+.dark-bg{
+  background: $blue-darker;
+}

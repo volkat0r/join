@@ -116,3 +116,23 @@ form {
     cursor: not-allowed;
   }
 }
+
+#contact-add-form{
+  height: 100%;
+  display: flex;
+  div.modal-content{
+    min-height: 100%;
+    display: block;
+  }
+}
+
+div.modal-inner{
+  height: 100%;
+  .modal-title-area{
+    background: $blue-darker;
+    height: 100%;
+  }
+  .modal-content-area{
+    height: 100%;
+  }
+}
