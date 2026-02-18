@@ -10,5 +10,5 @@ import { ContactWithInitials } from '../../core/db/contacts.db';
 export class ContactDetails {
   @Input() contact: ContactWithInitials | null = null;
   @Output() edit = new EventEmitter<ContactWithInitials>();
-  @Output() delete = new EventEmitter<ContactWithInitials>();
+  @Output() remove = new EventEmitter<ContactWithInitials>();
 }
