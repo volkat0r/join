@@ -1,0 +1,37 @@
+<!-- Right side (contact details) -->
+<main class="ContactDetails">
+  @if (!contact) {
+    <p>Select a contact to view details</p>
+  }
+
+  @if (contact) {
+    <article>
+      <header>
+        <figure [style.background]="contact.color">
+          {{ contact.initials }}
+        </figure>
+
+        <h2>{{ contact.name }}</h2>
+
+        <nav>
+          <button (click)="edit.emit(contact)">Edit</button>
+          <button (click)="remove.emit(contact)">Delete</button>
+        </nav>
+      </header>
+
+      <section>
+        <h4>Contact Information</h4>
+
+        <address>
+          <label>Email</label>
+          <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+        </address>
+
+        <address>
+          <label>Phone</label>
+          <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a>
+        </address>
+      </section>
+    </article>
+  }
+</main>
