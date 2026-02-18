@@ -7,7 +7,8 @@ import { isValidName, isValidEmail, isValidPhone } from '../../core/utils/valida
   selector: 'app-contact-edit-form',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './contact-edit-form.html'
+  templateUrl: './contact-edit-form.html',
+  styleUrls: ['./contact-edit-form.scss']
 })
 export class ContactEditFormComponent {
 
@@ -29,6 +30,12 @@ export class ContactEditFormComponent {
     phone: ''
   };
 
+  dirty = {
+    name: false,
+    email: false,
+    phone: false
+  };
+
   ngOnChanges() {
     if (this.contact) {
       this.form = {
@@ -39,29 +46,47 @@ export class ContactEditFormComponent {
     }
   }
 
-  validateName() {
-    this.errors.name = isValidName(this.form.name ?? '')
-      ? ''
-      : 'Name may only contain letters.';
+  markDirty(field: keyof typeof this.dirty) {
+    this.dirty[field] = true;
+    this.validateField(field);
   }
 
-  validateEmail() {
-    this.errors.email = isValidEmail(this.form.email ?? '')
-      ? ''
-      : 'Please enter a valid email address.';
+  liveValidate(field: keyof typeof this.dirty) {
+    if (this.dirty[field]) {
+      this.validateField(field);
+    }
   }
 
-  validatePhone() {
-    this.errors.phone = isValidPhone(this.form.phone ?? '')
-      ? ''
-      : 'Only digits or a leading + country code are allowed.';
+  validateField(field: keyof typeof this.form) {
+    const rawValue = this.form[field];
+    const value = String(rawValue ?? '');
+
+    switch (field) {
+      case 'name':
+        this.errors.name = isValidName(value)
+          ? ''
+          : 'Name may only contain letters.';
+        break;
+
+      case 'email':
+        this.errors.email = isValidEmail(value)
+          ? ''
+          : 'Please enter a valid email address.';
+        break;
+
+      case 'phone':
+        this.errors.phone = isValidPhone(value)
+          ? ''
+          : 'Please enter at least 10 digits using numbers only (a leading + is allowed).';
+        break;
+    }
   }
 
   isFormValid() {
     return (
-      (this.form.name ?? '').trim() !== '' &&
-      (this.form.email ?? '').trim() !== '' &&
-      (this.form.phone ?? '').trim() !== '' &&
+      String(this.form.name ?? '').trim() !== '' &&
+      String(this.form.email ?? '').trim() !== '' &&
+      String(this.form.phone ?? '').trim() !== '' &&
       !this.errors.name &&
       !this.errors.email &&
       !this.errors.phone
@@ -69,16 +94,16 @@ export class ContactEditFormComponent {
   }
 
   async save() {
-    this.validateName();
-    this.validateEmail();
-    this.validatePhone();
+    this.markDirty('name');
+    this.markDirty('email');
+    this.markDirty('phone');
 
     if (!this.isFormValid()) return;
 
     await this.db.updateContact(this.contact.id, {
-      name: this.form.name!,
-      email: this.form.email!,
-      phone: this.form.phone!
+      name: String(this.form.name),
+      email: String(this.form.email),
+      phone: String(this.form.phone)
     });
 
     this.saved.emit();
