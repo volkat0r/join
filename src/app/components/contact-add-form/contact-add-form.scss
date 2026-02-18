@@ -111,7 +111,8 @@ form {
   }
 
   &:disabled {
-    background-color: lighten($blue-darker, 25%);
+    background-color: $blue-dark;
+    font-weight: normal;
     cursor: not-allowed;
   }
 }
