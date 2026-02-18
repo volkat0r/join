@@ -1,29 +1,49 @@
 @use 'styles/variables' as *;
 
-header{
+header {
   height: 6rem;
   background-color: $white;
   width: 100%;
   filter: $sh-header;
 }
 
-#slogan{
+#slogan {
   color: $blue-dark;
   padding-left: 6rem;
 }
 
-#header-right{
+#header-right {
   padding-right: 2.5rem;
 }
 
-.userProfile{
+.userProfile {
   height: 3.5rem;
   width: 3.5rem;
   border: 3px solid $black;
   color: $blue-light;
   border-radius: 100%;
   cursor: pointer;
-  &:hover{
+  transition: $trans-default;
+
+  &:hover {
     background-color: $grey-light;
+  }
+}
+
+.help {
+  a {
+    display: flex;
+    align-items: center;
+
+    img {
+      transition: $trans-default;
+      width: 32px;
+      height: auto;
+    }
+
+    &:hover img {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
   }
 }

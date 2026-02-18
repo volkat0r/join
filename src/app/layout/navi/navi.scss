@@ -31,6 +31,7 @@
       background: $blue-darker;
       a{
         color: $white;
+        transition: $trans-default;
         &:hover{
           background: $blue-darker;
         }
@@ -48,10 +49,12 @@
   a{
     display:flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 1rem;
     cursor: pointer;
     color: $grey-light2;
-    padding: $space-sm 0 $space-sm 3.5rem;
+    padding: $space-sm 3rem $space-sm 3rem;
+    transition: $trans-default;
     &:hover{
       background: $blue-dark-hover;
     }
@@ -62,10 +65,11 @@
   ul{
     display: flex;
     flex-direction: column;
-    gap: $space-sm;
+    gap: $space-md;
   }
   a{
     color: $grey;
+    transition: $trans-default;
     &:hover{
       color: $blue-light;
       font-weight: 700;
