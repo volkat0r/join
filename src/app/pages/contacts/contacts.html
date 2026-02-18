@@ -1,5 +1,5 @@
 <div class="ContactsLayout">
-  <!-- LINKSE SEITE (Kontaktliste) -->
+  <!-- Left side: contact list -->
   <aside class="ContactsList">
     <label class="SearchInput">
       <input
@@ -34,43 +34,6 @@
     }
   </aside>
 
-  <!-- RECHTE SEITE (Detailansicht) -->
-  <div class="ContactDetails">
-    @if (!selected) {
-      <div>Select a contact to view details</div>
-    }
-
-    @if (selected) {
-      <div>
-        <div>
-          <div [style.background]="selected.color">
-            {{ selected.initials }}
-          </div>
-
-          <div>
-            {{ selected.name }}
-          </div>
-
-          <div>
-            <button (click)="editSelected()">Edit</button>
-            <button (click)="deleteSelected()">Delete</button>
-          </div>
-        </div>
-
-        <div>
-          <h4>Contact Information</h4>
-
-          <div>
-            <label>Email</label>
-            <div>{{ selected.email }}</div>
-          </div>
-
-          <div>
-            <label>Phone</label>
-            <div>{{ selected.phone }}</div>
-          </div>
-        </div>
-      </div>
-    }
-  </div>
+  <!-- Right side: contact details -->
+  <app-contact-details [contact]="selected" (edit)="editSelected()" (delete)="deleteSelected()" />
 </div>

@@ -1,11 +1,13 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { ContactsDb } from '../../core/db/contacts.db';
 import { Contact, ContactWithInitials, GroupedContacts } from './../../core/db/contacts.db';
+import { ContactDetails } from '../contact-details/contact-details';
+
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [],
+  imports: [ContactDetails],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })
@@ -17,14 +19,12 @@ export class Contacts implements OnInit {
 
   constructor(private contactsDb: ContactsDb) { }
 
-
   async ngOnInit() {
     await this.contactsDb.getContacts();
     this.groupedContacts.set(this.sortAndGroup(this.contactsDb.contacts()));
 
     console.log(this.groupedContacts());
   }
-
 
   filteredContacts = computed(() => {
     const term = this.searchTerm().toLowerCase();
@@ -41,13 +41,11 @@ export class Contacts implements OnInit {
       .filter(group => group.contacts.length > 0);
   });
 
-
   private getInitials(name: string): string {
     const parts = name.split(' ');
     const [first, last] = [parts[0], parts.at(-1)];
     return (first?.[0] ?? '') + (last?.[0] ?? '');
   }
-
 
   private sortAndGroup(contacts: Contact[]): GroupedContacts[] {
     const sorted = [...contacts].sort((a, b) => a.name.localeCompare(b.name));
@@ -67,23 +65,19 @@ export class Contacts implements OnInit {
     return groups;
   }
 
-
   onSearch(event: Event) {
     const value = (event.target as HTMLInputElement).value;
     this.searchTerm.set(value);
   }
 
-
   selectContact(c: ContactWithInitials) {
     this.selected = c;
   }
-
 
   editSelected() {
     console.log('Edit:', this.selected);
     // später: Overlay oder Edit-Form öffnen
   }
-
 
   deleteSelected() {
     console.log('Delete:', this.selected);
