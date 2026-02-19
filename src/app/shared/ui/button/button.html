@@ -1,3 +1,15 @@
-<button [attr.type]="type" [class]="'btn btn-' + variant">
-  <ng-content></ng-content>
+<button
+  [attr.type]="type"
+  class="btn"
+  [class]="'btn--' + variant"
+  [class.icon--add]="icon === 'add'"
+  [class.icon--create]="icon === 'create'"
+  [class.icon--cancel]="icon === 'cancel'"
+  [class.icon--low]="icon === 'low'"
+  [class.icon--medium]="icon === 'medium'"
+  [class.icon--urgent]="icon === 'urgent'"
+>
+  <ng-content>
+    <span class="button-text"></span>
+  </ng-content>
 </button>

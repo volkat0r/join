@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './button.scss',
 })
 export class Button {
-  @Input() variant: 'primary' | 'secondary' | 'urgent' | 'medium' | 'low' = 'primary';
   @Input() type: 'button' | 'submit' = 'button';
+  @Input() variant: 'primary' | 'secondary' | 'urgent' | 'medium' | 'low' = 'primary';
+  @Input() icon: 'without' | 'add' | 'create' | 'cancel' | 'urgent' | 'medium' | 'low' = 'without';
 }

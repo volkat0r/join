@@ -3,11 +3,10 @@ import { ContactsDb } from '../../core/db/contacts.db';
 import { Contact, ContactWithInitials, GroupedContacts } from './../../core/db/contacts.db';
 import { ContactDetails } from '../contact-details/contact-details';
 
-
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [ContactDetails],
+  imports: [],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })
@@ -16,8 +15,7 @@ export class Contacts implements OnInit {
   searchTerm = signal('');
   selected: ContactWithInitials | null = null;
 
-
-  constructor(private contactsDb: ContactsDb) { }
+  constructor(private contactsDb: ContactsDb) {}
 
   async ngOnInit() {
     await this.contactsDb.getContacts();
@@ -30,15 +28,16 @@ export class Contacts implements OnInit {
     const term = this.searchTerm().toLowerCase();
     if (term.length < 3) return this.groupedContacts();
     return this.groupedContacts()
-      .map(group => ({
+      .map((group) => ({
         ...group,
-        contacts: group.contacts.filter(c =>
-          c.name.toLowerCase().includes(term) ||
-          c.email.toLowerCase().includes(term) ||
-          c.phone.includes(term)
-        )
+        contacts: group.contacts.filter(
+          (c) =>
+            c.name.toLowerCase().includes(term) ||
+            c.email.toLowerCase().includes(term) ||
+            c.phone.includes(term),
+        ),
       }))
-      .filter(group => group.contacts.length > 0);
+      .filter((group) => group.contacts.length > 0);
   });
 
   private getInitials(name: string): string {
@@ -54,7 +53,7 @@ export class Contacts implements OnInit {
     for (const contact of sorted) {
       const letter = contact.name[0].toUpperCase();
       const initials = this.getInitials(contact.name);
-      let group = groups.find(g => g.letter === letter);
+      let group = groups.find((g) => g.letter === letter);
       if (!group) {
         group = { letter, contacts: [] };
         groups.push(group);
