@@ -4,11 +4,12 @@ import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { isValidName, isValidEmail, isValidPhone } from '../../core/utils/validation';
 import { ModalWrapper } from '../../shared/ui/modal-wrapper/modal-wrapper';
+import { InputFieldComponent } from '../../shared/ui/input-field/input-field';
 
 @Component({
   selector: 'app-contact-add-form',
   standalone: true,
-  imports: [FormsModule, ModalWrapper],
+  imports: [FormsModule, ModalWrapper, InputFieldComponent],
   templateUrl: './contact-add-form.html',
   styleUrls: ['./contact-add-form.scss'],
 })

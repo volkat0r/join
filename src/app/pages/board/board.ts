@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ContactAddFormComponent } from '../../components/contact-add-form/contact-add-form';
 import { CommonModule } from '@angular/common';
+import { ContactEditFormComponent } from '../../components/contact-edit-form/contact-edit-form';
 import { Button } from '../../shared/ui/button/button';
 
 @Component({

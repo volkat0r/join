@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContactsDb, Contact } from './../../core/db/contacts.db';
 import { isValidName, isValidEmail, isValidPhone } from '../../core/utils/validation';
+import { InputFieldComponent } from '../../shared/ui/input-field/input-field';
 
 @Component({
   selector: 'app-contact-edit-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, InputFieldComponent],
   templateUrl: './contact-edit-form.html',
   styleUrls: ['./contact-edit-form.scss']
 })

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ContactWithInitials } from '../../core/db/contacts.db';
+import { ContactWithInitials } from '../../../core/db/contacts.db';
 
 @Component({
   selector: 'app-contact-details',
