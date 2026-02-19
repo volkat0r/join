@@ -1,6 +1,6 @@
 <div class="ContactsLayout">
   <aside class="ContactsList">
-    <label class="SearchInput">
+    <label class="input-search">
       <input id="search-contact" type="search" placeholder="Search contact..." aria-label="Search contacts"
         (input)="onSearch($event)" />
       <img src="assets/icons/search-32px.svg" alt="" />
@@ -13,29 +13,13 @@
       <div>
         {{ group.letter }}
       </div>
-    <div>
-      <div>
-        {{ group.letter }}
-      </div>
 
       @for (c of group.contacts; track c.id) {
       <div (click)="selectContact(c)" [class.Active]="selected?.id === c.id">
         <div [style.background]="c.color">
           {{ c.initials }}
         </div>
-      @for (c of group.contacts; track c.id) {
-      <div (click)="selectContact(c)" [class.Active]="selected?.id === c.id">
-        <div [style.background]="c.color">
-          {{ c.initials }}
-        </div>
 
-        <div>
-          <div>{{ c.name }}</div>
-          <div>{{ c.email }}</div>
-        </div>
-      </div>
-      }
-    </div>
         <div>
           <div>{{ c.name }}</div>
           <div>{{ c.email }}</div>
@@ -46,61 +30,6 @@
     }
   </aside>
 
-  <div class="ContactDetails">
-    @if (!selected) {
-    <div>Select a contact to view details</div>
-    }
-
-    @if (selected) {
-    <div class="contact-header">
-      <h3>Contacts</h3>
-      <span class="separator"></span>
-      <h4>Better with a team</h4>
-    </div>
-
-    <div class="contact-card">
-      <div class="contact-avatar" [style.background]="selected.color">
-        {{ selected.initials }}
-      </div>
-
-      <div class="contact-info">
-        <div class="contact-name">
-          {{ selected.name }}
-        </div>
-
-        <div class="contact-actions">
-          <button (click)="editSelected()" title="Edit contact">
-            <img src="assets/icons/edit-dark-24px.svg" alt="Edit" />
-            Edit
-          </button>
-          <button (click)="deleteSelected()" title="Delete contact">
-            <img src="assets/icons/delete-dark-24px.svg" alt="Delete" />
-            Delete
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <h4>Contact Information</h4>
-
-      <div>
-        <label>Email</label>
-        <div>
-          <a href="mailto:{{ selected.email }}">{{ selected.email }}</a>
-        </div>
-      </div>
-
-      <div>
-        <label>Phone</label>
-        <div>
-          <a href="tel:{{ selected.phone }}">{{ selected.phone }}</a>
-        </div>
-      </div>
-    </div>
-
-    }
-  </div>
   <div class="ContactDetails">
     @if (!selected) {
     <div>Select a contact to view details</div>
