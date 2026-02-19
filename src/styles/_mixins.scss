@@ -16,14 +16,14 @@
 // Media Queries
 @mixin for-size($size) {
   @if $size == phone {
-    @media (max-width: 37.43rem) { @content; }
+    @media (max-width: 37.43rem) { @content; } // 598.88px
   } @else if $size == tablet-portrait {
-    @media (min-width: 37.5rem) { @content; }
+    @media (min-width: 37.5rem) { @content; } // 600px
   } @else if $size == tablet-landscape {
-    @media (min-width: 56.25rem) { @content; }
+    @media (min-width: 56.25rem) { @content; } // 900px
   } @else if $size == desktop {
-    @media (min-width: 75rem) { @content; }
+    @media (min-width: 75rem) { @content; } // 1200px
   } @else if $size == big-desktop {
-    @media (min-width: 112.5rem) { @content; }
+    @media (min-width: 90rem) { @content; } // 1440px
   }
 }

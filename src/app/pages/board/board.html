@@ -1,5 +1,6 @@
 <div class="container">
   <h2>Board</h2>
   <p>Hier werden alle Tasks im Kanban-Board angezeigt.</p>
-  <app-contact-add-form></app-contact-add-form>
+  <button class="btn btn-primary" (click)="openModal()">Testbutton for Add new contact +</button>
+  <app-contact-add-form *ngIf="isContactModalOpen" (closed)="closeModal()">></app-contact-add-form>
 </div>
