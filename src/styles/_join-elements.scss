@@ -11,3 +11,13 @@ div.blue-divider{
 .dark-bg{
   background: $blue-darker;
 }
+
+.noMobile {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .noMobile {
+    display: none !important;
+  }
+}
