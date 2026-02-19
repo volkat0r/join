@@ -14,10 +14,6 @@
   <!-- Right: main detail view -->
   <section class="right">
     <app-contact-header [contact]="selected" />
-    <app-contact-details
-      [contact]="selected"
-      (edit)="editSelected()"
-      (remove)="deleteSelected()"
-    />
+    <app-contact-details [contact]="selected" (edit)="editSelected()" (remove)="deleteSelected()" />
   </section>
 </div>
