@@ -5,6 +5,7 @@
 }
 
 .ContactsList {
+.ContactsList {
   width: 40%;
   padding: 0 16px;
 
@@ -111,7 +112,9 @@
   box-sizing: border-box;
 
 
+
   input {
+    flex: 1;
     flex: 1;
     background: none;
     border: none;
