@@ -1,8 +1,6 @@
 <ui-modal-wrapper (close)="onCancel()" id="contact-add-form">
   <div class="row g-0 align-items-center modal-inner">
-    <div
-      class="col-md-5 d-flex flex-column justify-content-center align-items-start modal-title-area"
-    >
+    <div class="col-md-5 d-flex flex-column justify-content-center align-items-start modal-title-area">
       <img src="/assets/icons/logo-join-default-100px.svg" alt="Join Logo" />
       <h2>Add contact</h2>
       <p class="fs-4">Tasks are better with a team!</p>
@@ -10,91 +8,32 @@
     </div>
     <div class="col-md-7 d-flex flex-column">
       <form (ngSubmit)="submit()" class="p-3 d-flex flex-column gap-2 modal-content-area">
-        <!-- NAME -->
-        <div class="inputRow mb-2">
-          <div class="inputWrapper" [class.hasError]="errors.name">
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="form.name"
-              name="name"
-              placeholder="Name"
-              (blur)="markDirty('name')"
-              (input)="liveValidate('name')"
-            />
 
-            <img class="inputIcon" src="assets/icons/form-person-24px.svg" width="24" height="24" />
-          </div>
+<app-input-field type="text" label="Name" placeholder="Name" icon="assets/icons/form-person-24px.svg"
+  [(model)]="form.name" [error]="errors.name" (blur)="markDirty('name')" (input)="liveValidate('name')" />
 
-          <div class="text-danger small ps-2 errorMessage">
-            {{ errors.name }}
-          </div>
-        </div>
+        <app-input-field type="email" label="Email" placeholder="Email" icon="assets/icons/form-mail-24px.svg"
+          [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')" (input)="liveValidate('email')" />
 
-        <!-- EMAIL -->
-<app-input-field type="email" label="Email" placeholder="Email" icon="assets/icons/form-mail-24px.svg"
-  [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')" (input)="liveValidate('email')" />
-
-        <!-- PHONE -->
-        <div class="inputRow mb-2">
-          <div class="inputWrapper" [class.hasError]="errors.phone">
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="form.phone"
-              name="phone"
-              placeholder="Phone"
-              (blur)="markDirty('phone')"
-              (input)="liveValidate('phone')"
-            />
-
-            <img class="inputIcon" src="assets/icons/form-phone-24px.svg" width="24" height="24" />
-          </div>
-
-          <div class="text-danger small ps-2 errorMessage">
-            {{ errors.phone }}
-          </div>
-        </div>
+        <app-input-field type="tel" label="Phone" placeholder="Phone" icon="assets/icons/form-phone-24px.svg"
+          [(model)]="form.phone" [error]="errors.phone" (blur)="markDirty('phone')" (input)="liveValidate('phone')" />
 
         <!-- BUTTONS -->
         <div class="d-flex gap-4 mt-2">
           <!-- CANCEL BUTTON -->
-          <button
-            type="button"
-            class="btn closeBtn d-flex align-items-center gap-1"
-            (click)="closed.emit()"
-          >
+          <button type="button" class="btn closeBtn d-flex align-items-center gap-1" (click)="closed.emit()">
             Cancel
             <span class="iconWrapper">
-              <img
-                class="icon defaultIcon"
-                src="assets/icons/cancel-dark-24px.svg"
-                width="24"
-                height="24"
-              />
-              <img
-                class="icon hoverIcon"
-                src="assets/icons/cancel-blue-24px.svg"
-                width="24"
-                height="24"
-              />
+              <img class="icon defaultIcon" src="assets/icons/cancel-dark-24px.svg" width="24" height="24" />
+              <img class="icon hoverIcon" src="assets/icons/cancel-blue-24px.svg" width="24" height="24" />
             </span>
           </button>
 
           <!-- ADD BUTTON -->
-          <button
-            type="submit"
-            class="btn addBtn d-flex align-items-center gap-1"
-            [disabled]="!isFormValid()"
-          >
+          <button type="submit" class="btn addBtn d-flex align-items-center gap-1" [disabled]="!isFormValid()">
             Create contact
             <span class="iconWrapper">
-              <img
-                class="icon defaultIcon"
-                src="assets/icons/check-white-24px.svg"
-                width="24"
-                height="24"
-              />
+              <img class="icon defaultIcon" src="assets/icons/check-white-24px.svg" width="24" height="24" />
             </span>
           </button>
         </div>

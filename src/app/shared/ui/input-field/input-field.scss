@@ -21,10 +21,14 @@
     box-shadow: none;
     flex: 1;
     padding-right: 0;
-  }
 
-  .form-control:focus {
-    box-shadow: none;
+    &:focus {
+        box-shadow: none;
+      }
+
+    &::placeholder {
+      color: $grey-light;
+    }
   }
 
   .inputIcon {
@@ -48,13 +52,14 @@
 }
 
 .errorMessage {
-  min-height: 22px;
+  min-height: 1.5em;
+  height: 1.5em;
 }
 
 .iconWrapper {
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 1.5em;
+  height: 1.5em;
   display: inline-block;
 
   .icon {
