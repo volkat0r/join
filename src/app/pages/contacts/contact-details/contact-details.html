@@ -1,11 +1,11 @@
 <!-- contact-details -->
 
-  <div class="ContactDetails">
-    @if (!contact) {
+<div class="ContactDetails">
+  @if (!contact) {
     <div>Select a contact to view details</div>
-    }
+  }
 
-    @if (contact) {
+  @if (contact) {
     <div class="contact-card">
       <div class="contact-avatar" [style.background]="contact.color">
         {{ contact.initials }}
@@ -47,6 +47,5 @@
         </div>
       </div>
     </div>
-
-    }
-  </div>
+  }
+</div>
