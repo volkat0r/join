@@ -1,0 +1,37 @@
+<!-- contact-list.html -->
+
+<div class="ContactsList">
+  <label class="input-search">
+    <input
+      id="search-contact"
+      type="search"
+      placeholder="Search contact..."
+      aria-label="Search contacts"
+      (input)="search.emit($event)"
+    />
+    <img src="assets/icons/search-32px.svg" alt="" />
+  </label>
+
+  <button placeholder="Add new contact"></button>
+
+  @for (group of groups; track group.letter) {
+    <div>
+      <div>
+        {{ group.letter }}
+      </div>
+
+      @for (c of group.contacts; track c.id) {
+        <div (click)="select.emit(c)" [class.Active]="selectedId === c.id">
+          <div [style.background]="c.color">
+            {{ c.initials }}
+          </div>
+
+          <div>
+            <div>{{ c.name }}</div>
+            <div>{{ c.email }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,52 @@
+<!-- contact-details -->
+
+  <div class="ContactDetails">
+    @if (!contact) {
+    <div>Select a contact to view details</div>
+    }
+
+    @if (contact) {
+    <div class="contact-card">
+      <div class="contact-avatar" [style.background]="contact.color">
+        {{ contact.initials }}
+      </div>
+
+      <div class="contact-info">
+        <div class="contact-name">
+          {{ contact.name }}
+        </div>
+
+        <div class="contact-actions">
+          <!-- .emit "emits" the selected contact to parent component -->
+          <button (click)="edit.emit(contact)" title="Edit contact">
+            <img src="assets/icons/edit-dark-24px.svg" alt="Edit" />
+            Edit
+          </button>
+          <button (click)="remove.emit(contact)" title="Delete contact">
+            <img src="assets/icons/delete-dark-24px.svg" alt="Delete" />
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h4>Contact Information</h4>
+
+      <div>
+        <label>Email</label>
+        <div>
+          <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+        </div>
+      </div>
+
+      <div>
+        <label>Phone</label>
+        <div>
+          <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a>
+        </div>
+      </div>
+    </div>
+
+    }
+  </div>

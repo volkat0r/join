@@ -1,13 +1,15 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { ContactsDb } from '../../core/db/contacts.db';
 import { Contact, ContactWithInitials, GroupedContacts } from './../../core/db/contacts.db';
-import { ContactDetails } from '../contact-details/contact-details';
+import { ContactDetails } from './contact-details/contact-details';
+import { ContactList } from "./contact-list/contact-list";
+import { ContactHeader } from "./contact-header/contact-header";
 
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [ContactDetails],
+  imports: [ContactDetails, ContactList, ContactHeader],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })
