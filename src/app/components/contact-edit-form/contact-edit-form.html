@@ -1,25 +1,38 @@
-<form (ngSubmit)="save()" class="p-3 d-flex flex-column gap-2">
-  <div class="inputRow mb-2">
-    <app-input-field type="text" label="Name" placeholder="Name" icon="assets/icons/form-person-24px.svg"
-      [(model)]="form.name" [error]="errors.name" (blur)="markDirty('name')" (input)="liveValidate('name')" />
+<ui-modal-wrapper (close)="onCancel()" id="contact-add-form">
+  <div class="row g-0 align-items-center modal-inner">
+    <div class="col-md-5 d-flex flex-column justify-content-center align-items-start modal-title-area">
+      <img src="/assets/icons/logo-join-default-100px.svg" alt="Join Logo" />
+      <h2>Add contact</h2>
+      <p class="fs-4">Tasks are better with a team!</p>
+      <div class="blue-divider"></div>
+    </div>
+    <div class="col-md-7 d-flex flex-column">
+      <form (ngSubmit)="save()" class="p-3 d-flex flex-column gap-2">
+        <div class="col-md-7 d-flex flex-column">
+          <app-input-field type="text" label="Name" placeholder="Name" icon="assets/icons/form-person-24px.svg"
+            [(model)]="form.name" [error]="errors.name" (blur)="markDirty('name')" (input)="liveValidate('name')" />
 
-    <app-input-field type="email" label="Email" placeholder="Email" icon="assets/icons/form-mail-24px.svg"
-      [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')" (input)="liveValidate('email')" />
+          <app-input-field type="email" label="Email" placeholder="Email" icon="assets/icons/form-mail-24px.svg"
+            [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')" (input)="liveValidate('email')" />
 
-    <app-input-field type="tel" label="Phone" placeholder="Phone" icon="assets/icons/form-phone-24px.svg"
-      [(model)]="form.phone" [error]="errors.phone" (blur)="markDirty('phone')" (input)="liveValidate('phone')" />
+          <app-input-field type="tel" label="Phone" placeholder="Phone" icon="assets/icons/form-phone-24px.svg"
+            [(model)]="form.phone" [error]="errors.phone" (blur)="markDirty('phone')" (input)="liveValidate('phone')" />
+        </div>
+        <div class="d-flex gap-4 mt-2">
+          <button type="button" class="btn deleteBtn d-flex align-items-center gap-1" (click)="delete()"
+            aria-label="Delete contact">
+            Delete
+          </button>
+          <button type="submit" class="btn saveBtn d-flex align-items-center gap-1" [disabled]="!isFormValid()"
+            aria-label="Save changes">
+            Save
+            <span class="iconWrapper">
+              <img class="icon defaultIcon" src="assets/icons/check-white-24px.svg" width="24" height="24"
+                aria-hidden="true">
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="d-flex gap-4 mt-2">
-    <button type="button" class="btn deleteBtn d-flex align-items-center gap-1" (click)="delete()"
-      aria-label="Delete contact">
-      Delete
-    </button>
-    <button type="submit" class="btn saveBtn d-flex align-items-center gap-1" [disabled]="!isFormValid()"
-      aria-label="Save changes">
-      Save
-      <span class="iconWrapper">
-        <img class="icon defaultIcon" src="assets/icons/check-white-24px.svg" width="24" height="24" aria-hidden="true">
-      </span>
-    </button>
-  </div>
-</form>
+</ui-modal-wrapper>

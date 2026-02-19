@@ -13,7 +13,7 @@
   </label>
 
   <button class="btn btn-primary" (click)="openModal()">Add new contact +</button>
-  <app-contact-add-form *ngIf="isContactModalOpen" (closed)="closeModal()">></app-contact-add-form>
+  <app-contact-add-form *ngIf="isContactModalOpen" (closed)="closeModal()"></app-contact-add-form>
 
   @for (group of groups; track group.letter) {
     <div>

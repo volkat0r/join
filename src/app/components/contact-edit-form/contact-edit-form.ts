@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ContactsDb, Contact } from './../../core/db/contacts.db';
+import { ContactsDb, Contact, ContactWithInitials } from './../../core/db/contacts.db';
 import { isValidName, isValidEmail, isValidPhone } from '../../core/utils/validation';
 import { InputFieldComponent } from '../../shared/ui/input-field/input-field';
+import { ModalWrapper } from '../../shared/ui/modal-wrapper/modal-wrapper';
 
 @Component({
   selector: 'app-contact-edit-form',
   standalone: true,
-  imports: [FormsModule, InputFieldComponent],
+  imports: [FormsModule, InputFieldComponent, ModalWrapper],
   templateUrl: './contact-edit-form.html',
   styleUrls: ['./contact-edit-form.scss']
 })
@@ -15,7 +16,7 @@ export class ContactEditFormComponent {
 
   db = inject(ContactsDb);
 
-  @Input() contact!: Contact;
+  @Input() contact: ContactWithInitials | null = null;
   @Output() saved = new EventEmitter<void>();
   @Output() deleted = new EventEmitter<void>();
 
@@ -38,14 +39,15 @@ export class ContactEditFormComponent {
   };
 
   ngOnChanges() {
-    if (this.contact) {
-      this.form = {
-        name: this.contact.name,
-        email: this.contact.email,
-        phone: this.contact.phone
-      };
-    }
+    if (!this.contact) return;
+
+    this.form = {
+      name: this.contact.name,
+      email: this.contact.email,
+      phone: this.contact.phone
+    };
   }
+
 
   markDirty(field: keyof typeof this.dirty) {
     this.dirty[field] = true;
@@ -59,6 +61,8 @@ export class ContactEditFormComponent {
   }
 
   validateField(field: keyof typeof this.form) {
+    if (!this.contact) return;
+
     const rawValue = this.form[field];
     const value = String(rawValue ?? '');
 
@@ -99,7 +103,7 @@ export class ContactEditFormComponent {
     this.markDirty('email');
     this.markDirty('phone');
 
-    if (!this.isFormValid()) return;
+    if (!this.isFormValid() || !this.contact) return;
 
     await this.db.updateContact(this.contact.id, {
       name: String(this.form.name),
@@ -111,7 +115,15 @@ export class ContactEditFormComponent {
   }
 
   async delete() {
+    if (!this.contact) return;
+
     await this.db.deleteContact(this.contact.id);
     this.deleted.emit();
+  }
+
+  @Output() closed = new EventEmitter<void>();
+
+  onCancel() {
+    this.closed.emit();
   }
 }
