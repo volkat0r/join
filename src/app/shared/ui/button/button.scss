@@ -13,4 +13,12 @@
     transition: all 0.125s ease-in;
     background-color: $blue-darker;
   }
+
+  &--secondary {
+    font-size:1.125rem;
+    font-weight: 700;
+    color: white;
+    transition: all 0.125s ease-in;
+    background-color: $blue-darker;
+  }
 }
