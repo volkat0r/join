@@ -1,39 +1,13 @@
 <form (ngSubmit)="save()" class="p-3 d-flex flex-column gap-2">
   <div class="inputRow mb-2">
-    <label for="editName" class="visually-hidden">Name</label>
-    <div class="inputWrapper" [class.hasError]="errors.name">
-      <input id="editName" type="text" class="form-control" [(ngModel)]="form.name" name="name" placeholder="Name"
-        (blur)="markDirty('name')" (input)="liveValidate('name')" aria-invalid="{{ !!errors.name }}"
-        aria-describedby="editNameError" />
-      <img class="inputIcon" src="assets/icons/form-person-24px.svg" width="24" height="24" aria-hidden="true" />
-    </div>
-    <div class="text-danger small ps-2 errorMessage">
-      {{ errors.name }}
-    </div>
-  </div>
-  <div class="inputRow mb-2">
-    <label for="editEmail" class="visually-hidden">Email</label>
-    <div class="inputWrapper" [class.hasError]="errors.email">
-      <input id="editEmail" type="email" class="form-control" [(ngModel)]="form.email" name="email" placeholder="Email"
-        (blur)="markDirty('email')" (input)="liveValidate('email')" aria-invalid="{{ !!errors.email }}"
-        aria-describedby="editEmailError" />
-      <img class="inputIcon" src="assets/icons/form-mail-24px.svg" width="24" height="24" aria-hidden="true" />
-    </div>
-    <div class="text-danger small ps-2 errorMessage">
-      {{ errors.email }}
-    </div>
-  </div>
-  <div class="inputRow mb-2">
-    <label for="editPhone" class="visually-hidden">Phone</label>
-    <div class="inputWrapper" [class.hasError]="errors.phone">
-      <input id="editPhone" type="text" class="form-control" [(ngModel)]="form.phone" name="phone" placeholder="Phone"
-        (blur)="markDirty('phone')" (input)="liveValidate('phone')" aria-invalid="{{ !!errors.phone }}"
-        aria-describedby="editPhoneError" />
-      <img class="inputIcon" src="assets/icons/form-phone-24px.svg" width="24" height="24" aria-hidden="true" />
-    </div>
-    <div class="text-danger small ps-2 errorMessage">
-      {{ errors.phone }}
-    </div>
+    <app-input-field type="text" label="Name" placeholder="Name" icon="assets/icons/form-person-24px.svg"
+      [(model)]="form.name" [error]="errors.name" (blur)="markDirty('name')" (input)="liveValidate('name')" />
+
+    <app-input-field type="email" label="Email" placeholder="Email" icon="assets/icons/form-mail-24px.svg"
+      [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')" (input)="liveValidate('email')" />
+
+    <app-input-field type="tel" label="Phone" placeholder="Phone" icon="assets/icons/form-phone-24px.svg"
+      [(model)]="form.phone" [error]="errors.phone" (blur)="markDirty('phone')" (input)="liveValidate('phone')" />
   </div>
   <div class="d-flex gap-4 mt-2">
     <button type="button" class="btn deleteBtn d-flex align-items-center gap-1" (click)="delete()"

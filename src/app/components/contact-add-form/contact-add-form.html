@@ -9,8 +9,8 @@
     <div class="col-md-7 d-flex flex-column">
       <form (ngSubmit)="submit()" class="p-3 d-flex flex-column gap-2 modal-content-area">
 
-<app-input-field type="text" label="Name" placeholder="Name" icon="assets/icons/form-person-24px.svg"
-  [(model)]="form.name" [error]="errors.name" (blur)="markDirty('name')" (input)="liveValidate('name')" />
+        <app-input-field type="text" label="Name" placeholder="Name" icon="assets/icons/form-person-24px.svg"
+          [(model)]="form.name" [error]="errors.name" (blur)="markDirty('name')" (input)="liveValidate('name')" />
 
         <app-input-field type="email" label="Email" placeholder="Email" icon="assets/icons/form-mail-24px.svg"
           [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')" (input)="liveValidate('email')" />
@@ -18,9 +18,7 @@
         <app-input-field type="tel" label="Phone" placeholder="Phone" icon="assets/icons/form-phone-24px.svg"
           [(model)]="form.phone" [error]="errors.phone" (blur)="markDirty('phone')" (input)="liveValidate('phone')" />
 
-        <!-- BUTTONS -->
         <div class="d-flex gap-4 mt-2">
-          <!-- CANCEL BUTTON -->
           <button type="button" class="btn closeBtn d-flex align-items-center gap-1" (click)="closed.emit()">
             Cancel
             <span class="iconWrapper">
@@ -29,7 +27,6 @@
             </span>
           </button>
 
-          <!-- ADD BUTTON -->
           <button type="submit" class="btn addBtn d-flex align-items-center gap-1" [disabled]="!isFormValid()">
             Create contact
             <span class="iconWrapper">
