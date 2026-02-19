@@ -32,25 +32,8 @@
         </div>
 
         <!-- EMAIL -->
-        <div class="inputRow mb-2">
-          <div class="inputWrapper" [class.hasError]="errors.email">
-            <input
-              type="email"
-              class="form-control"
-              [(ngModel)]="form.email"
-              name="email"
-              placeholder="Email"
-              (blur)="markDirty('email')"
-              (input)="liveValidate('email')"
-            />
-
-            <img class="inputIcon" src="assets/icons/form-mail-24px.svg" width="24" height="24" />
-          </div>
-
-          <div class="text-danger small ps-2 errorMessage">
-            {{ errors.email }}
-          </div>
-        </div>
+<app-input-field type="email" label="Email" placeholder="Email" icon="assets/icons/form-mail-24px.svg"
+  [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')" (input)="liveValidate('email')" />
 
         <!-- PHONE -->
         <div class="inputRow mb-2">
