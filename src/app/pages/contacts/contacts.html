@@ -3,8 +3,12 @@
     <label class="SearchInput">
       <input id="search-contact" type="search" placeholder="Search contact..." aria-label="Search contacts"
         (input)="onSearch($event)" />
+
+
       <img src="assets/icons/search-32px.svg" alt="" />
     </label>
+
+    <button></button>
 
     @for (group of filteredContacts(); track group.letter) {
     <div>

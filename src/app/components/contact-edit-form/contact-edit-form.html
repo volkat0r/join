@@ -1,39 +1,51 @@
-<h3>Edit Contact</h3>
-
-<form (ngSubmit)="save()">
-
-  <label>Name:</label>
-  <input [(ngModel)]="form.name" name="name" (blur)="validateName()" />
-
-  @if (errors.name) {
-  <div style="color:red; margin-bottom: 8px;">
-    {{ errors.name }}
+<form (ngSubmit)="save()" class="p-3 d-flex flex-column gap-2">
+  <div class="inputRow mb-2">
+    <label for="editName" class="visually-hidden">Name</label>
+    <div class="inputWrapper" [class.hasError]="errors.name">
+      <input id="editName" type="text" class="form-control" [(ngModel)]="form.name" name="name" placeholder="Name"
+        (blur)="markDirty('name')" (input)="liveValidate('name')" aria-invalid="{{ !!errors.name }}"
+        aria-describedby="editNameError" />
+      <img class="inputIcon" src="assets/icons/form-person-24px.svg" width="24" height="24" aria-hidden="true" />
+    </div>
+    <div class="text-danger small ps-2 errorMessage">
+      {{ errors.name }}
+    </div>
   </div>
-  }
-
-  <label>Email:</label>
-  <input [(ngModel)]="form.email" name="email" (blur)="validateEmail()" />
-
-  @if (errors.email) {
-  <div style="color:red; margin-bottom: 8px;">
-    {{ errors.email }}
+  <div class="inputRow mb-2">
+    <label for="editEmail" class="visually-hidden">Email</label>
+    <div class="inputWrapper" [class.hasError]="errors.email">
+      <input id="editEmail" type="email" class="form-control" [(ngModel)]="form.email" name="email" placeholder="Email"
+        (blur)="markDirty('email')" (input)="liveValidate('email')" aria-invalid="{{ !!errors.email }}"
+        aria-describedby="editEmailError" />
+      <img class="inputIcon" src="assets/icons/form-mail-24px.svg" width="24" height="24" aria-hidden="true" />
+    </div>
+    <div class="text-danger small ps-2 errorMessage">
+      {{ errors.email }}
+    </div>
   </div>
-  }
-
-  <label>Phone:</label>
-  <input [(ngModel)]="form.phone" name="phone" (blur)="validatePhone()" />
-
-  @if (errors.phone) {
-  <div style="color:red; margin-bottom: 8px;">
-    {{ errors.phone }}
+  <div class="inputRow mb-2">
+    <label for="editPhone" class="visually-hidden">Phone</label>
+    <div class="inputWrapper" [class.hasError]="errors.phone">
+      <input id="editPhone" type="text" class="form-control" [(ngModel)]="form.phone" name="phone" placeholder="Phone"
+        (blur)="markDirty('phone')" (input)="liveValidate('phone')" aria-invalid="{{ !!errors.phone }}"
+        aria-describedby="editPhoneError" />
+      <img class="inputIcon" src="assets/icons/form-phone-24px.svg" width="24" height="24" aria-hidden="true" />
+    </div>
+    <div class="text-danger small ps-2 errorMessage">
+      {{ errors.phone }}
+    </div>
   </div>
-  }
-
-  <button type="submit" [disabled]="!isFormValid()">
-    Save
-  </button>
-
-  <button type="button" (click)="delete()">
-    Delete
-  </button>
+  <div class="d-flex gap-4 mt-2">
+    <button type="button" class="btn deleteBtn d-flex align-items-center gap-1" (click)="delete()"
+      aria-label="Delete contact">
+      Delete
+    </button>
+    <button type="submit" class="btn saveBtn d-flex align-items-center gap-1" [disabled]="!isFormValid()"
+      aria-label="Save changes">
+      Save
+      <span class="iconWrapper">
+        <img class="icon defaultIcon" src="assets/icons/check-white-24px.svg" width="24" height="24" aria-hidden="true">
+      </span>
+    </button>
+  </div>
 </form>

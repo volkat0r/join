@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { ContactAddFormComponent } from '../../components/contact-add-form/contact-add-form';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [],
+  imports: [ContactAddFormComponent],
   templateUrl: './board.html',
   styleUrl: './board.scss',
 })
-export class Board {
-
-}
+export class Board {}

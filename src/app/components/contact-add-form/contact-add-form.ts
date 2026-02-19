@@ -3,15 +3,16 @@ import { ContactsDb, Contact } from './../../core/db/contacts.db';
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { isValidName, isValidEmail, isValidPhone } from '../../core/utils/validation';
+import { ModalWrapper } from '../../shared/ui/modal-wrapper/modal-wrapper';
 
 @Component({
   selector: 'app-contact-add-form',
   standalone: true,
-  imports: [FormsModule],
-  templateUrl: './contact-add-form.html'
+  imports: [FormsModule, ModalWrapper],
+  templateUrl: './contact-add-form.html',
+  styleUrls: ['./contact-add-form.scss'],
 })
 export class ContactAddFormComponent {
-
   db = inject(ContactsDb);
 
   @Output() added = new EventEmitter<void>();
@@ -19,13 +20,19 @@ export class ContactAddFormComponent {
   form: Omit<Contact, 'id' | 'color'> = {
     name: '',
     email: '',
-    phone: ''
+    phone: '',
   };
 
   errors = {
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+  };
+
+  dirty = {
+    name: false,
+    email: false,
+    phone: false,
   };
 
   private getRandomColor() {
@@ -33,27 +40,37 @@ export class ContactAddFormComponent {
     return CONTACT_COLORS[index];
   }
 
-  // --- VALIDATION PER FIELD ---
-
-  validateName() {
-    this.errors.name = isValidName(this.form.name)
-      ? ''
-      : 'Name may only contain letters.';
+  markDirty(field: keyof typeof this.dirty) {
+    this.dirty[field] = true;
+    this.validateField(field);
   }
 
-  validateEmail() {
-    this.errors.email = isValidEmail(this.form.email)
-      ? ''
-      : 'Please enter a valid email address.';
+  liveValidate(field: keyof typeof this.dirty) {
+    if (this.dirty[field]) {
+      this.validateField(field);
+    }
   }
 
-  validatePhone() {
-    this.errors.phone = isValidPhone(this.form.phone)
-      ? ''
-      : 'Only digits or a leading + country code are allowed.';
+  validateField(field: keyof typeof this.form) {
+    const value = this.form[field];
+
+    switch (field) {
+      case 'name':
+        this.errors.name = isValidName(value) ? '' : 'Name may only contain letters.';
+        break;
+
+      case 'email':
+        this.errors.email = isValidEmail(value) ? '' : 'Please enter a valid email address.';
+        break;
+
+      case 'phone':
+        this.errors.phone = isValidPhone(value)
+          ? ''
+          : 'Please enter at least 10 digits using numbers only (a leading + is allowed).';
+        break;
+    }
   }
 
-  // --- FORM VALIDITY CHECK ---
   isFormValid() {
     return (
       this.form.name.trim() !== '' &&
@@ -65,13 +82,10 @@ export class ContactAddFormComponent {
     );
   }
 
-  // --- SUBMIT ---
-
   async submit() {
-    // Final validation before submit
-    this.validateName();
-    this.validateEmail();
-    this.validatePhone();
+    this.markDirty('name');
+    this.markDirty('email');
+    this.markDirty('phone');
 
     if (!this.isFormValid()) {
       return;
@@ -79,9 +93,15 @@ export class ContactAddFormComponent {
 
     await this.db.setContact({
       ...this.form,
-      color: this.getRandomColor()
+      color: this.getRandomColor(),
     });
 
     this.added.emit();
+  }
+
+  @Output() closed = new EventEmitter<void>();
+
+  onCancel() {
+    this.closed.emit();
   }
 }
