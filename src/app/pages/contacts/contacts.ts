@@ -17,13 +17,11 @@ export class Contacts implements OnInit {
   searchTerm = signal('');
   selected: ContactWithInitials | null = null;
 
-  constructor(private contactsDb: ContactsDb) {}
+  constructor(private contactsDb: ContactsDb) { }
 
   async ngOnInit() {
     await this.contactsDb.getContacts();
     this.groupedContacts.set(this.sortAndGroup(this.contactsDb.contacts()));
-
-    console.log(this.groupedContacts());
   }
 
   filteredContacts = computed(() => {
@@ -77,11 +75,16 @@ export class Contacts implements OnInit {
 
   editSelected() {
     console.log('Edit:', this.selected);
-    // später: Overlay oder Edit-Form öffnen
   }
 
-  deleteSelected() {
-    console.log('Delete:', this.selected);
-    // später: delete logic
+  async deleteSelected() {
+    if (!this.selected) return;
+
+    await this.contactsDb.deleteContact(this.selected.id);
+
+    const remaining = this.contactsDb.contacts().filter(c => c.id !== this.selected!.id);
+    this.groupedContacts.set(this.sortAndGroup(remaining));
+
+    this.selected = null;
   }
 }

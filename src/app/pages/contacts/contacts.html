@@ -3,12 +3,8 @@
 <div class="ContactsLayout">
   <!-- Left: navigation/list -->
   <aside class="left">
-    <app-contact-list
-      [groups]="filteredContacts()"
-      [selectedId]="selected?.id ?? null"
-      (search)="onSearch($event)"
-      (select)="selectContact($event)"
-    />
+    <app-contact-list [groups]="filteredContacts()" [selectedId]="selected?.id ?? null" (search)="onSearch($event)"
+      (select)="selectContact($event)" />
   </aside>
 
   <!-- Right: main detail view -->
