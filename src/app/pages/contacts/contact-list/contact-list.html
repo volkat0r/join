@@ -1,39 +1,56 @@
 <!-- contact-list.html -->
 
-<div class="ContactsList">
-  <label class="input-search">
-    <input
-      id="search-contact"
-      type="search"
-      placeholder="Search contact..."
-      aria-label="Search contacts"
-      (input)="search.emit($event)"
-    />
-    <img src="assets/icons/search-32px.svg" alt="" />
-  </label>
+<main class="contact-list">
 
-  <button class="btn btn-primary" (click)="openModal()">Add new contact +</button>
+  <header class="sticky-top">
+    <ui-button variant="primary" (click)="openModal()">
+      Add new contact
+      <img src="assets/icons/person-add-white-32px.svg" alt="" aria-hidden="true" />
+    </ui-button>
+
+    <label class="input-search">
+      <img src="assets/icons/search-32px.svg" alt="" aria-hidden="true" />
+      <input
+        id="search-contact"
+        type="search"
+        placeholder="Search contact ..."
+        aria-label="Search contacts"
+        (input)="search.emit($event)"
+      />
+    </label>
+  </header>
 
   <app-contact-add-form *ngIf="isContactModalOpen" (closed)="closeModal()">></app-contact-add-form>
 
   @for (group of groups; track group.letter) {
-    <div>
-      <div>
-        {{ group.letter }}
-      </div>
+    <section class="contacts">
+      <header>
+        <abbr class="letter">{{ group.letter }}</abbr>
+      </header>
 
-      @for (c of group.contacts; track c.id) {
-        <div (click)="select.emit(c)" [class.Active]="selectedId === c.id">
-          <div [style.background]="c.color">
-            {{ c.initials }}
-          </div>
+      <hr />
 
-          <div>
-            <div>{{ c.name }}</div>
-            <div>{{ c.email }}</div>
-          </div>
-        </div>
-      }
-    </div>
+      <ul>
+        @for (c of group.contacts; track c.id) {
+          <li
+            class="contacts__item"
+            (click)="select.emit(c)"
+            [class.Active]="selectedId === c.id"
+          >
+            <abbr
+              class="initialism d-flex d-inline-flex align-items-center justify-content-center rounded-circle"
+              [title]="c.name"
+              [style.background]="c.color"
+            >
+              {{ c.initials }}
+            </abbr>
+            <dl>
+              <dt class="contacts__name">{{ c.name }}</dt>
+              <dd class="contacts__email fs-6">{{ c.email }}</dd>
+            </dl>
+          </li>
+        }
+      </ul>
+    </section>
   }
-</div>
+</main>

@@ -1,122 +1,77 @@
 /* contact-list.scss */
 
-.ContactsList {
-  width: 100%;
-  padding: 0 16px;
+@use 'styles/variables' as *;
 
+.contact-list {
+  padding: 0 2rem 1.5rem;
+  max-width: 28rem;
+  background-color: $white;
+  height: 100%;
+  overflow-y: auto;
+}
 
-  &:nth-child(1) {
-    max-height: calc(9 * 72px);
-    overflow-y: auto;
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: $white;
+  margin: -1.5rem -2rem 0;
+  padding: 1.5rem 2rem 1rem;
+}
+
+ui-button {
+  ::ng-deep .btn {
+    width: 100%;
+    font-size: 1.25rem;
+    font-family: 'Inter-Bold', sans-serif;
+    margin-bottom: 0.5rem;
   }
-}
-
-.ContactsList>div {
-  margin-bottom: 24px;
-
-}
-
-.ContactsList>div>div:first-child {
-  font-size: 0.875rem;
-  padding: 12px 6px;
-  font-weight: 700;
-  margin-left: 30px;
-}
-
-.ContactsList>div>div:not(:first-child) {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 16px;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.ContactsList>div>div:not(:first-child)::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 30px;
-  right: 30px;
-  height: 1px;
-  background: #5c6d6d;
-  opacity: 0.2;
-}
-
-.ContactsList>div>div:not(:first-child)>div:first-child,
-.contact-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 700;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
-.ContactsList>div>div:not(:first-child)>div:nth-child(2)>div:first-child,
-.contact-name {
-  font-size: 18px;
-  font-weight: 700;
-  color: #141517;
-  margin-bottom: 4px;
-}
-
-.ContactsList>div>div:not(:first-child)>div:nth-child(2)>div:nth-child(2),
-.contact-email {
-  font-size: 14px;
-  color: #2A6FD6;
-  text-decoration: none;
-}
-
-.ContactsList>div>div:not(:first-child):hover {
-  background: #f5f7fa;
-}
-
-.ContactsList>div>div:not(:first-child).Active {
-  background: #2A3647;
-  color: #fff;
-  margin: 0 16px;
-  border-radius: 10px;
-}
-
-.ContactsList>div>div:not(:first-child).Active a,
-.ContactsList>div>div:not(:first-child).Active .contact-email {
-  color: #A8D6FF;
-  text-decoration: underline;
-}
-
-.ContactsList>div>div:not(:first-child).Active>div:first-child {
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.04);
 }
 
 .input-search {
   display: flex;
   align-items: center;
-  padding: 12px 16px;
-  gap: 8px;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  gap: 0.5rem;
   width: 100%;
-  height: 56px;
-  background: #2A3647;
-  border: 1px solid #2A3647;
-  border-radius: 10px;
+  height: 3.5rem;
+  background: $blue-dark;
+  border: 0.0625rem solid $blue-dark;
+  border-radius: $base-border-radius;
   box-sizing: border-box;
+  cursor: pointer;
+  transition: $trans-default;
+
+  &:hover {
+    background: $blue-light;
+    border-color: $blue-light;
+  }
+
+  &:active {
+    background: $blue-darker;
+    border-color: $blue-darker;
+  }
+
+  &:focus-within {
+    background: $blue-light;
+    border-color: $blue-light;
+  }
 
   input {
-    flex: 1;
-    flex: 1;
     background: none;
     border: none;
     outline: none;
     color: #FFFFFF;
-    font-size: 1rem;
+    font-size: 1.25rem;
+    font-family: 'Inter-Bold', sans-serif;
+    text-align: center;
+    width: 0;
+    flex: 1 1 auto;
+    min-width: 0;
 
     &::placeholder {
-      color: #A8A8A8;
+      color: $white;
     }
   }
 
@@ -125,4 +80,61 @@
   }
 }
 
+.contacts {
+  header {
+    height: 3.625rem;
+    padding: 1rem 0;
+  }
 
+  .letter {
+    font-size: 1.25rem;
+    color: $black;
+    padding-left: 2.25rem;
+  }
+
+  hr {
+    margin: 0.25rem 0rem;
+    padding-left: 0;
+    padding-right:0;
+  }
+
+  /* avatar */
+  abbr {
+    width: 2.625rem;
+    height: 2.625rem;
+    text-decoration: none;
+    border: 0.125rem solid $white;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    gap: 2.25rem;
+    cursor: pointer;
+    border-radius: $base-border-radius;
+    transition: $trans-default;
+
+    &:hover {
+      background: linear-gradient(to bottom, #F9F9F9, #F0F0F0);
+    }
+
+    &:active,
+    &.Active {
+      background: $blue-darker;
+
+      .contacts__name {
+        color: $white;
+      }
+    }
+  }
+
+  &__name {
+    font-size: 1.25rem;
+  }
+
+  &__email {
+    color: $blue-link;
+  }
+
+}
