@@ -6,7 +6,7 @@ import { Summary } from './pages/summary/summary';
 import { AddTask } from './pages/add-task/add-task';
 import { Board } from './pages/board/board';
 import { Contacts } from './pages/contacts/contacts';
-
+import { TestComponent } from './pages/test-component/test-component';
 
 export const routes: Routes = [
   {
@@ -20,6 +20,7 @@ export const routes: Routes = [
       { path: 'contacts', component: Contacts },
       { path: 'privacy-policy', component: PrivacyPolicy },
       { path: 'legal-notice', component: LegalNotice },
+      { path: 'test', component: TestComponent },
     ],
   },
 ];

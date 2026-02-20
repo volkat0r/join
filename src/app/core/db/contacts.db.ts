@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { SupabaseClientService } from './supabase.client';
+import { RealtimeChannel } from '@supabase/supabase-js';
 
 export interface Contact {
   id: number;
@@ -23,6 +24,7 @@ export class ContactsDb {
 
   contacts = signal<Contact[]>([]);
   groupedContacts = signal<GroupedContacts[]>([]);
+  channels: RealtimeChannel | null = null;
 
   constructor(private supa: SupabaseClientService) { }
 
@@ -36,9 +38,10 @@ export class ContactsDb {
       return;
     }
 
-    //console.log('[Supabase] Contacts response:', contacts);
     if (!contacts) return;
     this.contacts.set(contacts || []);
+
+    this.subscripeToContactChanges();
   }
 
   async setContact(contact: Omit<Contact, 'id'>) {
@@ -51,7 +54,6 @@ export class ContactsDb {
       console.error('[Supabase] Error adding contact:', error.message);
       return;
     }
-
   }
 
   async updateContact(id: number, update: Partial<Contact>) {
@@ -76,6 +78,27 @@ export class ContactsDb {
     if (error) {
       console.error('[Supabase] Error deleting contact:', error.message);
       return;
+    }
+  }
+
+  ngOnDestroy() {
+    this.unSubscripeFromContactChanges();
+  }
+
+  subscripeToContactChanges() {
+    this.channels = this.supa.supabase.channel('custom-all-channel')
+      .on('postgres_changes',
+        { event: '*', schema: 'public', table: 'contacts' },
+        (payload) => {
+          console.log('Change received!', payload);
+        }
+      )
+      .subscribe();
+  }
+
+  unSubscripeFromContactChanges() {
+    if (this.channels) {
+      this.supa.supabase.removeChannel(this.channels);
     }
   }
 }
