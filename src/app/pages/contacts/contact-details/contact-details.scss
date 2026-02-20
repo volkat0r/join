@@ -1,7 +1,6 @@
-.ContactDetails {
-  width: 60%;
-  border-radius: 10px;
+@use 'styles/variables' as *;
 
+.ContactDetails {
 
   >div:nth-child(3) {
     margin-top: 35px;
@@ -12,11 +11,11 @@
       color: #000000;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 1.25rem;
     }
 
     >div {
-      margin-bottom: 24px;
+      margin-bottom: 1.5rem;
 
       &:last-child {
         margin-bottom: 0;
@@ -26,7 +25,7 @@
         display: block;
         font-weight: 700;
         color: #000000;
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
         font-size: 0.875rem;
       }
 
@@ -48,12 +47,9 @@
 
   .contact-card {
     display: flex;
-    gap: 42px;
-    border-radius: 8px;
-    transition: background 0.3s ease;
-    padding-top: 8px;
-    padding-bottom: 8px;
-
+    align-items: center;
+    gap: 2.5rem;
+    transition: $trans-default;
   }
 
   .contact-info {
@@ -62,54 +58,58 @@
   }
 
   .contact-avatar {
-    width: 90px;
-    height: 90px;
+    width: 5.625rem;
+    height: 5.625rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 2rem;
     text-align: center;
     flex-shrink: 0;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  label {
+    font-weight: 700;
   }
 
   .contact-name {
-    flex: auto;
-    font-size: 30px;
+    font-size: 1.875rem;
     font-weight: 700;
     color: #141517;
   }
 
   .contact-actions {
     display: flex;
-    gap: 4px;
+    gap: 1rem;
 
     button {
       display: flex;
       align-items: center;
-      gap: 2px;
-      padding: 6px 10px;
+      gap: 0.25rem;
+      padding: 0;
       border: none;
-      border-radius: 8px;
-      font-weight: 700;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 0.875rem;
       color: #141517;
-      transition: all 0.3s ease;
+      transition: $trans-default;
 
       img {
-        width: 16px;
-        height: 16px;
-      }
-
-      &+button {
-        margin-left: 6px;
+        width: 1rem;
+        height: 1rem;
+        transition: $trans-default;
       }
 
       &:hover {
-        background: #f0f0f0;
+        font-weight: 700;
+        color: $blue-light;
+
+        img {
+          filter: invert(69%) sepia(69%) saturate(3474%) hue-rotate(165deg) brightness(94%) contrast(87%);
+        }
       }
     }
   }
@@ -124,6 +124,7 @@
     transform: translateX(100vw);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;

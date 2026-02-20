@@ -2,10 +2,7 @@
 
 <div class="ContactDetails">
   <app-contact-edit-form *ngIf="isContactModalOpen" [contact]="selectedContact" (closed)="closeModal()"
-    (saved)="onEditSaved()" (deleted)="onEditDeleted()"/>
-
-
-
+    (saved)="onEditSaved()" (deleted)="onEditDeleted()" />
 
   @if (!contact) {
   <div>Select a contact to view details</div>
@@ -37,7 +34,7 @@
   </div>
 
   <div class="fadeIn d-flex flex-column gap-3">
-    <h5 class="pt-4">Contact Information</h5>
+    <h5 class="pt-5 pb-2">Contact Information</h5>
 
     <div>
       <label>Email</label>
