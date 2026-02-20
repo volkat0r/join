@@ -1,40 +1,52 @@
 <ui-modal-wrapper (close)="onCancel()" id="contact-add-form">
-  <div class="row g-0 align-items-center modal-inner">
-    <div class="col-md-5 d-flex flex-column justify-content-center align-items-start modal-title-area">
-      <img src="/assets/icons/logo-join-default-100px.svg" alt="Join Logo" />
-      <h2>Add contact</h2>
-      <p class="fs-4">Tasks are better with a team!</p>
-      <div class="blue-divider"></div>
-    </div>
-    <div class="col-md-7 d-flex flex-column">
-      <form (ngSubmit)="submit()" class="p-3 d-flex flex-column gap-2 modal-content-area">
+  <div class="modal-inner d-flex flex-column h-100">
 
-        <app-input-field type="text" label="Name" placeholder="Name" icon="assets/icons/form-person-24px.svg"
-          [(model)]="form.name" [error]="errors.name" (blur)="markDirty('name')" (input)="liveValidate('name')" />
+    <div class="row g-0 flex-grow-1 h-100">
 
-        <app-input-field type="email" label="Email" placeholder="Email" icon="assets/icons/form-mail-24px.svg"
-          [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')" (input)="liveValidate('email')" />
-
-        <app-input-field type="tel" label="Phone" placeholder="Phone" icon="assets/icons/form-phone-24px.svg"
-          [(model)]="form.phone" [error]="errors.phone" (blur)="markDirty('phone')" (input)="liveValidate('phone')" />
-
-        <div class="d-flex gap-4 mt-2">
-          <button type="button" class="btn closeBtn d-flex align-items-center gap-1" (click)="closed.emit()">
-            Cancel
-            <span class="iconWrapper">
-              <img class="icon defaultIcon" src="assets/icons/cancel-dark-24px.svg" width="24" height="24" />
-              <img class="icon hoverIcon" src="assets/icons/cancel-blue-24px.svg" width="24" height="24" />
-            </span>
-          </button>
-
-          <button type="submit" class="btn addBtn d-flex align-items-center gap-1" [disabled]="!isFormValid()">
-            Create contact
-            <span class="iconWrapper">
-              <img class="icon defaultIcon" src="assets/icons/check-white-24px.svg" width="24" height="24" />
-            </span>
-          </button>
+      <!-- Linke Spalte -->
+      <div class="col-12 col-md-5 d-flex flex-column justify-content-center align-items-start modal-title-area p-3 py-5 p-md-5 pt-5 gap-0">
+        <img src="/assets/icons/logo-join-default-100px.svg" alt="Join Logo" class="logo d-none d-md-block"/>
+        <h2 class="mt-4">Add contact</h2>
+        <p class="fs-4 mb-2">Tasks are better with a team!</p>
+        <div class="blue-divider mb-5"></div>
+        <div class="initialism d-flex d-inline-flex align-items-center justify-content-center rounded-circle d-md-none">
+          <img src="/assets/icons/person-white-64px.svg" alt="Initialism">
         </div>
-      </form>
+      </div>
+
+      <!-- Rechte Spalte -->
+      <div class="col-12 col-md-7 d-flex flex-column justify-content-center py-4 py-md-0 h-100">
+        <form (ngSubmit)="submit()" class="p-3 mt-5 mt-md-0 p-md-5 d-flex flex-column justify-content-center gap-2 modal-content-area flex-grow-1">
+
+          <app-input-field type="text" label="Name" placeholder="Name" icon="assets/icons/form-person-24px.svg"
+            [(model)]="form.name" [error]="errors.name" (blur)="markDirty('name')" (input)="liveValidate('name')" />
+
+          <app-input-field type="email" label="Email" placeholder="Email" icon="assets/icons/form-mail-24px.svg"
+            [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')" (input)="liveValidate('email')" />
+
+          <app-input-field type="tel" label="Phone" placeholder="Phone" icon="assets/icons/form-phone-24px.svg"
+            [(model)]="form.phone" [error]="errors.phone" (blur)="markDirty('phone')" (input)="liveValidate('phone')" />
+
+          <div class="d-flex gap-4 mt-2 justify-content-center justify-content-md-start">
+            <button type="button" class="btn closeBtn d-flex align-items-center gap-1 d-none d-md-block" (click)="closed.emit()">
+              Cancel
+              <span class="iconWrapper">
+                <img class="icon defaultIcon" src="assets/icons/cancel-dark-24px.svg" width="24" height="24" />
+                <img class="icon hoverIcon" src="assets/icons/cancel-blue-24px.svg" width="24" height="24" />
+              </span>
+            </button>
+
+            <button type="submit" class="btn addBtn d-flex align-items-center gap-1" [disabled]="!isFormValid()">
+              Create contact
+              <span class="iconWrapper">
+                <img class="icon defaultIcon" src="assets/icons/check-white-24px.svg" width="24" height="24" />
+              </span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
     </div>
   </div>
 </ui-modal-wrapper>

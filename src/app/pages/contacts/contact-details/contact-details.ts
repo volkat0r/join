@@ -32,5 +32,17 @@ export class ContactDetails {
     this.selectedContact = contact;   // Kontakt setzen
     this.isContactModalOpen = true;   // Modal öffnen
   }
+
+  onEditSaved() {
+    this.edit.emit(this.contact!);
+    this.closeModal();
+  }
+
+  onEditDeleted() {
+    if (this.contact) {
+      this.remove.emit(this.contact);
+    }
+    this.closeModal();
+  }
 }
 

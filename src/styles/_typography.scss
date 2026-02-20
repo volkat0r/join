@@ -16,7 +16,7 @@ h1{
 }
 // 61px???
 h2{
-  font-size: 3.8125rem;
+  font-size: clamp(2.5rem, 5vw, 3.8125rem);
 }
 // 47px???
 h3{
