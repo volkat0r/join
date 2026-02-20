@@ -15,6 +15,7 @@ export class InputFieldComponent {
   @Input() type = 'text';
   @Input() label = '';
   @Input() placeholder = '';
+  @Input() value = '';
   @Input() icon: string | null = null;
   @Input() error: string | null = null;
 
@@ -22,10 +23,11 @@ export class InputFieldComponent {
   @Output() modelChange = new EventEmitter<any>();
 
   @Output() blur = new EventEmitter<void>();
-  @Output() input = new EventEmitter<void>();
+  @Output() inputChange = new EventEmitter<Event>();
 
-  onInput(event: any) {
-    this.modelChange.emit(event.target.value);
-    this.input.emit();
+  onInput(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.modelChange.emit(value);
+    this.inputChange.emit(event);
   }
 }
