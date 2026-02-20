@@ -1,64 +1,30 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as mixins;
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.modal-title-area {
+  background-color: $blue-darker;
+  position: relative;
 
-  .form-control::placeholder {
-    color: $grey-light;
-    opacity: 1;
+  p,
+  h2 {
+    color: $white;
   }
 }
 
-.inputRow {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+.logo {
+  width: 60px;
+  height: auto;
 }
 
-.inputWrapper {
-  display: flex;
-  align-items: center;
-  border: 1px solid $grey-light;
-  border-radius: 0.375rem;
-  padding-right: 0.75rem;
-  background: white;
-  transition: border-color 0.2s ease;
-
-  .form-control {
-    border: none;
-    box-shadow: none;
-    flex: 1;
-    padding-right: 0;
-  }
-
-  .form-control:focus {
-    box-shadow: none;
-  }
-
-  .inputIcon {
-    opacity: 0.6;
-    transition: opacity 0.2s ease, filter 0.2s ease;
-  }
-
-  &:hover .inputIcon {
-    opacity: 1;
-  }
-
-  &.hasError {
-    border-color: $red;
-
-    .inputIcon {
-      opacity: 1;
-      filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(7480%) hue-rotate(356deg) brightness(92%) contrast(102%);
-    }
-  }
-}
-
-.errorMessage {
-  min-height: 22px;
+.initialism {
+  position: absolute;
+  bottom: -60px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 120px;
+  height: 120px;
+  background-color: $grey-light;
+  border: 3px solid $white;
 }
 
 .iconWrapper {
