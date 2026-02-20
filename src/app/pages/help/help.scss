@@ -1,0 +1,14 @@
+ol{
+  padding-left: 2rem;
+  list-style-type: decimal;
+  li{
+    padding-left: 1rem;
+    font-size: 1rem;
+    vertical-align: top;
+    &::marker{
+      line-height: 1.2;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+}
