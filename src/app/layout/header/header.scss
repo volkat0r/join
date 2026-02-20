@@ -5,6 +5,7 @@ header {
   background-color: $white;
   width: 100%;
   filter: $sh-header;
+  position: relative; // wichtig für absolute userMenu-Position
 }
 
 #slogan {
@@ -19,14 +20,21 @@ header {
 .userProfile {
   height: 3.5rem;
   width: 3.5rem;
-  border: 3px solid $black;
+  border: 2px solid $black;
   color: $blue-light;
   border-radius: 100%;
   cursor: pointer;
   transition: $trans-default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background-color: $grey-light;
+  }
+
+  &.active {
+    background-color: $grey-light; // bleibt wie Hover
   }
 }
 
@@ -44,6 +52,47 @@ header {
     &:hover img {
       transform: scale(1.2);
       cursor: pointer;
+    }
+  }
+}
+
+.userMenu {
+  position: absolute;
+  background: $blue-dark;
+  border-radius: 1.5em 0em 1.5em 1.5em;
+  bottom: -8rem;
+  right: 2rem;
+  z-index: 9999;
+
+  // Startzustand: unsichtbar
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+
+  a {
+    color: $white;
+    font-weight: normal;
+    text-decoration: none;
+    transition: $trans-default;
+
+    &:hover {
+      color: $blue-link;
+      border-radius: 1.5em 0em 1.5em 1.5em;
     }
   }
 }
