@@ -8,16 +8,9 @@
       <img src="assets/icons/person-add-white-32px.svg" alt="" aria-hidden="true" />
     </ui-button>
 
-    <label class="input-search">
-      <img src="assets/icons/search-32px.svg" alt="" aria-hidden="true" />
-      <input
-        id="search-contact"
-        type="search"
-        placeholder="Search contact ..."
-        aria-label="Search contacts"
-        (input)="search.emit($event)"
-      />
-    </label>
+    <app-input-field type="email" label="Email" placeholder="Search contacts" icon="assets/icons/search-32px.svg"
+      (inputChange)="search.emit($event)"
+    />
   </header>
 
 <app-contact-add-form *ngIf="isContactModalOpen" (added)="onAdded()" (closed)="closeModal()"></app-contact-add-form>

@@ -2,7 +2,7 @@
   <label [for]="label" class="visually-hidden">{{ label }}</label>
 
   <div class="inputWrapper" [class.hasError]="error">
-    <input [id]="label" class="form-control" [type]="type" [placeholder]="placeholder" [value]="model"
+    <input [id]="label" class="form-control" [type]="type" [placeholder]="placeholder" [value]="model ?? ''"
       (input)="onInput($event)" (blur)="blur.emit()" aria-invalid="{{ !!error }}"
       [attr.aria-describedby]="label + 'Error'" />
 

@@ -41,6 +41,15 @@
     opacity: 1;
   }
 
+  &:focus-within {
+    border-color: $blue-light;
+
+    .inputIcon {
+      opacity: 1;
+      filter: brightness(0) saturate(100%) invert(56%) sepia(69%) saturate(680%) hue-rotate(161deg) brightness(96%) contrast(89%);
+    }
+  }
+
   &.hasError {
     border-color: $red;
 
