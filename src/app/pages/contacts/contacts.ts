@@ -1,18 +1,21 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, signal, computed, ViewChild } from '@angular/core';
 import { ContactsDb } from '../../core/db/contacts.db';
 import { Contact, ContactWithInitials, GroupedContacts } from './../../core/db/contacts.db';
 import { ContactDetails } from './contact-details/contact-details';
 import { ContactList } from './contact-list/contact-list';
 import { ContactHeader } from './contact-header/contact-header';
+import { UserFeedbackComponent } from "../../shared/ui/user-feedback/user-feedback";
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [ContactDetails, ContactList, ContactHeader],
+  imports: [ContactDetails, ContactList, ContactHeader, UserFeedbackComponent],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })
 export class Contacts implements OnInit {
+  @ViewChild('feedback') feedback!: UserFeedbackComponent;
+
   groupedContacts = signal<GroupedContacts[]>([]);
   searchTerm = signal('');
   selected: ContactWithInitials | null = null;
@@ -74,11 +77,15 @@ export class Contacts implements OnInit {
   }
 
   editSelected() {
-    console.log('Edit:', this.selected);
+    if (!this.selected) return;
+    this.feedback.show(`Contact has been updated!`);
   }
+
 
   async deleteSelected() {
     if (!this.selected) return;
+
+    const deletedName = this.selected.name;
 
     await this.contactsDb.deleteContact(this.selected.id);
 
@@ -86,5 +93,7 @@ export class Contacts implements OnInit {
     this.groupedContacts.set(this.sortAndGroup(remaining));
 
     this.selected = null;
+
+    this.feedback.show(`Deleted ${deletedName}`);
   }
 }

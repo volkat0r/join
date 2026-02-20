@@ -1,9 +1,9 @@
 <!-- contact-details -->
 
 <div class="ContactDetails">
-  <app-contact-edit-form *ngIf="isContactModalOpen" [contact]="selectedContact" (closed)="closeModal()"
-    (saved)="closeModal()" (deleted)="closeModal()" />
-
+<app-contact-edit-form *ngIf="isContactModalOpen" [contact]="selectedContact" (closed)="closeModal()"
+  (saved)="onEditSaved()" (deleted)="onEditDeleted()" />
+  
   @if (!contact) {
   <div>Select a contact to view details</div>
   }
@@ -20,7 +20,6 @@
       </div>
 
       <div class="contact-actions">
-        <!-- .emit "emits" the selected contact to parent component -->
         <button (click)="openEdit(contact)" title="Edit contact" aria-label="Edit contact">
           <img src="assets/icons/edit-dark-24px.svg" alt="Edit" />
           Edit
