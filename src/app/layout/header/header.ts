@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router, NavigationEnd, RouterLink, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -11,16 +11,7 @@ import { filter } from 'rxjs/operators';
 export class Header {
   menuOpen = false;
 
-  constructor(private router: Router) { }
-
-  toggleMenu(event: MouseEvent) {
-    event.stopPropagation();
-    this.menuOpen = !this.menuOpen;
-  }
-
-  ngOnInit() {
-    document.addEventListener('click', this.handleOutsideClick);
-
+  constructor(private router: Router) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -28,11 +19,13 @@ export class Header {
       });
   }
 
-  ngOnDestroy() {
-    document.removeEventListener('click', this.handleOutsideClick);
+  toggleMenu(event: MouseEvent) {
+    event.stopPropagation();
+    this.menuOpen = !this.menuOpen;
   }
 
-  handleOutsideClick = (event: MouseEvent) => {
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
 
     const clickedInsideProfile = target.closest('.userProfile');
@@ -41,5 +34,5 @@ export class Header {
     if (!clickedInsideProfile && !clickedInsideMenu) {
       this.menuOpen = false;
     }
-  };
+  }
 }
