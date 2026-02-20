@@ -16,6 +16,7 @@ export class ContactList {
   @Input() selectedId: number | null = null;
   @Output() search = new EventEmitter<Event>();
   @Output() select = new EventEmitter<ContactWithInitials>();
+  @Output() added = new EventEmitter<void>();
 
   isContactModalOpen = false;
 
@@ -25,5 +26,10 @@ export class ContactList {
 
   closeModal() {
     this.isContactModalOpen = false;
+  }
+
+  onAdded() {
+    this.added.emit();
+    this.closeModal();
   }
 }

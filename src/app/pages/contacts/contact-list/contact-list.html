@@ -20,7 +20,7 @@
     </label>
   </header>
 
-  <app-contact-add-form *ngIf="isContactModalOpen" (closed)="closeModal()">></app-contact-add-form>
+<app-contact-add-form *ngIf="isContactModalOpen" (added)="onAdded()" (closed)="closeModal()"></app-contact-add-form>
 
   @for (group of groups; track group.letter) {
     <section class="contacts">

@@ -4,7 +4,7 @@
   <!-- Left: navigation/list -->
   <aside class="left">
     <app-contact-list [groups]="filteredContacts()" [selectedId]="selected?.id ?? null" (search)="onSearch($event)"
-      (select)="selectContact($event)" />
+      (select)="selectContact($event)" (added)="onContactAdded()" />
   </aside>
 
   <!-- Right: main detail view -->

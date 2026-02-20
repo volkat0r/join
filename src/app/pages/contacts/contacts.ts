@@ -78,9 +78,15 @@ export class Contacts implements OnInit {
 
   editSelected() {
     if (!this.selected) return;
-    this.feedback.show(`Contact has been updated!`);
+    this.feedback.show(`Contact '${this.selected.name}' has been updated!`);
   }
 
+  async onContactAdded() {
+    await this.contactsDb.getContacts();
+    this.groupedContacts.set(this.sortAndGroup(this.contactsDb.contacts()));
+
+    this.feedback.show(`Contact has been created!`);
+  }
 
   async deleteSelected() {
     if (!this.selected) return;
@@ -94,6 +100,6 @@ export class Contacts implements OnInit {
 
     this.selected = null;
 
-    this.feedback.show(`Deleted ${deletedName}`);
+    this.feedback.show(`Contact '${deletedName}' has been deleted!`);
   }
 }
