@@ -1,6 +1,6 @@
 import { CONTACT_COLORS } from './../../core/constants/colors';
 import { ContactsDb, Contact } from './../../core/db/contacts.db';
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { isValidName, isValidEmail, isValidPhone } from '../../core/utils/validation';
 import { ModalWrapper } from '../../shared/ui/modal-wrapper/modal-wrapper';
@@ -16,8 +16,13 @@ import { Button } from '../../shared/ui/button/button';
 })
 export class ContactAddFormComponent {
   db = inject(ContactsDb);
+  cdr = inject(ChangeDetectorRef);
 
   @Output() added = new EventEmitter<void>();
+  @Output() closed = new EventEmitter<void>();
+
+  isSaving = false;
+  errorMessage = '';
 
   form: Omit<Contact, 'id' | 'color'> = {
     name: '',
@@ -89,19 +94,27 @@ export class ContactAddFormComponent {
     this.markDirty('email');
     this.markDirty('phone');
 
-    if (!this.isFormValid()) {
-      return;
+    if (!this.isFormValid()) return;
+
+    this.isSaving = true;
+    this.errorMessage = '';
+
+    try {
+      await this.db.setContact({
+        ...this.form,
+        color: this.getRandomColor(),
+      });
+
+      this.added.emit();
+    } catch (err) {
+      console.error('Saving failed:', err);
+      this.errorMessage = 'Saving failed. Please check your connection or try again later.';
+
+      this.cdr.detectChanges();
+    } finally {
+      this.isSaving = false;
     }
-
-    await this.db.setContact({
-      ...this.form,
-      color: this.getRandomColor(),
-    });
-
-    this.added.emit();
   }
-
-  @Output() closed = new EventEmitter<void>();
 
   onCancel() {
     this.closed.emit();
