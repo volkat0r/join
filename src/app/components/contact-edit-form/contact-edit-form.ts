@@ -4,11 +4,12 @@ import { ContactsDb, Contact, ContactWithInitials } from './../../core/db/contac
 import { isValidName, isValidEmail, isValidPhone } from '../../core/utils/validation';
 import { InputFieldComponent } from '../../shared/ui/input-field/input-field';
 import { ModalWrapper } from '../../shared/ui/modal-wrapper/modal-wrapper';
+import { Button } from '../../shared/ui/button/button';
 
 @Component({
   selector: 'app-contact-edit-form',
   standalone: true,
-  imports: [FormsModule, InputFieldComponent, ModalWrapper],
+  imports: [FormsModule, InputFieldComponent, ModalWrapper, Button],
   templateUrl: './contact-edit-form.html',
   styleUrls: ['./contact-edit-form.scss']
 })

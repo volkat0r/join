@@ -10,4 +10,6 @@ export class Button {
   @Input() type: 'button' | 'submit' = 'button';
   @Input() variant: 'primary' | 'secondary' | 'urgent' | 'medium' | 'low' = 'primary';
   @Input() icon: 'without' | 'add' | 'create' | 'cancel' | 'urgent' | 'medium' | 'low' = 'without';
+  @Input() disabled = false;
+
 }
