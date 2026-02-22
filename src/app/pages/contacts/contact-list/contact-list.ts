@@ -28,12 +28,19 @@ export class ContactList {
   searchError: string | null = null;
 
   onSearchInput(event: Event) {
-    this.searchError = null;
     this.search.emit(event);
-  }
-
-  onSearchBlur() {
-    const hasResults = this.groups.some(g => g.contacts.length > 0);
+    const term = (event.target as HTMLInputElement).value.toLowerCase();
+    if (term.length < 3) {
+      this.searchError = null;
+      return;
+    }
+    const hasResults = this.groups.some(g =>
+      g.contacts.some(c =>
+        c.name.toLowerCase().includes(term) ||
+        c.email.toLowerCase().includes(term) ||
+        c.phone.includes(term)
+      )
+    );
     this.searchError = hasResults ? null : 'No contacts found';
   }
 
