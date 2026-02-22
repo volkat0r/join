@@ -10,7 +10,11 @@ header {
 
 #slogan {
   color: $blue-dark;
-  padding-left: 6rem;
+  padding-left: 5rem;
+
+  p {
+      font-size: 1.5rem;
+  }
 }
 
 #header-right {

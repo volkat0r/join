@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContactsDb, Contact, ContactWithInitials } from './../../core/db/contacts.db';
 import { isValidName, isValidEmail, isValidPhone } from '../../core/utils/validation';
@@ -16,10 +16,17 @@ import { Button } from '../../shared/ui/button/button';
 export class ContactEditFormComponent {
 
   db = inject(ContactsDb);
+  cdr = inject(ChangeDetectorRef);
 
   @Input() contact: ContactWithInitials | null = null;
   @Output() saved = new EventEmitter<void>();
   @Output() deleted = new EventEmitter<void>();
+  @Output() closed = new EventEmitter<void>();
+
+  isSaving = false;
+  isDeleting = false;
+
+  errorMessage = '';
 
   form: Partial<Contact> = {
     name: '',
@@ -48,7 +55,6 @@ export class ContactEditFormComponent {
       phone: this.contact.phone
     };
   }
-
 
   markDirty(field: keyof typeof this.dirty) {
     this.dirty[field] = true;
@@ -106,23 +112,43 @@ export class ContactEditFormComponent {
 
     if (!this.isFormValid() || !this.contact) return;
 
-    await this.db.updateContact(this.contact.id, {
-      name: String(this.form.name),
-      email: String(this.form.email),
-      phone: String(this.form.phone)
-    });
+    this.isSaving = true;
+    this.errorMessage = '';
 
-    this.saved.emit();
+    try {
+      await this.db.updateContact(this.contact.id, {
+        name: String(this.form.name),
+        email: String(this.form.email),
+        phone: String(this.form.phone)
+      });
+
+      this.saved.emit();
+    } catch (error) {
+      console.error('Failed to update contact:', error);
+      this.errorMessage = 'Saving failed. Please check your connection or try again later.';
+      this.cdr.detectChanges(); // sofortige UI-Aktualisierung
+    } finally {
+      this.isSaving = false;
+    }
   }
 
   async delete() {
-    if (!this.contact) return;
+    if (!this.contact || this.isDeleting) return;
 
-    await this.db.deleteContact(this.contact.id);
-    this.deleted.emit();
+    this.isDeleting = true;
+    this.errorMessage = '';
+
+    try {
+      await this.db.deleteContact(this.contact.id);
+      this.deleted.emit();
+    } catch (error) {
+      console.error('Failed to delete contact:', error);
+      this.errorMessage = 'Deleting failed. Please check your connection or try again later.';
+      this.cdr.detectChanges();
+    } finally {
+      this.isDeleting = false;
+    }
   }
-
-  @Output() closed = new EventEmitter<void>();
 
   onCancel() {
     this.closed.emit();
