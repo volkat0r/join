@@ -25,6 +25,7 @@ export class ContactList {
   @Output() added = new EventEmitter<void>();
 
   isContactModalOpen = false;
+  isMobileSearchOpen = false;
   searchError: string | null = null;
 
   onSearchInput(event: Event) {
