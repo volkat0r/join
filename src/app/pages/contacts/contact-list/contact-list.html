@@ -1,6 +1,7 @@
 <!-- contact-list.html -->
 
 <main class="contact-list">
+  <app-contact-add-form *ngIf="isContactModalOpen" (added)="onAdded()" (closed)="closeModal()"></app-contact-add-form>
 
   <header class="sticky-top">
     <ui-button variant="primary" (click)="openModal()">
@@ -8,12 +9,12 @@
       <img src="assets/icons/person-add-white-32px.svg" alt="" aria-hidden="true" />
     </ui-button>
 
-    <app-input-field type="email" label="Email" placeholder="Search contacts" icon="assets/icons/search-32px.svg"
-      (inputChange)="search.emit($event)"
+    <app-input-field type="text" label="Search" placeholder="Search contacts" icon="assets/icons/search-32px.svg"
+      [error]="searchError"
+      (inputChange)="onSearchInput($event)"
+      (blur)="onSearchBlur()"
     />
   </header>
-
-<app-contact-add-form *ngIf="isContactModalOpen" (added)="onAdded()" (closed)="closeModal()"></app-contact-add-form>
 
   @for (group of groups; track group.letter) {
     <section class="contacts">

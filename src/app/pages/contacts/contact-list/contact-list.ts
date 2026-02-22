@@ -25,6 +25,17 @@ export class ContactList {
   @Output() added = new EventEmitter<void>();
 
   isContactModalOpen = false;
+  searchError: string | null = null;
+
+  onSearchInput(event: Event) {
+    this.searchError = null;
+    this.search.emit(event);
+  }
+
+  onSearchBlur() {
+    const hasResults = this.groups.some(g => g.contacts.length > 0);
+    this.searchError = hasResults ? null : 'No contacts found';
+  }
 
   openModal() {
     this.isContactModalOpen = true;
