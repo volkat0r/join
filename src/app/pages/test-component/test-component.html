@@ -10,7 +10,9 @@
     <img src="assets/icons/person-add-white-32px.svg" alt="" aria-hidden="true" />
   </ui-button>
 
-  <app-contact-add-form *ngIf="isContactModalOpen" (closed)="closeModal()">></app-contact-add-form>
+  @if (isContactModalOpen) {
+    <app-contact-add-form (closed)="closeModal()"></app-contact-add-form>
+  }
 
   <div class="d-flex column gap-3 mt-3">
     <ui-button type="submit" variant="primary" icon="create">Primary - Create</ui-button>
