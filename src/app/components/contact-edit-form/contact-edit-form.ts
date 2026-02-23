@@ -45,6 +45,10 @@ export class ContactEditFormComponent {
     phone: false,
   };
 
+  /**
+   * Updates the form values whenever the input `contact` changes.
+   * Ensures the edit form always reflects the currently selected contact.
+   */
   ngOnChanges() {
     if (!this.contact) return;
 
@@ -55,17 +59,30 @@ export class ContactEditFormComponent {
     };
   }
 
+  /**
+   * Marks a field as dirty and triggers validation for that field.
+   * @param field - The form field to mark as dirty.
+   */
   markDirty(field: keyof typeof this.dirty) {
     this.dirty[field] = true;
     this.validateField(field);
   }
 
+  /**
+   * Performs live validation on a field only if it has already been marked dirty.
+   * @param field - The form field to validate.
+   */
   liveValidate(field: keyof typeof this.dirty) {
     if (this.dirty[field]) {
       this.validateField(field);
     }
   }
 
+  /**
+   * Validates a specific form field and updates the corresponding error message.
+   * Uses shared validation utilities for name, email, and phone.
+   * @param field - The form field to validate.
+   */
   validateField(field: keyof typeof this.form) {
     if (!this.contact) return;
 
@@ -89,6 +106,11 @@ export class ContactEditFormComponent {
     }
   }
 
+  /**
+   * Checks whether the entire form is valid.
+   * Ensures all fields are filled and no validation errors remain.
+   * @returns True if the form is valid, otherwise false.
+   */
   isFormValid() {
     return (
       String(this.form.name ?? '').trim() !== '' &&
@@ -100,6 +122,11 @@ export class ContactEditFormComponent {
     );
   }
 
+  /**
+   * Saves the updated contact.
+   * Validates all fields, updates the contact in the database,
+   * emits the `saved` event on success, and handles error states.
+   */
   async save() {
     this.markDirty('name');
     this.markDirty('email');
@@ -121,12 +148,17 @@ export class ContactEditFormComponent {
     } catch (error) {
       console.error('Failed to update contact:', error);
       this.errorMessage = 'Saving failed. Please check your connection or try again later.';
-      this.cdr.detectChanges(); // sofortige UI-Aktualisierung
+      this.cdr.detectChanges();
     } finally {
       this.isSaving = false;
     }
   }
 
+  /**
+   * Deletes the current contact.
+   * Prevents duplicate delete actions, removes the contact from the database,
+   * and emits the `deleted` event on success.
+   */
   async delete() {
     if (!this.contact || this.isDeleting) return;
 
@@ -145,6 +177,10 @@ export class ContactEditFormComponent {
     }
   }
 
+  /**
+   * Emits the `closed` event to notify the parent component
+   * that the edit form should be closed without saving.
+   */
   onCancel() {
     this.closed.emit();
   }

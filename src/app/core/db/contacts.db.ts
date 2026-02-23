@@ -28,6 +28,11 @@ export class ContactsDb {
 
   constructor(private supa: SupabaseClientService) { }
 
+  /**
+   * Loads all contacts from the Supabase `contacts` table.
+   * Updates the `contacts` signal and subscribes to realtime changes.
+   * Logs an error if the request fails.
+   */
   async getContacts() {
     const { data: contacts, error } = await this.supa.supabase
       .from('contacts')
@@ -44,6 +49,12 @@ export class ContactsDb {
     this.subscripeToContactChanges();
   }
 
+  /**
+   * Inserts a new contact into the Supabase `contacts` table.
+   * @param contact - Contact data without the `id` field.
+   * @returns The inserted contact data returned by Supabase.
+   * @throws If the insert operation fails.
+   */
   async setContact(contact: Omit<Contact, 'id'>) {
     const { data, error } = await this.supa.supabase
       .from('contacts')
@@ -58,7 +69,13 @@ export class ContactsDb {
     return data;
   }
 
-
+  /**
+   * Updates an existing contact in the Supabase `contacts` table.
+   * @param id - The ID of the contact to update.
+   * @param update - Partial contact data to update.
+   * @returns The updated contact data returned by Supabase.
+   * @throws If the update operation fails.
+   */
   async updateContact(id: number, update: Partial<Contact>) {
     const { data, error } = await this.supa.supabase
       .from('contacts')
@@ -74,7 +91,11 @@ export class ContactsDb {
     return data;
   }
 
-
+  /**
+   * Deletes a contact from the Supabase `contacts` table.
+   * @param id - The ID of the contact to delete.
+   * @throws If the delete operation fails.
+   */
   async deleteContact(id: number) {
     const { error } = await this.supa.supabase
       .from('contacts')
@@ -87,10 +108,18 @@ export class ContactsDb {
     }
   }
 
+  /**
+   * Angular lifecycle hook.
+   * Cleans up the realtime subscription when the service is destroyed.
+   */
   ngOnDestroy() {
     this.unSubscripeFromContactChanges();
   }
 
+  /**
+   * Subscribes to realtime changes on the Supabase `contacts` table.
+   * Whenever a change occurs, contacts are reloaded.
+   */
   subscripeToContactChanges() {
     this.channels = this.supa.supabase.channel('custom-all-channel')
       .on('postgres_changes',
@@ -102,6 +131,10 @@ export class ContactsDb {
       .subscribe();
   }
 
+  /**
+   * Unsubscribes from the realtime channel if it exists.
+   * Prevents memory leaks and duplicate subscriptions.
+   */
   unSubscripeFromContactChanges() {
     if (this.channels) {
       this.supa.supabase.removeChannel(this.channels);

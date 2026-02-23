@@ -42,22 +42,40 @@ export class ContactAddFormComponent {
     phone: false,
   };
 
+  /**
+   * Selects a random color from the predefined CONTACT_COLORS list.
+   * Used to assign a visual identifier to newly created contacts.
+   * @returns A random color string.
+   */
   private getRandomColor() {
     const index = Math.floor(Math.random() * CONTACT_COLORS.length);
     return CONTACT_COLORS[index];
   }
 
+  /**
+   * Marks a form field as "dirty" and triggers validation for that field.
+   * @param field - The form field to mark as dirty.
+   */
   markDirty(field: keyof typeof this.dirty) {
     this.dirty[field] = true;
     this.validateField(field);
   }
 
+  /**
+   * Performs live validation on a field only if it has already been marked as dirty.
+   * @param field - The form field to validate.
+   */
   liveValidate(field: keyof typeof this.dirty) {
     if (this.dirty[field]) {
       this.validateField(field);
     }
   }
 
+  /**
+   * Validates a specific form field and updates the corresponding error message.
+   * Uses shared validation utilities for name, email, and phone.
+   * @param field - The form field to validate.
+   */
   validateField(field: keyof typeof this.form) {
     const value = this.form[field];
 
@@ -78,6 +96,11 @@ export class ContactAddFormComponent {
     }
   }
 
+  /**
+   * Checks whether the entire form is valid.
+   * Ensures all fields are filled and no validation errors remain.
+   * @returns True if the form is valid, otherwise false.
+   */
   isFormValid() {
     return (
       this.form.name.trim() !== '' &&
@@ -89,6 +112,11 @@ export class ContactAddFormComponent {
     );
   }
 
+  /**
+   * Handles form submission.
+   * Validates all fields, attempts to save the contact to the database,
+   * emits the `added` event on success, and handles error states gracefully.
+   */
   async submit() {
     this.markDirty('name');
     this.markDirty('email');
@@ -116,6 +144,10 @@ export class ContactAddFormComponent {
     }
   }
 
+  /**
+   * Emits the `closed` event to notify the parent component
+   * that the form should be closed without saving.
+   */
   onCancel() {
     this.closed.emit();
   }

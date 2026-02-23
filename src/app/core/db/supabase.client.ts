@@ -6,6 +6,10 @@ import { environment } from '../../../environments/environment';
 export class SupabaseClientService {
   private client: SupabaseClient;
 
+  /**
+   * Initializes the Supabase client using environment configuration.
+   * Creates a single shared Supabase client instance for the application.
+   */
   constructor() {
     this.client = createClient(
       environment.supabaseUrl,
@@ -13,6 +17,10 @@ export class SupabaseClientService {
     );
   }
 
+  /**
+   * Returns the initialized Supabase client instance.
+   * Provides access to all Supabase features such as auth, database, and storage.
+   */
   get supabase() {
     return this.client;
   }
