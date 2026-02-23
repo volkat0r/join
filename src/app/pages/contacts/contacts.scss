@@ -2,8 +2,16 @@
   display: flex;
   height: 100%;
   gap: 40px;
+  padding: 0 2rem;
 
   .right {
     width: 60%;
+  }
+
+  @media (max-width: 991.98px) {
+    .left,
+    .right {
+      width: 100%;
+    }
   }
 }
