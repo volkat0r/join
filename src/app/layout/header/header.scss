@@ -9,6 +9,10 @@ header {
   position: relative; // wichtig für absolute userMenu-Position
 }
 
+.header-container{
+  max-width: 105.5rem;
+}
+
 #logo {
   img{
     width: 2rem;
@@ -18,8 +22,11 @@ header {
 
 #slogan {
   color: $blue-dark;
-  padding-left: 5rem;
+  padding-left: 2rem;
   font-weight: normal;
+  @include for-size(lg) {
+    padding-left: 6rem;
+  }
 }
 
 #header-left {
@@ -98,6 +105,10 @@ header {
     flex-direction: column;
     gap: 0.5rem;
     text-decoration: none;
+    padding: 1rem;
+    @include for-size(lg) {
+      padding: 0.5rem 1rem 1rem 1rem;
+    }
   }
 
   a {
