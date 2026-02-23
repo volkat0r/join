@@ -25,6 +25,25 @@ export class ContactList {
   @Output() added = new EventEmitter<void>();
 
   isContactModalOpen = false;
+  isMobileSearchOpen = false;
+  searchError: string | null = null;
+
+  onSearchInput(event: Event) {
+    this.search.emit(event);
+    const term = (event.target as HTMLInputElement).value.toLowerCase();
+    if (term.length < 3) {
+      this.searchError = null;
+      return;
+    }
+    const hasResults = this.groups.some(g =>
+      g.contacts.some(c =>
+        c.name.toLowerCase().includes(term) ||
+        c.email.toLowerCase().includes(term) ||
+        c.phone.includes(term)
+      )
+    );
+    this.searchError = hasResults ? null : 'No contacts found';
+  }
 
   openModal() {
     this.isContactModalOpen = true;

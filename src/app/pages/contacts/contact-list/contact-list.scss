@@ -3,7 +3,7 @@
 @use 'styles/variables' as *;
 
 .contact-list {
-  padding: 0 2rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   max-width: 28rem;
   background-color: $white;
   height: 100%;
@@ -15,16 +15,20 @@
   top: 0;
   z-index: 1;
   background-color: $white;
-  margin: -1.5rem -2rem 0;
-  padding: 1.5rem 2rem 1rem;
+  margin-top: 1rem;
 }
 
 ui-button {
   ::ng-deep .btn {
     width: 100%;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-family: 'Inter-Bold', sans-serif;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -82,14 +86,13 @@ ui-button {
 
 .contacts {
   header {
-    height: 3.625rem;
-    padding: 1rem 0;
+    height: 2rem;
   }
 
   .letter {
     font-size: 1.25rem;
     color: $black;
-    padding-left: 2.25rem;
+    padding-left: 1.5rem;
   }
 
   hr {
@@ -109,8 +112,8 @@ ui-button {
   &__item {
     display: flex;
     align-items: center;
-    padding: 1rem 1.5rem;
-    gap: 2.25rem;
+    padding: 0.4rem 0.8rem;
+    gap: 1.4rem;
     cursor: pointer;
     border-radius: $base-border-radius;
     transition: $trans-default;
@@ -130,11 +133,72 @@ ui-button {
   }
 
   &__name {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 
   &__email {
     color: $blue-link;
   }
 
+}
+
+// ── Mobile FABs ──────────────────────────────────────
+.fab-container {
+  position: sticky;
+  bottom: 4.5rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+  pointer-events: none;
+  float: right;
+  margin-right: 0;
+}
+
+.fab {
+  pointer-events: auto;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: $trans-default;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &--add {
+    background-color: $blue-dark;
+
+    &:hover { background-color: $blue-light; }
+    &:active { background-color: $blue-darker; }
+  }
+
+  &--search {
+    background-color: transparent;
+    box-shadow: none;
+    border: 2px solid $blue-dark;
+
+    &:hover {
+      border-color: $blue-light;
+      img { filter: invert(56%) sepia(81%) saturate(560%) hue-rotate(161deg) brightness(93%) contrast(90%); }
+    }
+    &:active { background-color: rgba(0, 0, 0, 0.1); }
+  }
+}
+
+.mobile-search {
+  position: sticky;
+  width: 70%;
+  bottom: 0;
+  z-index: 8;
+  background-color: $white;
+  padding: 0.5rem 0;
 }

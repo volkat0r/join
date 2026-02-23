@@ -1,15 +1,15 @@
 <!-- contact-details -->
 
 <div class="ContactDetails">
-<app-contact-edit-form *ngIf="isContactModalOpen" [contact]="selectedContact" (closed)="closeModal()"
-  (saved)="onEditSaved()" (deleted)="onEditDeleted()" />
-  
+  <app-contact-edit-form *ngIf="isContactModalOpen" [contact]="selectedContact" (closed)="closeModal()"
+    (saved)="onEditSaved()" (deleted)="onEditDeleted()" />
+
   @if (!contact) {
   <div>Select a contact to view details</div>
   }
 
   @if (contact) {
-  <div class="contact-card">
+  <div class="fadeIn contact-card">
     <div class="contact-avatar" [style.background]="contact.color">
       {{ contact.initials }}
     </div>
@@ -33,8 +33,8 @@
     </div>
   </div>
 
-  <div>
-    <h4>Contact Information</h4>
+  <div class="fadeIn d-flex flex-column gap-3">
+    <h5 class="pt-5 pb-2">Contact Information</h5>
 
     <div>
       <label>Email</label>

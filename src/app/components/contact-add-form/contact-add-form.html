@@ -1,7 +1,6 @@
 <ui-modal-wrapper (close)="onCancel()" id="contact-add-form">
   <div class="modal-inner d-flex flex-column h-100 w-100">
     <div class="row g-0 flex-grow-1 h-100">
-      <!-- Linke Spalte -->
       <div
         class="col-12 col-md-5 d-flex flex-column justify-content-center align-items-start modal-title-area p-3 py-5 p-md-5 pt-5 gap-0"
       >
@@ -20,7 +19,6 @@
         </div>
       </div>
 
-      <!-- Rechte Spalte -->
       <div class="col-12 col-md-7 d-flex flex-column justify-content-center py-4 py-md-0 h-100">
         <form
           (ngSubmit)="submit()"
@@ -65,14 +63,25 @@
               variant="secondary"
               icon="cancel"
               class="d-none d-md-inline-flex"
-              (click)="closed.emit()"
+              [disabled]="isSaving"
+              (click)="onCancel()"
             >
               Cancel
             </ui-button>
 
-            <ui-button type="submit" variant="primary" icon="create" [disabled]="!isFormValid()">
+            <ui-button
+              type="submit"
+              variant="primary"
+              icon="create"
+              [disabled]="isSaving || !isFormValid()"
+            >
               Create contact
             </ui-button>
+          </div>
+          <div class="text-danger fw-bold mt-2">
+            @if (errorMessage) {
+              {{ errorMessage }}
+            }
           </div>
         </form>
       </div>

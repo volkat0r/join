@@ -52,9 +52,12 @@ export class ContactsDb {
 
     if (error) {
       console.error('[Supabase] Error adding contact:', error.message);
-      return;
+      throw error;
     }
+
+    return data;
   }
+
 
   async updateContact(id: number, update: Partial<Contact>) {
     const { data, error } = await this.supa.supabase
@@ -65,9 +68,12 @@ export class ContactsDb {
 
     if (error) {
       console.error('[Supabase] Error updating contact:', error.message);
-      return;
+      throw error;
     }
+
+    return data;
   }
+
 
   async deleteContact(id: number) {
     const { error } = await this.supa.supabase
@@ -77,7 +83,7 @@ export class ContactsDb {
 
     if (error) {
       console.error('[Supabase] Error deleting contact:', error.message);
-      return;
+      throw error;
     }
   }
 
