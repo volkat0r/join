@@ -5,7 +5,7 @@
 .contact-header {
   font-size: 1rem;
   color: #141517;
-  padding: 2.5rem 0 2.5rem 0;
+  padding: 2rem 0 2rem 0;
   display: flex;
   align-items: center;
 
@@ -58,7 +58,6 @@
     align-items: center;
     gap: 0.5rem;
     font-size: 1rem;
-    color: $blue-light;
     padding: 0.5rem 0;
     margin-left: auto;
     margin-bottom: auto;
@@ -66,6 +65,20 @@
     img {
       width: 2rem;
       height: 2rem;
+
+      &.active {
+        display: none;
+      }
+    }
+
+    &:active {
+      img.default {
+        display: none;
+      }
+
+      img.active {
+        display: block;
+      }
     }
   }
 }
