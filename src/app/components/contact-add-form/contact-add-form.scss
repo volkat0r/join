@@ -35,6 +35,18 @@
   }
 }
 
+.slogan {
+  font-size: 1rem;
+
+  @include for-size(sm) {
+    font-size: 1.25rem;
+  }
+
+  @include for-size(md) {
+    font-size: 1.75rem;
+  }
+}
+
 @media (max-width: 992px) {
   .modal-content-area {
     margin-top: 3rem;
