@@ -50,6 +50,10 @@
     align-items: center;
     gap: 2.5rem;
     transition: $trans-default;
+
+    @media (max-width: 375px) {
+      gap: 1rem;
+    }
   }
 
   .contact-info {
@@ -72,9 +76,9 @@
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
 
     @media (max-width: 575.98px) {
-      width: 4.5rem;
-      height: 4.5rem;
-      font-size: 1.5rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      font-size: 1.5em;
     }
   }
 
@@ -89,6 +93,7 @@
 
     @media (max-width: 575.98px) {
       line-height: 2rem;
+      font-size: 1.5rem;
     }
   }
 
