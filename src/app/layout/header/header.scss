@@ -9,7 +9,7 @@ header {
   position: relative; // wichtig für absolute userMenu-Position
   z-index: 4;
 
-  @include for-size(md) {
+  @include for-size(lg) {
     height: 6rem;
   }
 }

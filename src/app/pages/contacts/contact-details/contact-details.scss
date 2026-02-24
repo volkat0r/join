@@ -51,6 +51,7 @@
     align-items: center;
     gap: 2.5rem;
     transition: $trans-default;
+    padding-top: 2.25rem;
 
     @media (max-width: 575.98px) {
       gap: 1rem;
