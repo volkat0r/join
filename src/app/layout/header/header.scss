@@ -22,7 +22,7 @@ header {
 
 #slogan {
   color: $blue-dark;
-  padding-left: 2rem;
+  padding-left: 1rem;
   font-weight: normal;
   @include for-size(lg) {
     padding-left: 6rem;
@@ -30,14 +30,17 @@ header {
 }
 
 #header-left {
-  padding-left: 2.5rem;
+  padding-left: 1.5rem;
   @include for-size(lg) {
     padding-left: 0;
   }
 }
 
 #header-right {
-  padding-right: 2.5rem;
+  padding-right: 1rem;
+  @include for-size(sm) {
+    padding-right: 1.5rem;
+  }
 }
 
 .userProfile {
