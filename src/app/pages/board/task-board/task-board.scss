@@ -1,0 +1,71 @@
+@use 'styles/mixins' as *;
+
+.container {
+  max-width: 100%;
+}
+
+.taskboard-columns-header {
+  --bs-gutter-x: 1.625rem;
+  --bs-gutter-y: 0;
+
+  @include for-size(lg) {
+    margin: 0 calc(-1.625rem / 2);
+  }
+}
+
+.taskboard-inner {
+  height: 100%;
+
+  @include for-size(lg) {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+  }
+}
+
+.taskboard-column {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+
+  @include for-size(lg) {
+    padding: 0 calc(1.625rem / 2);
+  }
+}
+
+.kanban-column {
+  flex-grow: 1;
+
+  &--ml {
+    @include for-size(lg) {
+      margin-left: calc(-1.625rem / 2);
+    }
+  }
+
+  &--mr {
+    @include for-size(lg) {
+      margin-right: calc(-1.625rem / 2);
+    }
+  }
+}
+
+.taskboard-scroll {
+  overflow: visible;
+  gap: 1.75rem;
+
+  @include for-size(lg) {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    gap: unset;
+    --bs-gutter-x: 1.625rem;
+  }
+}
+
+h2 {
+  font-size: 1.75rem;
+
+  @include for-size(lg) {
+    font-size: 1.25rem;
+  }
+}
