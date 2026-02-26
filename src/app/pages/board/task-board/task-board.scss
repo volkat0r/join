@@ -74,9 +74,7 @@ h2 {
   @include for-size(lg) {
     font-size: 1.25rem;
   }
-
 }
-
 
 .board-list-add-button {
   transition: $trans-default;

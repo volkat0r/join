@@ -2,9 +2,10 @@
 
   <div class="taskboard-inner">
 
-    <!-- Desktop: Spalten-Header in einer Reihe -->
+    <!-- Desktop Header -->
     <div class="row taskboard-columns-header d-none d-lg-flex mb-3">
-      <div class="col-12 col-lg-3">
+
+      <div class="col-lg-3">
         <header class="kanban-header d-flex align-items-center justify-content-between">
           <h2 class="h5 my-0">To Do</h2>
           <button
@@ -14,7 +15,7 @@
         </header>
       </div>
 
-      <div class="col-12 col-lg-3">
+      <div class="col-lg-3">
         <header class="kanban-header d-flex align-items-center justify-content-between">
           <h2 class="h5 my-0">In Progress</h2>
           <button
@@ -24,7 +25,7 @@
         </header>
       </div>
 
-      <div class="col-12 col-lg-3">
+      <div class="col-lg-3">
         <header class="kanban-header d-flex align-items-center justify-content-between">
           <h2 class="h5 my-0">Review</h2>
           <button
@@ -34,7 +35,7 @@
         </header>
       </div>
 
-      <div class="col-12 col-lg-3">
+      <div class="col-lg-3">
         <header class="kanban-header">
           <h2 class="h5 my-0">Done</h2>
         </header>
@@ -43,8 +44,8 @@
 
     <div class="taskboard-scroll row">
 
-      <!-- To Do -->
-      <section class="col-12 col-lg-3 taskboard-column">
+      <!-- Column -->
+      <section class="col-lg-3 taskboard-column">
         <header class="kanban-header d-flex d-lg-none align-items-center justify-content-between mb-3">
           <h2 class="h5 m-0">To Do</h2>
           <button
@@ -52,8 +53,9 @@
             <img src="assets/icons/add-plus-dark24px.svg" alt="">
           </button>
         </header>
+
         <div class="kanban-column d-flex flex-column gap-3">
-          <div class="d-flex flex-row flex-lg-column gap-3 overflow-x-auto overflow-x-lg-hidden" horizontalScroll>
+          <div class="d-flex flex-row flex-lg-column gap-3 gap-lg-2 overflow-x-auto overflow-x-lg-hidden" horizontalScroll>
             @for (task of todoTasks(); track task.id) {
             <app-task-card class="task-item" [task]="task" (openTask)="openTaskDetail($event)"></app-task-card>
             }
@@ -62,17 +64,17 @@
       </section>
 
       <!-- In Progress -->
-      <section class="col-12 col-lg-3 taskboard-column">
+      <section class="col-lg-3 taskboard-column">
         <header class="kanban-header d-flex d-lg-none align-items-center justify-content-between mb-3">
           <h2 class="h5 m-0">In Progress</h2>
           <button
             class="board-list-add-button p-0 d-flex align-items-center justify-content-center border border-black border-2 rounded-3">
             <img src="assets/icons/add-plus-dark24px.svg" alt="">
           </button>
-
         </header>
+
         <div class="kanban-column d-flex flex-column gap-3">
-          <div class="d-flex flex-row flex-lg-column gap-3 overflow-x-auto overflow-x-lg-hidden" horizontalScroll>
+          <div class="d-flex flex-row flex-lg-column gap-3 gap-lg-2 overflow-x-auto overflow-x-lg-hidden" horizontalScroll>
             @for (task of inProgressTasks(); track task.id) {
             <app-task-card class="task-item" [task]="task" (openTask)="openTaskDetail($event)"></app-task-card>
             }
@@ -81,7 +83,7 @@
       </section>
 
       <!-- Review -->
-      <section class="col-12 col-lg-3 taskboard-column">
+      <section class="col-lg-3 taskboard-column">
         <header class="kanban-header d-flex d-lg-none align-items-center justify-content-between mb-3">
           <h2 class="h5 m-0">Review</h2>
           <button
@@ -89,8 +91,9 @@
             <img src="assets/icons/add-plus-dark24px.svg" alt="">
           </button>
         </header>
+
         <div class="kanban-column d-flex flex-column gap-3">
-          <div class="d-flex flex-row flex-lg-column gap-3 overflow-x-auto overflow-x-lg-hidden" horizontalScroll>
+          <div class="d-flex flex-row flex-lg-column gap-3 gap-lg-2 overflow-x-auto overflow-x-lg-hidden" horizontalScroll>
             @for (task of reviewTasks(); track task.id) {
             <app-task-card class="task-item" [task]="task" (openTask)="openTaskDetail($event)"></app-task-card>
             }
@@ -99,20 +102,19 @@
       </section>
 
       <!-- Done -->
-      <section class="col-12 col-lg-3 taskboard-column">
+      <section class="col-lg-3 taskboard-column">
         <header class="kanban-header d-flex d-lg-none align-items-center justify-content-between mb-3">
           <h2 class="h5 m-0">Done</h2>
         </header>
+
         <div class="kanban-column d-flex flex-column gap-3">
-          <div class="d-flex flex-row flex-lg-column gap-3 overflow-x-auto overflow-x-lg-hidden" horizontalScroll>
+          <div class="d-flex flex-row flex-lg-column gap-3 gap-lg-2 overflow-x-auto overflow-x-lg-hidden" horizontalScroll>
             @for (task of doneTasks(); track task.id) {
             <app-task-card class="task-item" [task]="task" (openTask)="openTaskDetail($event)"></app-task-card>
             }
           </div>
         </div>
       </section>
-
     </div>
-
   </div>
 </section>
