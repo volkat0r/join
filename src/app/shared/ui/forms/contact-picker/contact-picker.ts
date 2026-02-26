@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, signal, computed, ElementRef, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Contact } from '../../../core/db/contacts.db';
+import { Contact } from '../../../../core/db/contacts.db';
 
 @Component({
   selector: 'app-contact-picker',
