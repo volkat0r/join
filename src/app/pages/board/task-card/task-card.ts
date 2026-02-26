@@ -1,12 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../../core/db/tasks.db';
+import { TruncatePipe } from '../../../services/truncate.pipe';
 
 
 @Component({
     selector: 'app-task-card',
     standalone: true,
-    imports: [CommonModule], // ❌
+    imports: [CommonModule, TruncatePipe],
     templateUrl: './task-card.html',
     styleUrls: ['./task-card.scss'],
 })
