@@ -1,35 +1,60 @@
 <div class="task-card mb-2">
-  <span class="category" [ngClass]="getCategoryClass()" *ngIf="task.category">{{ task.category }}</span>
+
+  @if (task.category) {
+  <span class="category" [ngClass]="getCategoryClass()">
+    {{ task.category }}
+  </span>
+  }
 
   <div class="task-header d-flex justify-content-between align-items-center">
     <h5>{{ task.title }}</h5>
   </div>
 
-  <p *ngIf="task.description">{{ task.description }}</p>
+  @if (task.description) {
+  <p>{{ task.description }}</p>
+  }
 
+  @if (task.subtasks.length || task.contacts.length) {
+  <div class="info-row">
 
-  <div class="info-row" *ngIf="task.subtasks.length || task.contacts.length">
-    <!-- top row: progress info -->
-    <div class="progress-container" *ngIf="task.subtasks.length">
+    @if (task.subtasks.length) {
+    <div class="progress-container">
       <div class="progress-bar">
         <div class="progress" [style.width.%]="subtaskPercent"></div>
       </div>
       <small>{{ completedSubtasks }}</small>
     </div>
+    }
 
     <div class="bottom-row">
-      <div class="avatars" *ngIf="task.contacts.length">
-        <span *ngFor="let c of task.contacts" class="avatar" [style.background]="c.color">
+
+      @if (task.contacts.length) {
+      <div class="avatars">
+        @for (c of task.contacts; track c.id) {
+        <span class="avatar" [style.background]="c.color">
           {{ initials(c.name) }}
         </span>
+        }
+
       </div>
+      }
+
       <div class="priority-icon" [ngClass]="'priority-' + task.priority.toLowerCase()">
-        <img *ngIf="task.priority.toLowerCase() === 'urgent'" src="assets/icons/prio-urgent-red-20px.svg"
-          alt="Urgent Priority" />
-        <img *ngIf="task.priority.toLowerCase() === 'medium'" src="assets/icons/prio-medium-20px.svg"
-          alt="Medium Priority" />
-        <img *ngIf="task.priority.toLowerCase() === 'low'" src="assets/icons/prio-low-20px.svg" alt="Low Priority" />
+
+        @if (task.priority.toLowerCase() === 'urgent') {
+        <img src="assets/icons/prio-urgent-red-20px.svg" alt="Urgent Priority" />
+        }
+
+        @if (task.priority.toLowerCase() === 'medium') {
+        <img src="assets/icons/prio-medium-20px.svg" alt="Medium Priority" />
+        }
+
+        @if (task.priority.toLowerCase() === 'low') {
+        <img src="assets/icons/prio-low-20px.svg" alt="Low Priority" />
+        }
+
       </div>
     </div>
   </div>
+  }
 </div>
