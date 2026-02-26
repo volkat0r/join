@@ -63,7 +63,8 @@
       <section class="col-12 col-lg-3 taskboard-column">
         <header class="kanban-header d-flex d-lg-none align-items-center justify-content-between mb-3">
           <h2 class="h5 m-0">In Progress</h2>
-          <button class="board-list-add-button p-0 d-flex align-items-center justify-content-center border border-black border-2 rounded-3">
+          <button
+            class="board-list-add-button p-0 d-flex align-items-center justify-content-center border border-black border-2 rounded-3">
             <img src="assets/icons/add-plus-dark24px.svg" alt="">
           </button>
 
@@ -96,5 +97,14 @@
         <header class="kanban-header d-flex d-lg-none align-items-center justify-content-between mb-3">
           <h2 class="h5 m-0">Done</h2>
         </header>
+        <div class="kanban-column d-flex flex-column gap-3">
+          @for (task of doneTasks(); track task.id) {
+          <app-task-card [task]="task" (openTask)="openTaskDetail($event)"></app-task-card>
+          }
+        </div>
+      </section>
 
+    </div>
+
+  </div>
 </section>

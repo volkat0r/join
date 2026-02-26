@@ -11,11 +11,7 @@
         <span class="category">{{ task.category }}</span>
     </div>
 
-    <div class="assigned" *ngIf="task.contacts.length">
-        <strong>Assigned:</strong> {{ task.contacts.map(c => c.name).join(', ') }}
-    </div>
 
-    <div class="subtasks" *ngIf="task.subtasks.length">
-        <small>{{ task.subtasks.filter(s => s.done).length }}/{{ task.subtasks.length }} subtasks completed</small>
-    </div>
+
+
 </div>
