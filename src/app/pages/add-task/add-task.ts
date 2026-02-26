@@ -3,7 +3,7 @@ import { InputFieldComponent } from '../../shared/ui/forms/input-field/input-fie
 import { Button } from '../../shared/ui/button/button';
 import { TasksDb } from '../../core/db/tasks.db';
 import { ContactsDb } from '../../core/db/contacts.db';
-import { ContactPicker } from '../../shared/ui/contact-picker/contact-picker';
+import { ContactPicker } from '../../shared/ui/forms/contact-picker/contact-picker';
 
 @Component({
   selector: 'app-add-task',

@@ -4,7 +4,7 @@ import { ContactAddFormComponent } from './../../components/contact-add-form/con
 import { Component } from '@angular/core';
 import { Button } from '../../shared/ui/button/button';
 import { InputFieldComponent } from '../../shared/ui/forms/input-field/input-field';
-import { ContactPicker } from '../../shared/ui/contact-picker/contact-picker';
+import { ContactPicker } from '../../shared/ui/forms/contact-picker/contact-picker';
 import { ContactsDb } from '../../core/db/contacts.db';
 
 /**

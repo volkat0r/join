@@ -3,7 +3,7 @@
 
   @if (isOpen()) {
     <ul class="contact-picker__dropdown">
-      @for (c of contacts; track c.id) {
+      @for (c of sortedContacts(); track c.id) {
         <li class="contact-picker__item" (click)="toggleContact(c.id)">
           <abbr class="contact-picker__avatar" [title]="c.name" [style.background]="c.color">
             {{ getInitials(c.name) }}
