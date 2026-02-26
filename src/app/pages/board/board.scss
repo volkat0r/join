@@ -5,6 +5,7 @@
   padding: 3rem 1rem;
   overflow: auto;
   max-height: calc(100dvh - 6rem);
+  max-width: 90rem;
 
   @include for-size(sm) {
     padding: 3rem 3rem;
