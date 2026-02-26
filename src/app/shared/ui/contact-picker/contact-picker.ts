@@ -13,14 +13,11 @@ export class ContactPicker {
   @Input() contacts: Contact[] = [];
   @Output() selectedIdsChange = new EventEmitter<number[]>();
   isOpen = signal(false);
-  searchTerm = signal('');
   selectedIds = signal<number[]>([]);
 
-  /** Contacts filtered by the current search term. */
-  filteredContacts = computed(() => {
-    const term = this.searchTerm().toLowerCase();
-    if (!term) return this.contacts;
-    return this.contacts.filter(c => c.name.toLowerCase().includes(term));
+  /** Contacts sorted alphabetically by name. */
+  sortedContacts = computed(() => {
+    return [...this.contacts].sort((a, b) => a.name.localeCompare(b.name));
   });
 
   /** The full contact objects for all currently selected IDs. */
