@@ -60,3 +60,7 @@
 
   </div>
 </section>
+
+@if (showAddTaskForm()) {
+  <app-task-add-form [useModal]="true" (closed)="closeAddTask()" (created)="onTaskCreated()" />
+}

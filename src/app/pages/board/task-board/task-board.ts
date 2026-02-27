@@ -2,13 +2,14 @@ import { Component, computed, signal, OnInit, inject, Output, EventEmitter } fro
 import { CommonModule } from '@angular/common';
 import { TasksDb, Task } from '../../../core/db/tasks.db';
 import { TaskCardComponent } from '../task-card/task-card';
+import { TaskAddFormComponent } from '../../../components/task-add-form/task-add-form';
 import { HorizontalScrollDirective } from "../../../services/horizontal-scroll.directive";
 
 
 @Component({
   selector: 'app-task-board',
   standalone: true,
-  imports: [CommonModule, TaskCardComponent, HorizontalScrollDirective],
+  imports: [CommonModule, TaskCardComponent, TaskAddFormComponent, HorizontalScrollDirective],
   templateUrl: './task-board.html',
   styleUrls: ['./task-board.scss'],
 })
@@ -42,5 +43,11 @@ export class TaskBoard implements OnInit {
 
   closeAddTask() {
     this.showAddTaskForm.set(false);
+  }
+
+  async onTaskCreated() {
+    this.showAddTaskForm.set(false);
+    await this.tasksDb.getTasks();
+    this.tasks.set(this.tasksDb.tasks());
   }
 }
