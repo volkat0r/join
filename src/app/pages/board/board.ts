@@ -4,7 +4,7 @@ import { TasksDb, Task } from '../../core/db/tasks.db';
 import { Button } from '../../shared/ui/button/button';
 import { InputFieldComponent } from '../../shared/ui/forms/input-field/input-field';
 import { TaskBoard } from './task-board/task-board';
-import { AddTask } from '../add-task/add-task';
+import { TaskAddFormComponent } from '../../components/task-add-form/task-add-form';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { AddTask } from '../add-task/add-task';
     InputFieldComponent,
     Button,
     TaskBoard,
-    AddTask
+    TaskAddFormComponent
   ],
 
   templateUrl: './board.html',
