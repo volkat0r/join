@@ -1,6 +1,12 @@
 import { Component, EventEmitter, Input, Output, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {
+  isValidTitle,
+  isValidDescription,
+  isValidDueDate,
+  isValidCategory,
+} from '../../core/utils/validation';
 import { TasksDb, Task } from '../../core/db/tasks.db';
 import { ContactsDb } from '../../core/db/contacts.db';
 import { InputFieldComponent } from '../../shared/ui/forms/input-field/input-field';
@@ -29,7 +35,7 @@ export class TaskAddFormComponent {
   errorMessage = '';
   successMessage = '';
 
-  form: Omit<Task, 'id' | 'contacts' | 'created_at' | 'modified_at'> = {
+  form: Omit<Task, 'id' | 'contacts' | 'created_at' | 'modified_at'> {
     title: '',
     description: '',
     due_date: '',
@@ -37,22 +43,20 @@ export class TaskAddFormComponent {
     category: '',
     subtasks: [],
     status: 'todo',
-    user: null
+    user: null,
   };
 
   errors: Record<string, string> = {
     title: '',
     description: '',
     due_date: '',
-    priority: '',
-    category: '',
+    category: ''
   };
 
   dirty: Record<string, boolean> = {
     title: false,
     description: false,
     due_date: false,
-    priority: false,
     category: false,
   };
 
@@ -63,10 +67,11 @@ export class TaskAddFormComponent {
     await this.contactsDb.getContacts();
   }
 
-  // ---------------------------------------------------------
-  // Field interaction (same pattern as contact-edit-form)
-  // ---------------------------------------------------------
-
+  /**
+   * Marks a specific form field as dirty and triggers validation for it.
+   * Dirty fields show validation errors immediately when modified.
+   * @param {keyof typeof this.dirty} field - The field to mark as dirty.
+   */
   markDirty(field: string) {
     this.dirty[field] = true;
     this.validateField(field);
@@ -78,8 +83,31 @@ export class TaskAddFormComponent {
     }
   }
 
-  validateField(field: string) {
-    // TODO: Add field-specific validation rules later
+  /**
+   * Validates a single form field and updates the corresponding error message.
+   * Delegates validation logic to shared utility functions.
+   * @param {keyof typeof this.form} field - The field to validate.
+   */
+  validateField(field: keyof typeof this.form) {
+    const value = this.form[field];
+
+    switch (field) {
+      case 'title':
+        this.errors.title = isValidTitle(value) ? '' : 'Please enter title with max. 30 letters.';
+        break;
+
+      case 'description':
+        this.errors.description = isValidDescription(value) ? '' : 'Please enter a description.';
+        break;
+
+      case 'due_date':
+        this.errors.due_date = isValidDueDate(value) ? '' : 'Please enter a due date in future.';
+        break;
+
+      case 'category':
+        this.errors.category = isValidDueDate(value) ? '' : 'Please select a category.';
+        break;
+    }
   }
 
   isFormValid() {
@@ -87,7 +115,7 @@ export class TaskAddFormComponent {
       this.form.title.trim() !== '' &&
       this.form.due_date.trim() !== '' &&
       this.form.category.trim() !== '' &&
-      !Object.values(this.errors).some(e => e !== '')
+      !Object.values(this.errors).some((e) => e !== '')
     );
   }
 
@@ -180,7 +208,7 @@ export class TaskAddFormComponent {
       category: '',
       subtasks: [],
       status: 'todo',
-      user: null
+      user: null,
     };
     this.selectedContactIds = [];
     this.newSubtaskTitle = '';

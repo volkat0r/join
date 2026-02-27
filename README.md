@@ -19,11 +19,8 @@ A collaborative task management system built with Angular 21 and Supabase, featu
 git clone <repository-url>
 cd join
 
-# Install dependencies (supabase)
+# Install dependencies (supabase, bootstrap, ng cdk ..)
 npm install
-
-# Install Bootstrap 5
-npm install bootstrap@5 @popperjs/core
 
 # Start development server
 npm start

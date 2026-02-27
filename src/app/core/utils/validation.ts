@@ -57,3 +57,52 @@ export function isValidPassword(input: string): boolean {
   if (!input) return false;
   return input.length >= 8;
 }
+
+/**
+ * Validates the given title
+ *
+ * @param input - The full name string to validate.
+ * @returns True if the name contains at least two valid alphabetic words, otherwise false.
+ */
+export function isValidTitle(input: string): boolean {
+  if (!input) return false;
+  const trimmed = input.trim();
+  return trimmed.length <= 30;
+}
+
+/**
+ * Validates the given description (optional field).
+ *
+ * @param input - The description string to validate.
+ * @returns True if empty or up to 200 characters, otherwise false.
+ */
+export function isValidDescription(input: string): boolean {
+  if (!input) return true;
+  return input.trim().length <= 200;
+}
+
+/**
+ * Validates the given due date.
+ *
+ * @param input - The date string to validate (expected format: YYYY-MM-DD).
+ * @returns True if the date is valid and not in the past, otherwise false.
+ */
+export function isValidDueDate(input: string): boolean {
+  if (!input) return false;
+  const date = new Date(input + 'T00:00:00');
+  if (isNaN(date.getTime())) return false;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return date >= today;
+}
+
+/**
+ * Validates the given category (required field).
+ *
+ * @param input - The category string to validate.
+ * @returns True if a category is selected (non-empty), otherwise false.
+ */
+export function isValidCategory(input: string): boolean {
+  if (!input) return false;
+  return input.trim().length > 0;
+}
