@@ -13,11 +13,20 @@ import { InputFieldComponent } from '../../shared/ui/forms/input-field/input-fie
 import { ContactPicker } from '../../shared/ui/forms/contact-picker/contact-picker';
 import { Button } from '../../shared/ui/button/button';
 import { ModalWrapper } from '../../shared/ui/modal-wrapper/modal-wrapper';
+import { Textarea } from '../../shared/ui/forms/textarea/textarea';
 
 @Component({
   selector: 'app-task-add-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, InputFieldComponent, ContactPicker, Button, ModalWrapper],
+  imports: [
+    CommonModule,
+    FormsModule,
+    InputFieldComponent,
+    ContactPicker,
+    Button,
+    ModalWrapper,
+    Textarea,
+  ],
   templateUrl: 'task-add-form.html',
   styleUrls: ['task-add-form.scss'],
 })
@@ -35,7 +44,7 @@ export class TaskAddFormComponent {
   errorMessage = '';
   successMessage = '';
 
-  form: Omit<Task, 'id' | 'contacts' | 'created_at' | 'modified_at'> {
+  form: Omit<Task, 'id' | 'contacts' | 'created_at' | 'modified_at' | 'order'> = {
     title: '',
     description: '',
     due_date: '',
@@ -72,12 +81,12 @@ export class TaskAddFormComponent {
    * Dirty fields show validation errors immediately when modified.
    * @param {keyof typeof this.dirty} field - The field to mark as dirty.
    */
-  markDirty(field: string) {
+  markDirty(field: keyof typeof this.form) {
     this.dirty[field] = true;
     this.validateField(field);
   }
 
-  liveValidate(field: string) {
+  liveValidate(field: keyof typeof this.form) {
     if (this.dirty[field]) {
       this.validateField(field);
     }
@@ -89,23 +98,23 @@ export class TaskAddFormComponent {
    * @param {keyof typeof this.form} field - The field to validate.
    */
   validateField(field: keyof typeof this.form) {
-    const value = this.form[field];
+    const value = this.form[field] as string;
 
     switch (field) {
       case 'title':
-        this.errors.title = isValidTitle(value) ? '' : 'Please enter title with max. 30 letters.';
+        this.errors['title'] = isValidTitle(value) ? '' : 'Please enter title with max. 30 letters.';
         break;
 
       case 'description':
-        this.errors.description = isValidDescription(value) ? '' : 'Please enter a description.';
+        this.errors['description'] = isValidDescription(value) ? '' : 'Please enter a description.';
         break;
 
       case 'due_date':
-        this.errors.due_date = isValidDueDate(value) ? '' : 'Please enter a due date in future.';
+        this.errors['due_date'] = isValidDueDate(value) ? '' : 'Please enter a due date in future.';
         break;
 
       case 'category':
-        this.errors.category = isValidDueDate(value) ? '' : 'Please select a category.';
+        this.errors['category'] = isValidCategory(value) ? '' : 'Please select a category.';
         break;
     }
   }
@@ -174,7 +183,7 @@ export class TaskAddFormComponent {
   // ---------------------------------------------------------
 
   private markAllDirty() {
-    for (const field of Object.keys(this.dirty)) {
+    for (const field of Object.keys(this.dirty) as (keyof typeof this.form)[]) {
       this.markDirty(field);
     }
   }
@@ -216,7 +225,7 @@ export class TaskAddFormComponent {
     this.successMessage = '';
     for (const key of Object.keys(this.dirty)) {
       this.dirty[key] = false;
-      this.errors[key] = false as any;
+      this.errors[key] = '';
     }
   }
 }
