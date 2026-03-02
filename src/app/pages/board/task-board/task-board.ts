@@ -41,6 +41,7 @@ export class TaskBoard {
   }
 
   showAddTaskForm = signal(false);
+  addTaskStatus = signal<Task['status']>('todo');
 
   todoTasks = computed(() => this._tasks().filter((t) => t.status === 'todo'));
   inProgressTasks = computed(() => this._tasks().filter((t) => t.status === 'in-progress'));
@@ -53,7 +54,8 @@ export class TaskBoard {
   }
 
   /** Shows the add-task form overlay. */
-  openAddTask() {
+  openAddTask(status: Task['status']) {
+    this.addTaskStatus.set(status);
     this.showAddTaskForm.set(true);
   }
 
