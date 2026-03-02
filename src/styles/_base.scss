@@ -18,6 +18,10 @@ body {
   min-height: 100vh;
   background: $off-white;
   width: 100%;
+
+  &:has(.cdk-drag-preview) {
+    cursor: grabbing;
+  }
 }
 
 div.container{
@@ -29,7 +33,6 @@ div.container{
     padding: 5rem 6rem;
   }
 }
-
 
 .cdk-drag-preview {
     overflow: visible !important;
