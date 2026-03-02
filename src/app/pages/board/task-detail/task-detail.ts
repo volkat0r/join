@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../../core/db/tasks.db';
 
@@ -10,12 +10,12 @@ import { Task } from '../../../core/db/tasks.db';
     styleUrls: ['./task-detail.scss'],
 })
 export class TaskDetailComponent {
-    @Input() task!: Task;
-    @Output() close = new EventEmitter<void>();
+    task = input.required<Task>();
+    close = output<void>();
 
 
     get categoryColor(): string {
-        const cat = this.task?.category?.toLowerCase() || '';
+        const cat = this.task()?.category?.toLowerCase() || '';
         switch (cat) {
             case 'user story':
                 return '#3f51b5';

@@ -2,36 +2,36 @@
 <dialog class="modal-container" open>
   <article class="modal" (click)="$event.stopPropagation()">
     <header class="modal-header">
-      <h2>{{ task.title }}</h2>
+      <h2>{{ task().title }}</h2>
       <button class="modal-close" (click)="close.emit()">&times;</button>
     </header>
     <section class="modal-body">
       <div class="task-detail">
-        @if (task.category) {
+        @if (task().category) {
           <div class="category-badge" [style.background]="categoryColor">
-            {{ task.category }}
+            {{ task().category }}
           </div>
         }
 
-        @if (task.description) {
+        @if (task().description) {
           <p class="task-description">
-            {{ task.description }}
+            {{ task().description }}
           </p>
         }
 
         <div class="detail-meta">
-          <div class="meta-item"><strong>Due date:</strong> {{ task.due_date }}</div>
+          <div class="meta-item"><strong>Due date:</strong> {{ task().due_date }}</div>
           <div class="meta-item">
             <strong>Priority:</strong>
-            <span class="priority" [ngClass]="task.priority">{{ task.priority }}</span>
+            <span class="priority" [ngClass]="task().priority">{{ task().priority }}</span>
           </div>
         </div>
 
-        @if (task.contacts.length) {
+        @if (task().contacts.length) {
           <div class="detail-section">
             <h3>Assigned To:</h3>
             <div class="contacts-list">
-              @for (contact of task.contacts; track contact.name) {
+              @for (contact of task().contacts; track contact.name) {
                 <div class="contact-item">
                   <span class="contact-avatar" [style.background]="contact.color">
                     {{ initials(contact.name) }}
@@ -43,11 +43,11 @@
           </div>
         }
 
-        @if (task.subtasks.length) {
+        @if (task().subtasks.length) {
           <div class="detail-section">
             <h3>Subtasks</h3>
             <div class="subtasks-list">
-              @for (subtask of task.subtasks; track subtask.title) {
+              @for (subtask of task().subtasks; track subtask.title) {
                 <div class="subtask-item">
                   <input type="checkbox" [checked]="subtask.done" disabled class="subtask-checkbox" />
                   <span class="subtask-title" [class.done]="subtask.done">
