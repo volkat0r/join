@@ -1,3 +1,6 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
 :host {
   display: contents;
 }
@@ -35,7 +38,8 @@
   background: white;
   border-radius: 30px;
   width: 450px;
-  height: 750px;
+  height: fit-content;
+  max-height: 90dvh;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   animation: slideUp 0.25s ease-out;
 }
@@ -48,16 +52,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
   border-bottom: none;
-  padding-top: 1rem;
-
-
-
+  padding: 0;
 
   h2 {
     margin: 0;
-    font-size: 1.75rem;
+    font-size: clamp(2.25rem, 3vw, 3rem);
     font-weight: 700;
     color: #000;
   }
@@ -66,7 +66,7 @@
 .modal-close {
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: clamp(2rem, 2.5vw, 2.5rem);
   cursor: pointer;
   color: #333;
   padding: 0;
@@ -83,16 +83,18 @@
 }
 
 .modal-body {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   padding-bottom: 1rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: none;
-  min-height: calc(100% - 120px);
+  flex: 1;
+  min-height: 0;
 
+  @include for-size(lg) {
+    padding: 3rem 2.5rem;
+  }
 }
 
 
@@ -128,8 +130,6 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 0;
-  margin-bottom: 0.75rem;
-  position: sticky;
   top: 0;
   background: white;
   z-index: 2;
@@ -138,7 +138,7 @@
 .task-detail {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   flex: 1;
 
   .category-badge {
@@ -148,34 +148,24 @@
     border-radius: 6px;
     color: white;
     font-weight: 600;
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-
   }
 
   .task-description {
-    margin: 0.5rem 0 1rem;
-    color: #555;
-    font-size: 1rem;
-    line-height: 1.5;
   }
 
   .detail-meta {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem 0;
+    gap: 1rem;
 
     .meta-item {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      margin-bottom: 0.5rem;
 
       strong {
         color: #333;
-        margin-right: 0.5rem;
       }
 
       &.priority {
@@ -191,7 +181,6 @@
     }
 
     .priority-text {
-      font-size: 0.95rem;
       color: #111;
       letter-spacing: 0.2px;
     }
@@ -206,11 +195,10 @@
   }
 
   .detail-section {
-    margin: 1rem 0;
     overflow: visible;
 
     h3 {
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.5rem;
       font-size: 1rem;
       font-weight: 700;
       color: #333;
@@ -220,6 +208,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
+      padding-left: 1rem;
     }
 
     .contact-item {
@@ -236,13 +225,12 @@
         justify-content: center;
         color: white;
         font-weight: 700;
-        font-size: 0.875rem;
+
         flex-shrink: 0;
       }
 
       .contact-name {
         color: #333;
-        font-size: 0.95rem;
       }
     }
 
@@ -250,6 +238,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      padding-left: 1rem;
     }
 
     .subtask-item {
@@ -266,7 +255,6 @@
 
       .subtask-title {
         color: #555;
-        font-size: 0.95rem;
 
         &.done {
           text-decoration: line-through;
@@ -280,8 +268,6 @@
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
-    margin-top: 1rem;
-    padding-bottom: 1rem;
     position: sticky;
     bottom: 0;
     background: white;
@@ -292,7 +278,6 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.5rem;
       background: none;
       border: none;
       cursor: pointer;
