@@ -20,6 +20,10 @@
     height: auto;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+
 
   .category {
     align-self: flex-start;
