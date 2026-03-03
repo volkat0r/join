@@ -120,4 +120,35 @@ export class TaskBoard {
     // Refresh tasks from database
     await this.tasksDb.getTasks();
   }
+
+  async onCardStatusChange(event: { task: Task; newStatus: Task['status'] }) {
+    const { task, newStatus } = event;
+
+    if (task.status === newStatus) {
+      return;
+    }
+
+    const sourceTasks = this._tasks()
+      .filter((t) => t.status === task.status && t.id !== task.id)
+      .map((t, index) => ({
+        ...t,
+        order: index,
+      }));
+
+    const targetTasksExisting = this._tasks()
+      .filter((t) => t.status === newStatus)
+      .map((t, index) => ({
+        ...t,
+        order: index,
+      }));
+
+    const movedTask: Task = {
+      ...task,
+      status: newStatus,
+      order: targetTasksExisting.length,
+    };
+
+    await this.tasksDb.updateTaskOrder([...sourceTasks, ...targetTasksExisting, movedTask]);
+    await this.tasksDb.getTasks();
+  }
 }

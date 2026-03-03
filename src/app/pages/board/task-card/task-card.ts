@@ -1,8 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../../core/db/tasks.db';
 import { TruncatePipe } from '../../../services/truncate.pipe';
 
+interface StatusOption {
+    value: Task['status'];
+    label: string;
+}
 
 @Component({
     selector: 'app-task-card',
@@ -14,6 +18,51 @@ import { TruncatePipe } from '../../../services/truncate.pipe';
 export class TaskCardComponent {
     @Input() task!: Task;
     @Output() openTask = new EventEmitter<Task>();
+    @Output() statusChange = new EventEmitter<{ task: Task; newStatus: Task['status'] }>();
+
+    showMoveMenu = false;
+
+    constructor(private readonly elementRef: ElementRef<HTMLElement>) {}
+
+    private readonly statusOptions: StatusOption[] = [
+        { value: 'todo', label: 'To Do' },
+        { value: 'in-progress', label: 'In Progress' },
+        { value: 'await-feedback', label: 'Await Feedback' },
+        { value: 'done', label: 'Done' },
+    ];
+
+    get availableStatuses(): StatusOption[] {
+        return this.statusOptions.filter(option => option.value !== this.task.status);
+    }
+
+    toggleMoveMenu(event: Event): void {
+        event.stopPropagation();
+        this.showMoveMenu = !this.showMoveMenu;
+    }
+
+    moveToStatus(newStatus: Task['status']): void {
+        this.showMoveMenu = false;
+        this.statusChange.emit({ task: this.task, newStatus });
+    }
+
+    @HostListener('document:click', ['$event'])
+    onDocumentClick(event: MouseEvent): void {
+        if (!this.showMoveMenu) {
+            return;
+        }
+
+        const target = event.target as HTMLElement | null;
+        if (!target) {
+            return;
+        }
+
+        const clickedInsideMenu = !!target.closest('.move-menu');
+        const clickedToggleButton = !!target.closest('.option-btn');
+
+        if (!clickedInsideMenu && !clickedToggleButton) {
+            this.showMoveMenu = false;
+        }
+    }
 
     onClick() {
         this.openTask.emit(this.task);
