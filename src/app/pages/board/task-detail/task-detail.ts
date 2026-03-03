@@ -13,6 +13,21 @@ export class TaskDetailComponent {
     task = input.required<Task>();
     close = output<void>();
 
+    /** returns the appropriate priority icon path for the current task */
+    get priorityIcon(): string {
+        const pr = this.task()?.priority?.toLowerCase() || '';
+        switch (pr) {
+            case 'low':
+                return 'assets/icons/prio-low-small-task-32px.svg';
+            case 'medium':
+                return 'assets/icons/prio-medium-small-task-32px.svg';
+            case 'urgent':
+                return 'assets/icons/prio-urgent-small-task-32px.svg';
+            default:
+                return '';
+        }
+    }
+
 
     get categoryColor(): string {
         const cat = this.task()?.category?.toLowerCase() || '';

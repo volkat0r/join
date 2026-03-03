@@ -20,9 +20,6 @@ export class TaskCardComponent {
     }
 
 
-    @Output() open = new EventEmitter<Task>();
-
-
     get assignedNames(): string {
         return this.task?.contacts?.map(c => c.name).join(', ') || '';
     }

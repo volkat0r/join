@@ -5,11 +5,12 @@ import { Button } from '../../shared/ui/button/button';
 import { InputFieldComponent } from '../../shared/ui/forms/input-field/input-field';
 import { TaskBoard } from './task-board/task-board';
 import { TaskAddFormComponent } from '../../components/task-add-form/task-add-form';
+import { TaskDetailComponent } from './task-detail/task-detail';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CommonModule, InputFieldComponent, Button, TaskBoard, TaskAddFormComponent],
+  imports: [CommonModule, InputFieldComponent, Button, TaskBoard, TaskAddFormComponent, TaskDetailComponent],
 
   templateUrl: './board.html',
   styleUrl: './board.scss',
