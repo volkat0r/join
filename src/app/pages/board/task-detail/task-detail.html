@@ -52,8 +52,12 @@
       <div class="subtasks-scroll-section">
         <div class="subtasks-list">
           @for (subtask of task().subtasks; track subtask.title) {
-          <div class="subtask-item">
-            <input type="checkbox" [checked]="subtask.done" disabled class="subtask-checkbox" />
+        <div class="subtask-item">
+            <img
+              [src]="subtask.done ? 'assets/icons/checkbox-checked-default-24px.svg' : 'assets/icons/checkbox-default-24px.svg'"
+              [alt]="subtask.done ? 'Completed' : 'Not completed'"
+              class="subtask-checkbox-icon"
+            />
             <span class="subtask-title" [class.done]="subtask.done">
               {{ subtask.title }}
             </span>
