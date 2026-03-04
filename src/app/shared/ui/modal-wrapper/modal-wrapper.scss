@@ -68,13 +68,13 @@ div.modal-content {
 
 .close-btn {
   position: absolute;
-  top: 1rem;
+  top: 2rem;
   right: 1rem;
   z-index: 1060;
 
   @include for-size(sm) {
-    top: 2rem;
-    right: 2rem;
+    top: 2.5rem;
+    right: 2.5rem;
   }
 
 }
