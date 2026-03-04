@@ -1,6 +1,6 @@
 import { Component, input, output, inject, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TasksDb, Task } from '../../../core/db/tasks.db';
+import { TasksDb, Task, Subtask } from '../../../core/db/tasks.db';
 import { UserFeedbackComponent } from '../../../shared/ui/user-feedback/user-feedback';
 import { ModalWrapper } from '../../../shared/ui/modal-wrapper/modal-wrapper';
 
@@ -72,5 +72,20 @@ export class TaskDetailComponent {
 
   async updateTask() {
     console.log('Hier fehlt noch die Update-Logik!');
+  }
+
+  async toggleSubtask(subtask: Subtask) {
+    try {
+      subtask.done = !subtask.done;
+
+      await this.taskDbSingleton.updateTask(this.task().id, {
+        subtasks: this.task().subtasks,
+      });
+
+    } catch (err) {
+      console.error('Failed to update subtask:', err);
+      subtask.done = !subtask.done;
+      this.userFeedback().show('Failed to update subtask. Please try again.');
+    }
   }
 }

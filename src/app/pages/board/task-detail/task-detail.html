@@ -52,7 +52,7 @@
       <div class="subtasks-scroll-section">
         <div class="subtasks-list">
           @for (subtask of task().subtasks; track subtask.title) {
-        <div class="subtask-item">
+        <div class="subtask-item" (click)="toggleSubtask(subtask)">
             <img
               [src]="subtask.done ? 'assets/icons/checkbox-checked-default-24px.svg' : 'assets/icons/checkbox-default-24px.svg'"
               [alt]="subtask.done ? 'Completed' : 'Not completed'"
