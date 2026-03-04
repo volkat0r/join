@@ -14,10 +14,15 @@
   height: 18rem;
   max-height: 18rem;
   position: relative;
+  margin:2px;
 
   @include for-size(lg) {
     max-height: none;
     height: auto;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 
 
