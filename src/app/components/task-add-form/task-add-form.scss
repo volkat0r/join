@@ -1,1 +1,112 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as mixins;
 
+.vr{
+  background-color: $grey-light;
+}
+
+.select-wrapper{
+  position: relative;
+  display: flex;
+  flex: 1;
+
+  select {
+    flex: 1;
+    appearance: none;
+    padding-right: 2.5rem;
+    border: 1px solid $grey-light;
+    border-radius: $base-border-radius;
+    height: 3rem;
+    background-image: none;
+
+    &:focus{
+      box-shadow: none;
+      border-color: $blue-light;
+    }
+    &.is-invalid{
+      border-color: $red;
+    }
+  }
+  &:after{
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url('/assets/icons/arrow-dropdown-down-24px.svg') no-repeat center;
+    pointer-events: none;
+    z-index: 3;
+    cursor: pointer;
+  }
+  &:before{
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    background: $grey-light;
+    border-radius: 50%;
+    z-index: 2;
+    display: none;
+    pointer-events: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &:before {
+      background: $off-white;
+      display: block;
+    }
+  }
+
+  &:focus-within{
+    select{
+      border-color: $blue-light;
+    }
+    &:after{
+      background: url('/assets/icons/arrow-dropdown-up-24px.svg') no-repeat center;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 15rem;
+    overflow-y: auto;
+    background: $white;
+    border: 1px solid $grey-light;
+    border-radius: $base-border-radius;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.25rem 0;
+    margin-top: 0.25rem;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    border-radius: $base-border-radius;
+    transition: $trans-default;
+
+    &:hover {
+      background: linear-gradient(to bottom, #f9f9f9, #f0f0f0);
+    }
+
+    &:active {
+      background: $blue-dark;
+      color: $white;
+    }
+  }
+}

@@ -89,3 +89,25 @@ input {
   color: $red;
   margin-left: 2px;
 }
+
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+  &::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+  }
+  &::-moz-calendar-picker-indicator{
+    opacity: 0;
+  }
+  background: url('/assets/icons/event.svg') no-repeat right center;
+  background-size: 1.5rem 1.5rem;
+
+  &:focus {
+    outline: none;
+  }
+}

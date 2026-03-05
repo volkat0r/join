@@ -1,7 +1,20 @@
-import { Component, viewChild, inject, ChangeDetectorRef, input, output, effect } from '@angular/core';
+import {
+  Component,
+  viewChild,
+  inject,
+  ChangeDetectorRef,
+  input,
+  output,
+  effect,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { isValidTitle, isValidDescription, isValidDueDate, isValidCategory } from '../../core/utils/validation';
+import {
+  isValidTitle,
+  isValidDescription,
+  isValidDueDate,
+  isValidCategory,
+} from '../../core/utils/validation';
 import { TasksDb, Task } from '../../core/db/tasks.db';
 import { ContactsDb } from '../../core/db/contacts.db';
 import { InputFieldComponent } from '../../shared/ui/forms/input-field/input-field';
@@ -26,8 +39,6 @@ import { Select } from '../../shared/ui/forms/select/select';
     ModalWrapper,
     Textarea,
     UserFeedbackComponent,
-    Select,
-    Select,
   ],
   templateUrl: 'task-add-form.html',
   styleUrls: ['task-add-form.scss'],
@@ -252,10 +263,4 @@ export class TaskAddFormComponent {
       this.errors[key] = '';
     }
   }
-
-  // Options for Selections:
-  categories = [
-    { label: 'Technical Task', value: 'Technical Task' },
-    { label: 'User Story', value: 'User Story' },
-  ];
 }

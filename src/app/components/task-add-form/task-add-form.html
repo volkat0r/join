@@ -97,30 +97,23 @@
         </div>
 
         <div class="mb-3">
-          <select
-            class="form-select"
-            id="Category"
-            [(ngModel)]="form.category"
-            name="category"
-            [class.is-invalid]="errors['category']"
-            (blur)="markDirty('category')"
-          >
-            <option value="" selected disabled>Select task category</option>
-            <option value="Technical Task">Technical Task</option>
-            <option value="User Story">User Story</option>
-          </select>
-
-          <ui-select
-            label="Category"
-            id="Category"
-            name="category"
-            preselectedValue="Select task category"
-            [options]="categories"
-            [class.is-invalid]="errors['category']"
-            (blur)="markDirty('category')"
-            [isRequired]="true"
-          >
-          </ui-select>
+          <label for="Category" class="form-label">
+            Category <span class="text-danger">*</span>
+          </label>
+          <div class="select-wrapper">
+            <select
+              class="form-select"
+              id="Category"
+              [(ngModel)]="form.category"
+              name="category"
+              [class.is-invalid]="errors['category']"
+              (blur)="markDirty('category')"
+            >
+              <option value="" selected disabled>Select task category</option>
+              <option value="Technical Task">Technical Task</option>
+              <option value="User Story">User Story</option>
+            </select>
+          </div>
 
           @if (errors['category']) {
             <div class="invalid-feedback d-block">{{ errors['category'] }}</div>
@@ -143,14 +136,17 @@
         <span class="me-auto"><span class="text-danger">*</span>This field is required</span>
 
         @if (!editTask()) {
-          <ui-button type="button" variant="secondary" class="d-none d-lg-inline-flex"
-                     (click)="onCancel()">Clear
+          <ui-button
+            type="button"
+            variant="secondary"
+            class="d-none d-lg-inline-flex"
+            (click)="onCancel()"
+            >Clear
           </ui-button>
         }
         <ui-button type="submit" variant="primary" [disabled]="isSaving">
           {{ editTask() ? 'Ok' : 'Create Task' }}
         </ui-button>
-
       </div>
     </div>
   </form>

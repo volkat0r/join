@@ -44,3 +44,31 @@ input{
     color: $grey-light
   }
 }
+.input-group{
+  input{
+    border-radius: $base-border-radius !important;
+  }
+  button{
+    position: absolute;
+    border: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &:hover{
+      background: none;
+    }
+    &.clear{
+      right: 2rem;
+      &:after{
+        content: '';
+        position: absolute;
+        height: 1.5rem;
+        width: 1px;
+        top:.50rem;
+        right: 0.5rem;
+        background-color: $grey-light;
+      }
+    }
+  }
+}
