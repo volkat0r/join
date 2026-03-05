@@ -29,6 +29,7 @@ input {
     box-shadow: none;
     flex: 1;
     padding-right: 0;
+    border-radius: $base-border-radius;
 
     &:focus {
       box-shadow: none;
