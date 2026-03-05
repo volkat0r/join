@@ -52,9 +52,7 @@ export class TaskAddFormComponent {
   cdr = inject(ChangeDetectorRef);
   elementRef = inject(ElementRef);
 
-
   feedback = viewChild.required<UserFeedbackComponent>('feedback');
-  contactPicker = viewChild<ContactPicker>('contactPicker');
 
   useModal = input(false);
   initialStatus = input<Task['status']>('todo');
@@ -216,7 +214,6 @@ export class TaskAddFormComponent {
 
   onCancel() {
     this.resetForm();
-    this.contactPicker()?.resetContactSelection();
     this.closed.emit();
   }
 
