@@ -94,18 +94,31 @@ export class ContactsDb {
 
   /**
    * Deletes a contact from the Supabase `contacts` table.
+   * First removes all task-contact associations to avoid foreign key constraint violations.
    * @param id - The ID of the contact to delete.
    * @throws If the delete operation fails.
    */
   async deleteContact(id: number) {
-    const { error } = await this.supa.supabase
+    // Step 1: Delete all associations in tasks_contacts table
+    const { error: assignmentError } = await this.supa.supabase
+      .from('tasks_contacts')
+      .delete()
+      .eq('contact_id', id);
+
+    if (assignmentError) {
+      console.error('[Supabase] Error deleting contact associations:', assignmentError.message);
+      throw assignmentError;
+    }
+
+    // Step 2: Delete the contact itself
+    const { error: contactError } = await this.supa.supabase
       .from('contacts')
       .delete()
       .eq('id', id);
 
-    if (error) {
-      console.error('[Supabase] Error deleting contact:', error.message);
-      throw error;
+    if (contactError) {
+      console.error('[Supabase] Error deleting contact:', contactError.message);
+      throw contactError;
     }
   }
 
