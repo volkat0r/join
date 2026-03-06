@@ -13,7 +13,7 @@
   <form (ngSubmit)="submit()">
     <div class="row">
       <div [class]="editTask() ? 'col-12' : 'col-12 col-lg-5'">
-        <div class="my-3">
+        <div class="my-2">
           <app-input-field
             type="text"
             label="Title"
@@ -25,6 +25,7 @@
             (blur)="markDirty('title')"
             (inputChange)="liveValidate('title')"
             [isRequired]="true"
+            [reserveErrorSpace]="true"
           />
         </div>
 
@@ -47,6 +48,7 @@
           (blur)="markDirty('due_date')"
           (inputChange)="liveValidate('due_date')"
           [isRequired]="true"
+          [reserveErrorSpace]="true"
         />
       </div>
 
@@ -95,19 +97,19 @@
           />
         </div>
 
-        <div class="mb-3">
+        <div class="mb-lg-2">
           <label for="Category" class="form-label">
             Category <span class="text-danger">*</span>
           </label>
-          <div class="category-picker">
-            <input
+          <div class="category-picker" (click)="openCategoryDropdown()">
+            <app-input-field
               type="text"
-              class="form-select"
-              [class.is-invalid]="errors['category']"
-              [value]="form.category"
+              id="Category"
               placeholder="Select task category"
-              readonly
-              (click)="openCategoryDropdown()"
+              [model]="form.category"
+              [error]="errors['category']"
+              [isRequired]="true"
+              [reserveErrorSpace]="true"
             />
 
             @if (isCategoryOpen()) {
@@ -124,10 +126,6 @@
               </ul>
             }
           </div>
-
-          @if (errors['category']) {
-            <div class="invalid-feedback d-block">{{ errors['category'] }}</div>
-          }
         </div>
 
         <div class="mb-3">

@@ -36,18 +36,13 @@
 
 .category-picker {
   position: relative;
-  display: flex;
-  flex: 1;
+  display: block;
 
-  .form-select {
-    flex: 1;
+  ::ng-deep app-input-field .form-control {
     appearance: none;
     padding-right: 2.5rem;
-    border: 1px solid $grey-light;
-    border-radius: $base-border-radius;
-    height: 3rem;
     background-image: none;
-    color: $black;
+    cursor: pointer;
 
     &::placeholder {
       color: $grey-light;
@@ -58,21 +53,17 @@
       box-shadow: none;
       border-color: $blue-light;
     }
+  }
 
-    &.is-invalid {
-      border-color: $red;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
+  ::ng-deep app-input-field .inputWrapper.hasError .form-control {
+    border-color: $red;
   }
 
   &:after {
     content: '';
     position: absolute;
     right: 1rem;
-    top: 50%;
+    top: 1.5rem;
     transform: translateY(-50%);
     width: 1.5rem;
     height: 1.5rem;
@@ -108,7 +99,7 @@
   &__dropdown {
     position: absolute;
     z-index: 10;
-    top: 100%;
+    top: 3rem;
     left: 0;
     right: 0;
     max-height: 15rem;
