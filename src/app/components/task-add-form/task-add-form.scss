@@ -135,14 +135,19 @@
   }
 }
 
-.button-area{
+.button-area {
   position: fixed;
   bottom: 5rem;
   background-color: $off-white;
-  padding: 1rem 0;
+  padding: 1rem;
   width: 100%;
-  padding-right: 7rem;
   z-index: 10;
+  left: 0;
+  right: 0;
+
+  .button-area-inner {
+    justify-content: center !important;
+  }
 
   @include mixins.for-size(lg) {
     position: relative;
@@ -150,6 +155,48 @@
     background: none;
     padding: 0;
     width: auto;
+    left: auto;
+    right: auto;
+
+    .button-area-inner {
+      justify-content: flex-end !important;
+    }
   }
 
+  &.in-modal {
+    position: relative;
+    bottom: auto;
+    background: none;
+    padding: 0;
+    width: auto;
+    left: auto;
+    right: auto;
+
+    .button-area-inner {
+      justify-content: center !important;
+    }
+
+    @include mixins.for-size(lg) {
+      .button-area-inner {
+        justify-content: flex-end !important;
+      }
+    }
+  }
+}
+
+
+.button-area-inner {
+  padding: 0rem 1rem;
+
+  @include mixins.for-size(sm) {
+    padding: 0rem 5rem;
+  }
+
+  @include mixins.for-size(md) {
+    padding: 0rem 7rem;
+  }
+
+  @include mixins.for-size(lg) {
+    padding: 0 0.75rem;
+  }
 }

@@ -137,11 +137,9 @@
       </div>
     </div>
 
-    <div class="row mt-4 button-area">
-      <div
-        class="col-12 d-flex justify-content-end justify-content-lg-start align-items-center gap-3"
-      >
-        <span class="me-auto d-none d-sm-inline-block"
+    <div class="row mt-4 button-area" [class.in-modal]="useModal()">
+      <div class="button-area-inner col-12 d-flex justify-content-center justify-content-lg-end align-items-center gap-3 pb-0">
+        <span class="me-auto d-none d-lg-inline-block"
           ><span class="text-danger">*</span>This field is required</span
         >
 
