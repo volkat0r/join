@@ -41,11 +41,11 @@ export class Summary implements OnInit, OnDestroy {
     if (hour >= 0 && hour < 5) {
       return 'Still Working?';
     } else if (hour >= 5 && hour < 10) {
-      return 'Guten Morgen,';
+      return 'Good morning,';
     } else if (hour >= 10 && hour < 18) {
-      return 'Guten Tag,';
+      return 'Good day,';
     } else {
-      return 'Guten Abend,';
+      return 'Good evening,';
     }
   }
 
