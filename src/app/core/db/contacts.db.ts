@@ -45,7 +45,7 @@ export class ContactsDb {
     }
 
     if (!contacts) return;
-    this.contacts.set(contacts || []);
+    this.contacts.set(contacts.filter(c => c.email !== 'guest@join.de'));
 
     this.subscripeToContactChanges();
   }
