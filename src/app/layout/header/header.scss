@@ -130,6 +130,7 @@ header {
     &:hover {
       color: $blue-link;
       border-radius: 1.5em 0em 1.5em 1.5em;
+      cursor: pointer;
     }
   }
   @include for-size(lg) {
