@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit, computed, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TasksDb } from '../../core/db/tasks.db';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './summary.html',
   styleUrl: './summary.scss',
 })

@@ -65,6 +65,7 @@ h3 {
   background-color: $white;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   transition: $trans-default;
+  position: relative;
 
   .w-33 {
     min-width: calc(100% / 3);
@@ -78,6 +79,27 @@ h3 {
     @include for-size(sm) {
       font-size: 1rem;
     }
+  }
+
+  &:hover {
+    background-color: $blue-dark;
+    cursor: pointer;
+    color: $white;
+    transform: scale(1.05);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .hover {
+    position: absolute;
+    opacity: 0;
+  }
+
+  &:hover .hoverNone {
+    opacity: 0;
+  }
+
+  &:hover .hover {
+    opacity: 1;
   }
 
   @include for-size(md) {
