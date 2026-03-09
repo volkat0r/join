@@ -9,7 +9,7 @@ fieldset {
 
 ul.subtask-list {
   list-style: none;
-  max-height: 8rem;
+  max-height: 6.25rem;
   overflow-y: auto;
   padding-left: 0;
 
@@ -109,7 +109,7 @@ input {
   border: 0.0625rem solid $grey-light;
   border-radius: $base-border-radius;
   height: 3rem;
-  word-break: break-word; 
+  word-break: break-word;
 
   &:focus {
     box-shadow: none;
