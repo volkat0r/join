@@ -7,14 +7,27 @@
 
 app-back-button {
   position: absolute;
-  top:3.5rem;
-  left: 3.5rem;
+  top:2.5rem;
+  left: 1rem;
   z-index: 1;
+
+  @include for-size(lg) {
+    top: 3.5rem;
+    left: 3rem;
+  }
 }
 
 .container {
   min-height: 100vh;
-  padding: 3rem;
+  padding: 2rem 1rem;
+
+  @include for-size(sm) {
+    padding: 2rem;
+  }
+
+  @include for-size(lg) {
+    padding: 3rem;
+  }
 
   .card {
     width: 100%;
@@ -54,10 +67,19 @@ h3 {
 }
 
 form {
-  padding: 2rem;
 
   input {
     max-width: 26.375rem;
+  }
+}
+
+.logo {
+
+  width: 4rem;
+  height: auto;
+
+  @include for-size(lg) {
+    width: 6.25rem;
   }
 }
 

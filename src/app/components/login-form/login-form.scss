@@ -7,7 +7,15 @@
 
 .container {
   min-height: 100vh;
-  padding: 3rem;
+  padding: 2rem 1rem;
+
+  @include for-size(sm) {
+    padding: 2rem;
+  }
+
+  @include for-size(lg) {
+    padding: 3rem;
+  }
 
   .card {
     width: 100%;
@@ -17,19 +25,18 @@
     animation: fadeInFromBottom 0.2s ease-in-out;
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-
   }
 }
 
-  a {
-    color: $grey;
-    text-decoration: none;
+a {
+  color: $grey;
+  text-decoration: none;
 
-    &:hover {
-      color: $blue-light;
-      font-weight: 700;
-    }
+  &:hover {
+    color: $blue-light;
+    font-weight: 700;
   }
+}
 
 
 h3 {
@@ -48,10 +55,19 @@ h3 {
 }
 
 form {
-  padding: 2rem;
 
   input {
     max-width: 26.375rem;
+  }
+}
+
+.logo {
+
+  width: 4rem;
+  height: auto;
+
+  @include for-size(lg) {
+    width: 6.25rem;
   }
 }
 
