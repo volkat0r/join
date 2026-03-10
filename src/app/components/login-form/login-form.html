@@ -1,14 +1,14 @@
-<form (ngSubmit)="submit()" class="d-flex flex-column pt-4">
+<form (ngSubmit)="submit()" class="d-flex flex-column pt-4 pb-2">
   <app-input-field type="email" label="Email" placeholder="Email" icon="assets/icons/form-mail-24px.svg"
     [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')" (input)="liveValidate('email')"
     [maxlength]="35" [displayLabel]="false" [reserveErrorSpace]="true" />
 
   <app-input-field [type]="getPasswordFieldType()" label="Password" placeholder="Password" [icon]="getPasswordFieldIcon()"
     [iconAlt]="getPasswordIconAlt()" [iconClickable]="isPasswordToggleVisible()" (iconClick)="togglePasswordVisibility()"
-    [(model)]="form.password" [error]="errors.password" (blur)="markDirty('password')"
+    [(model)]="form.password" [error]="errorMessage() || errors.password" (blur)="markDirty('password')"
     (focus)="activatePasswordToggle()" (input)="liveValidate('password')" [displayLabel]="false" [reserveErrorSpace]="true" />
 
-  <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-4 mt-lg-2 align-items-center justify-content-center justify-content-lg-center w-100">
+  <div class="d-flex flex-column flex-sm-row gap-2 gap-lg-4 mt-sm-2 align-items-center justify-content-center justify-content-lg-center w-100">
     <ui-button type="submit" variant="primary" [disabled]="!isFormValid()" (click)="submit()">
       Log in
     </ui-button>
@@ -18,9 +18,4 @@
     </ui-button>
   </div>
 
-  <div class="text-danger fw-bold mt-2">
-    @if (errorMessage()) {
-    {{ errorMessage() }}
-    }
-  </div>
 </form>
