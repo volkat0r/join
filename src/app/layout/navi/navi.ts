@@ -14,12 +14,27 @@ export class Navi implements OnInit, OnDestroy {
   isLoggedIn = signal<boolean>(false);
   private authSubscription?: Subscription;
 
+  /**
+   * Creates the navi component.
+   * @param supabase Supabase service used for session/auth state.
+   */
   constructor(private supabase: SupabaseService) {}
 
+  /**
+   * Initializes auth state and subscribes to auth changes.
+   * @returns Promise that resolves when initial auth state is applied.
+   */
   async ngOnInit() {
     const { data } = await this.supabase.getSession();
     this.isLoggedIn.set(!!data.session);
+    this.subscribeToAuthChanges();
+  }
 
+  /**
+   * Subscribes to auth state changes and updates login status.
+   * @returns Nothing.
+   */
+  private subscribeToAuthChanges() {
     const {
       data: { subscription },
     } = this.supabase.onAuthStateChange((_event, session) => {
@@ -29,6 +44,10 @@ export class Navi implements OnInit, OnDestroy {
     this.authSubscription = subscription;
   }
 
+  /**
+   * Cleans up auth-state subscription on component destroy.
+   * @returns Nothing.
+   */
   ngOnDestroy() {
     this.authSubscription?.unsubscribe();
   }
