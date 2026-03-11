@@ -1,23 +1,23 @@
 <form (ngSubmit)="submit()" class="d-flex flex-column pt-4">
   <app-input-field type="text" label="Name" placeholder="Name"
-    icon="assets/icons/form-person-24px.svg" [(model)]="form.name" [error]="errors.name" (blur)="markDirty('name')"
+    icon="assets/icons/form-person-24px.svg" autocomplete="name" [(model)]="form.name" [error]="errors.name" (blur)="markDirty('name')"
     (input)="liveValidate('name')" [maxlength]="30" [displayLabel]="false" [reserveErrorSpace]="true" />
 
   <app-input-field type="email" label="Email" placeholder="Email"
-    icon="assets/icons/form-mail-24px.svg" [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')"
+    icon="assets/icons/form-mail-24px.svg" autocomplete="email" [(model)]="form.email" [error]="errors.email" (blur)="markDirty('email')"
     (input)="liveValidate('email')" [maxlength]="35" [displayLabel]="false" [reserveErrorSpace]="true" />
 
   <app-input-field [type]="getPasswordFieldType('password')" label="Password" placeholder="Password"
     [icon]="getPasswordFieldIcon('password')" [iconAlt]="getPasswordIconAlt('password')"
     [iconClickable]="isPasswordToggleVisible('password')" (iconClick)="togglePasswordVisibility('password')"
-    [(model)]="form.password" [error]="errors.password" (blur)="markDirty('password')"
+    autocomplete="new-password" [(model)]="form.password" [error]="errors.password" (blur)="markDirty('password')"
     (focus)="activatePasswordToggle('password')" (input)="liveValidate('password')" [displayLabel]="false"
     [reserveErrorSpace]="true" />
 
   <app-input-field [type]="getPasswordFieldType('confirmPassword')" label="Confirm Password" placeholder="Confirm Password"
     [icon]="getPasswordFieldIcon('confirmPassword')" [iconAlt]="getPasswordIconAlt('confirmPassword')"
     [iconClickable]="isPasswordToggleVisible('confirmPassword')" (iconClick)="togglePasswordVisibility('confirmPassword')"
-    [(model)]="form.confirmPassword" [error]="errors.confirmPassword" (blur)="markDirty('confirmPassword')"
+    autocomplete="new-password" [(model)]="form.confirmPassword" [error]="errors.confirmPassword" (blur)="markDirty('confirmPassword')"
     (focus)="activatePasswordToggle('confirmPassword')" (input)="liveValidate('confirmPassword')" [displayLabel]="false"
     [reserveErrorSpace]="true" />
 

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { isValidName, isValidEmail, isValidPhone } from '../../../../core/utils/validation';
+
 
 @Component({
   selector: 'app-input-field',
@@ -23,6 +23,7 @@ export class InputFieldComponent {
   @Input() isRequired: boolean = false;
   @Input() displayLabel: boolean = true;
   @Input() reserveErrorSpace: boolean = false;
+  @Input() autocomplete: string = 'off';
 
   @Input() model: any;
   @Output() modelChange = new EventEmitter<any>();
