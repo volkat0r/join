@@ -20,8 +20,11 @@ export class Login implements AfterViewInit {
   errorMessage = signal('');
 
   ngAfterViewInit() {
-    if (this.route.snapshot.queryParams['loggedOut']) {
-      this.feedback().show('You logged out successfully');
+    const loggedOut = this.route.snapshot.queryParams['loggedOut'];
+    if (loggedOut) {
+      const name = loggedOut !== 'true' ? loggedOut : '';
+      const msg = name ? `You logged out successfully, ${name}!` : 'You logged out successfully';
+      this.feedback().show(msg);
     }
   }
 

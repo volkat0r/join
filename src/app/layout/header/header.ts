@@ -19,6 +19,8 @@ export class Header {
       .subscribe(() => {
         this.menuOpen = false;
       });
+
+
   }
 
   toggleMenu(event: MouseEvent) {
@@ -27,9 +29,10 @@ export class Header {
   }
 
   async logout() {
+    const userName = this.supabaseService.userName();
     try {
       await this.supabaseService.signOut();
-      this.router.navigate(['/login'], { queryParams: { loggedOut: true } });
+      this.router.navigate(['/login'], { queryParams: { loggedOut: userName || true } });
     } catch {
       this.router.navigate(['/login']);
     }
