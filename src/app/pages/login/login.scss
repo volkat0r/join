@@ -87,17 +87,29 @@ h3 {
     z-index: 5002;
 
     &.default{
-      animation: logoDefault-sm 1.25s ease forwards;
-
       @include for-size(lg) {
         display: none;
       }
     }
     &.dark{
-      animation: logoDark-sm 1.25s ease forwards;
-
       @include for-size(lg) {
-        animation: logoDark-lg 1.25s ease forwards;
+        animation: none;
+      }
+    }
+  }
+
+  &.intro-enabled {
+    .logo {
+      &.default {
+        animation: logoDefault-sm 1.25s ease forwards;
+      }
+
+      &.dark {
+        animation: logoDark-sm 1.25s ease forwards;
+
+        @include for-size(lg) {
+          animation: logoDark-lg 1.25s ease forwards;
+        }
       }
     }
   }

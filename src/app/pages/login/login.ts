@@ -17,6 +17,8 @@ export class Login implements AfterViewInit {
   private route = inject(ActivatedRoute);
   private feedback = viewChild.required<UserFeedbackComponent>('feedback');
 
+  // Only play intro on initial app bootstrap (refresh/new tab), not on in-app route changes.
+  showIntroAnimation = signal(!this.router.navigated);
   errorMessage = signal('');
 
   /**
