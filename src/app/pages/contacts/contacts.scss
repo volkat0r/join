@@ -1,4 +1,9 @@
 @use 'styles/mixins' as *;
+@use 'styles/variables' as *;
+
+* {
+  transition: $trans-default;
+}
 
 .ContactsLayout {
   display: flex;
@@ -6,20 +11,28 @@
   overflow-x: hidden;
 
   .right {
-    width: 60%;
-    padding: 5rem 2rem 2rem 3.375rem;
+    width: 100%;
+    padding: 2rem 1rem;
+
+    @include for-size(sm) {
+      padding: 2.5rem;
+    }
+
+    @include for-size(lg) {
+      padding: 5rem 2rem 2rem 3.375rem;
+      width: 60%;
+      padding: 3rem;
+    }
+
+    @include for-size(xl) {
+      padding: 5rem 3rem 2rem 4rem;
+    }
   }
 
-  @include for-size(lg) {
-    .left,
-    .right {
-      padding: 3rem 2rem;
-      width: 100%;
-    }
-
-    .left {
+  .left {
+    @include for-size(xl) {
       padding: 0;
+      max-width: 28rem;
     }
-
   }
 }

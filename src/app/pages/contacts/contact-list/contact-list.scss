@@ -3,18 +3,29 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
+* {
+  transition: $trans-default;
+}
+
 .contact-list {
-  max-width: 28rem;
+  width: 100dvw;
   background-color: $white;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   box-shadow: 3px 2px 4px rgba(0, 0, 0, 0.1);
 
+
   @include for-size(lg) {
-    max-width: none;
-    padding-bottom: 5rem;
+    max-width: 20rem;
   }
+
+  @include for-size(xl) {
+    padding-bottom: 5rem;
+    max-width: 28rem;
+  }
+
+
 
   @include for-size(xs) {
     padding: 1rem 0.5rem 5rem;
