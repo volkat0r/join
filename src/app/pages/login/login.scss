@@ -80,40 +80,32 @@ h3 {
   position: relative;
   z-index: 5001;
   min-height: 7rem;
+}
 
-  .logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 5002;
+.header .logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5002;
+}
 
-    &.default {
-      @include for-size(lg) {
-        display: none;
-      }
-    }
-
-    &.dark {
-      @include for-size(lg) {
-        animation: none;
-      }
-    }
+@include for-size(lg) {
+  .header .logo.default {
+    display: none;
   }
+}
 
-  &.intro-enabled {
-    .logo {
-      &.default {
-        animation: logoDefault-sm 1.25s ease forwards;
-      }
+.header.intro-enabled .logo.default {
+  animation: logoDefault-sm 1.25s ease forwards;
+}
 
-      &.dark {
-        animation: logoDark-sm 1.25s ease forwards;
+.header.intro-enabled .logo.dark {
+  animation: logoDark-sm 1.25s ease forwards;
+}
 
-        @include for-size(lg) {
-          animation: logoDark-lg 1.25s ease forwards;
-        }
-      }
-    }
+@include for-size(lg) {
+  .header.intro-enabled .logo.dark {
+    animation: logoDark-lg 1.25s ease forwards;
   }
 }
 
@@ -178,22 +170,6 @@ h3 {
 
   100% {
     transform: scale(0.64);
-    opacity: 1;
-  }
-}
-
-@keyframes logoDark-lg {
-
-  0%,
-  50% {
-    top: calc(50vh - 50%);
-    left: calc(50%);
-    transform: scale(3);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1);
     opacity: 1;
   }
 }
