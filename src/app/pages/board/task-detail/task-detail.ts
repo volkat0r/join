@@ -13,20 +13,15 @@ import { ModalWrapper } from '../../../shared/ui/modal-wrapper/modal-wrapper';
   styleUrls: ['./task-detail.scss'],
 })
 export class TaskDetailComponent {
-  // Injections
   private taskDbSingleton = inject(TasksDb);
 
-  // Inputs
-  task = input.required<Task>(); // Wired in board.html
+  task = input.required<Task>();
 
-  // Outputs
   close = output<void>();
   deleted = output<void>();
 
-  // Using child comps
   userFeedback = viewChild.required<UserFeedbackComponent>('feedback');
 
-  // Boolean signals
   isEditing = signal(false);
 
   /**

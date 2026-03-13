@@ -73,7 +73,6 @@ export class SignupForm {
     if (this.dirty[field]) {
       this.validateField(field);
     }
-    // Re-validate confirmPassword when password changes
     if (field === 'password' && this.dirty.confirmPassword) {
       this.validateField('confirmPassword');
     }

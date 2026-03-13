@@ -107,7 +107,6 @@ export class Board implements OnInit, OnDestroy {
     this.feedbackRef().show('Task successfully deleted');
   }
 
-  /* Search Task Input */
   searchTerm = signal('');
 
   filteredTasks = computed(() => {

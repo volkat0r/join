@@ -183,10 +183,6 @@ export class TaskAddFormComponent {
     );
   }
 
-  // ---------------------------------------------------------
-  // Form-specific handlers
-  // ---------------------------------------------------------
-
   /**
    * Closes the category dropdown when a click occurs outside the component.
    * @param event - The document click event.
@@ -234,10 +230,6 @@ export class TaskAddFormComponent {
     this.closed.emit();
   }
 
-  // ---------------------------------------------------------
-  // Submit flow (same pattern as contact-edit-form)
-  // ---------------------------------------------------------
-
   /** Validates the form, saves the task, shows feedback, and emits the appropriate event. */
   async submit() {
     this.markAllDirty();
@@ -250,7 +242,7 @@ export class TaskAddFormComponent {
       if (!!this.editTask()) {
         this.feedback().show('Task updated');
         await new Promise((resolve) => setTimeout(resolve, 3000));
-        this.updated.emit(); // back to detail view
+        this.updated.emit();
       } else {
         this.feedback().show('Task added to board');
         await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -264,10 +256,6 @@ export class TaskAddFormComponent {
       this.finishSaving();
     }
   }
-
-  // ---------------------------------------------------------
-  // Unterfunktionen (Refactoring)
-  // ---------------------------------------------------------
 
   /** Marks all form fields as dirty to trigger full validation before submission. */
   private markAllDirty() {
