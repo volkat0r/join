@@ -6,7 +6,7 @@ import { SupabaseService } from './services/supabase';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrls: ['./app.scss', '../../public/assets/styles/fonts.scss'],
+  styleUrls: ['./app.scss'],
 })
 export class App {
   private supabaseService = inject(SupabaseService);
