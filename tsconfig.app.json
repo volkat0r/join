@@ -15,6 +15,7 @@
   },
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+    "rootDir": "./src",
     "types": []
   },
   "include": [

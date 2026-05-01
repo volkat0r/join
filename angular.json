@@ -61,7 +61,10 @@
               "includePaths": [
                 "src"
               ]
-            }
+            },
+            "externalDependencies": [
+              "assets/*"
+            ]
           },
           "configurations": {
             "production": {
@@ -77,7 +80,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/join/"
             },
             "development": {
               "optimization": false,
